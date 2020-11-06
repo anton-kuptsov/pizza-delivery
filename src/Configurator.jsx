@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-// import Radio from "components/Radio";
-// import Checkbox from "components/Checkbox";
-import { SIZES, THICKNESS, SAUCE, CHEESE, VEGGIES, MEAT } from "./const";
+
+import {
+  INITIAL_PIZZA,
+  SIZES,
+  THICKNESS,
+  SAUCE
+  //  CHEESE, VEGGIES, MEAT
+} from "./const";
 import { RadioGroup } from "components/SelectorGroups";
 
 export default function Configurator() {
-  const [pizza, setPizza] = useState({
-    size: SIZES[0].variant,
-    thickness: THICKNESS[0].variant,
-    sauce: SAUCE[0].variant
-  });
+  const [pizza, setPizza] = useState(INITIAL_PIZZA);
 
   // const [pizzaPrice, setPizzaPrice] = useState(200);
 
@@ -42,11 +43,6 @@ export default function Configurator() {
         currentState={pizza.sauce}
       />
       {/* 
-      <div>
-        <Radio text="Томатный" checked={false} />
-        <Radio text="Белый" checked={false} />
-        <Radio text="Острый" checked={false} />
-      </div>
       <div>
         <Checkbox text="Моцарелла" checked={false} />
         <Checkbox text="Чеддер" checked={false} />

@@ -111,3 +111,12 @@ export const MEAT = [
     additionalPrice: 29
   }
 ];
+
+export const INITIAL_PIZZA = {
+  size: SIZES[0].variant,
+  thickness: THICKNESS[0].variant,
+  sauce: SAUCE[0].variant,
+  cheese: [],
+  veggies: [],
+  meat: []
+};
