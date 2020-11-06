@@ -5,12 +5,14 @@ export default function Radio({
   text = "Text",
   checked = false,
   value = "",
-  name = ""
+  name = "",
+  ...props
 }) {
   return (
     <span>
-      <label for={id}>
+      <label htmlFor={id}>
         <input
+          {...props}
           type="radio"
           id={id}
           name={name}
