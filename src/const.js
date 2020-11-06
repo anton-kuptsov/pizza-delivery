@@ -1,4 +1,4 @@
-export const SIZES = [
+export const SIZE = [
   {
     id: 1,
     variant: "30 cm",
@@ -113,10 +113,11 @@ export const MEAT = [
 ];
 
 export const INITIAL_PIZZA = {
-  size: SIZES[0].variant,
+  size: SIZE[0].variant,
   thickness: THICKNESS[0].variant,
   sauce: SAUCE[0].variant,
   cheese: [],
   veggies: [],
-  meat: []
+  meat: [],
+  price: 200
 };

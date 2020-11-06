@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import {
   INITIAL_PIZZA,
-  SIZES,
+  SIZE,
   THICKNESS,
   SAUCE
   //  CHEESE, VEGGIES, MEAT
@@ -12,34 +12,28 @@ import { RadioGroup } from "components/SelectorGroups";
 export default function Configurator() {
   const [pizza, setPizza] = useState(INITIAL_PIZZA);
 
-  // const [pizzaPrice, setPizzaPrice] = useState(200);
-
-  const handleChange = e => {
-    setPizza(prevState => ({ ...prevState, size: e.target.name }));
-  };
-  const handleChangeThick = e => {
-    setPizza(prevState => ({ ...prevState, thickness: e.target.name }));
-  };
-  const handleChangeSauce = e => {
-    setPizza(prevState => ({ ...prevState, sauce: e.target.name }));
+  const handleSelect = (e, key) => {
+    const newState = pizza;
+    newState[key] = e.target.name;
+    setPizza(prevState => ({ ...prevState, newState }));
   };
 
   return (
     <div>
       Configurator
       <RadioGroup
-        sizes={SIZES}
-        onChange={handleChange}
+        sizes={SIZE}
+        onChange={e => handleSelect(e, "size")}
         currentState={pizza.size}
       />
       <RadioGroup
         sizes={THICKNESS}
-        onChange={handleChangeThick}
+        onChange={e => handleSelect(e, "thickness")}
         currentState={pizza.thickness}
       />
       <RadioGroup
         sizes={SAUCE}
-        onChange={handleChangeSauce}
+        onChange={e => handleSelect(e, "sauce")}
         currentState={pizza.sauce}
       />
       {/* 
