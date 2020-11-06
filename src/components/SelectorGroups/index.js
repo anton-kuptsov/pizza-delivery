@@ -1,1 +1,1 @@
-export { default as PizzaSizeGroup } from "./PizzaSize";
+export { default as RadioGroup } from "./RadioGroup";

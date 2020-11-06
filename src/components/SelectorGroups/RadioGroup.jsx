@@ -1,6 +1,6 @@
 import Radio from "components/Radio";
 
-export default function GroupSize({ sizes, pizza, onChange }) {
+export default function RadioGroup({ sizes, currentState, onChange }) {
   return (
     <div>
       {sizes.map(item => (
@@ -10,11 +10,10 @@ export default function GroupSize({ sizes, pizza, onChange }) {
           name={item.variant}
           text={item.variant}
           value={item.value}
-          checked={pizza.size === item.value ? true : false}
+          checked={currentState === item.variant ? true : false}
           onChange={onChange}
         />
       ))}
-      {console.log(sizes, pizza.size)}
     </div>
   );
 }

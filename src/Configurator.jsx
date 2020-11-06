@@ -1,28 +1,47 @@
 import React, { useState } from "react";
 // import Radio from "components/Radio";
 // import Checkbox from "components/Checkbox";
-import { SIZES, THICKNESS } from "./const";
-import { PizzaSizeGroup } from "components/SelectorGroups";
+import { SIZES, THICKNESS, SAUCE, CHEESE, VEGGIES, MEAT } from "./const";
+import { RadioGroup } from "components/SelectorGroups";
 
 export default function Configurator() {
   const [pizza, setPizza] = useState({
-    size: SIZES[0].value
+    size: SIZES[0].variant,
+    thickness: THICKNESS[0].variant,
+    sauce: SAUCE[0].variant
   });
 
   // const [pizzaPrice, setPizzaPrice] = useState(200);
 
   const handleChange = e => {
-    setPizza({ variant: e.target.name, size: Number(e.target.value) });
+    setPizza(prevState => ({ ...prevState, size: e.target.name }));
+  };
+  const handleChangeThick = e => {
+    setPizza(prevState => ({ ...prevState, thickness: e.target.name }));
+  };
+  const handleChangeSauce = e => {
+    setPizza(prevState => ({ ...prevState, sauce: e.target.name }));
   };
 
   return (
     <div>
       Configurator
-      <PizzaSizeGroup sizes={SIZES} onChange={handleChange} pizza={pizza} />
-      {/* <div>
-        <Radio text="Пышное" checked={false} />
-        <Radio text="Тонкое" checked={false} />
-      </div>
+      <RadioGroup
+        sizes={SIZES}
+        onChange={handleChange}
+        currentState={pizza.size}
+      />
+      <RadioGroup
+        sizes={THICKNESS}
+        onChange={handleChangeThick}
+        currentState={pizza.thickness}
+      />
+      <RadioGroup
+        sizes={SAUCE}
+        onChange={handleChangeSauce}
+        currentState={pizza.sauce}
+      />
+      {/* 
       <div>
         <Radio text="Томатный" checked={false} />
         <Radio text="Белый" checked={false} />
@@ -43,7 +62,7 @@ export default function Configurator() {
         <Checkbox text="Пепперони" checked={false} />
         <Checkbox text="Ветчина" checked={false} />
       </div> */}
-      <div> Config: {pizza.variant}</div>
+      <div>{`Config: ${pizza.size}, ${pizza.thickness}, ${pizza.sauce}`}</div>
       {/* <div>Price: {pizzaPrice} RUB</div> */}
     </div>
   );

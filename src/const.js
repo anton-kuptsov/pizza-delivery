@@ -54,19 +54,19 @@ export const CHEESE = [
     id: 8,
     variant: "Моцарелла",
     value: "mozzarella",
-    additionalPrice: 0
+    additionalPrice: 29
   },
   {
     id: 9,
     variant: "Чеддер",
     value: "cheddar",
-    additionalPrice: 0
+    additionalPrice: 29
   },
   {
     id: 10,
     variant: "Дор блю",
     value: "dorblu",
-    additionalPrice: 0
+    additionalPrice: 29
   }
 ];
 
@@ -75,39 +75,39 @@ export const VEGGIES = [
     id: 11,
     variant: "Томаты",
     value: "tomato",
-    additionalPrice: 0
+    additionalPrice: 29
   },
   {
     id: 12,
     variant: "Грибы",
     value: "mushrooms",
-    additionalPrice: 0
+    additionalPrice: 29
   },
   {
     id: 13,
     variant: "Перец",
     value: "pepper",
-    additionalPrice: 0
+    additionalPrice: 29
   }
 ];
 
-export const VEGGIES = [
-    {
-      id: 14,
-      variant: "Бекон",
-      value: "bacon",
-      additionalPrice: 0
-    },
-    {
-      id: 15,
-      variant: "Пепперони",
-      value: "pepperoni",
-      additionalPrice: 0
-    },
-    {
-      id: 16,
-      variant: "Ветчина",
-      value: "ham",
-      additionalPrice: 0
-    }
-  ];
+export const MEAT = [
+  {
+    id: 14,
+    variant: "Бекон",
+    value: "bacon",
+    additionalPrice: 29
+  },
+  {
+    id: 15,
+    variant: "Пепперони",
+    value: "pepperoni",
+    additionalPrice: 29
+  },
+  {
+    id: 16,
+    variant: "Ветчина",
+    value: "ham",
+    additionalPrice: 29
+  }
+];
