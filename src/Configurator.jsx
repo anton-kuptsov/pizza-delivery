@@ -5,8 +5,9 @@ import {
   SIZE,
   THICKNESS,
   SAUCE,
-  CHEESE
-  //VEGGIES, MEAT
+  CHEESE,
+  VEGGIES,
+  MEAT
 } from "./const";
 import { RadioGroup, CheckboxGroup } from "components/SelectorGroups";
 
@@ -53,19 +54,29 @@ export default function Configurator() {
         onChange={e => handleSelect(e, "cheese")}
         currentState={pizza.cheese}
       />
+      <CheckboxGroup
+        type="checkbox"
+        data={VEGGIES}
+        onChange={e => handleSelect(e, "veggies")}
+        currentState={pizza.veggies}
+      />
+      <CheckboxGroup
+        type="checkbox"
+        data={MEAT}
+        onChange={e => handleSelect(e, "meat")}
+        currentState={pizza.meat}
+      />
       {/* 
-      <div>
-        <Checkbox text="Помидор" checked={false} />
-        <Checkbox text="Грибы" checked={false} />
-        <Checkbox text="Перец" checked={false} />
-      </div>
+ 
       <div>
         <Checkbox text="Бекон" checked={false} />
         <Checkbox text="Пепперони" checked={false} />
         <Checkbox text="Ветчина" checked={false} />
       </div> */}
-      <div>{`Config: ${pizza.size}, ${pizza.thickness}, ${pizza.sauce}`}</div>
+      <div>{`Base: ${pizza.size}, ${pizza.thickness}, ${pizza.sauce}`}</div>
       <div>{`Cheese: ${pizza.cheese}`}</div>
+      <div>{`Veggies: ${pizza.veggies}`}</div>
+      <div>{`Meat: ${pizza.meat}`}</div>
       {/* <div>Price: {pizzaPrice} RUB</div> */}
     </div>
   );
