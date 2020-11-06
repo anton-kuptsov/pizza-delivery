@@ -1,16 +1,16 @@
-import Radio from "components/Radio";
+import Checkbox from "components/Checkbox";
 
-export default function RadioGroup({ data, currentState, onChange }) {
+export default function CheckboxGroup({ data, currentState, onChange }) {
   return (
     <div>
       {data.map(item => (
-        <Radio
+        <Checkbox
           key={item.id}
           id={item.variant + item.id}
           name={item.variant}
           text={item.variant}
           value={item.value}
-          checked={currentState === item.variant ? true : false}
+          checked={currentState.indexOf(item.value) !== -1}
           onChange={onChange}
         />
       ))}

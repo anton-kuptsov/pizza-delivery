@@ -4,17 +4,28 @@ import {
   INITIAL_PIZZA,
   SIZE,
   THICKNESS,
-  SAUCE
-  //  CHEESE, VEGGIES, MEAT
+  SAUCE,
+  CHEESE
+  //VEGGIES, MEAT
 } from "./const";
-import { RadioGroup } from "components/SelectorGroups";
+import { RadioGroup, CheckboxGroup } from "components/SelectorGroups";
 
 export default function Configurator() {
   const [pizza, setPizza] = useState(INITIAL_PIZZA);
 
-  const handleSelect = (e, key) => {
+  const handleChange = (e, key) => {
     const newState = pizza;
     newState[key] = e.target.name;
+    setPizza(prevState => ({ ...prevState, newState }));
+  };
+
+  const handleSelect = (e, key) => {
+    const value = e.target.value;
+    const newState = pizza;
+    newState[key].indexOf(value) === -1
+      ? newState[key].push(value)
+      : (newState[key] = newState[key].filter(item => item !== value));
+
     setPizza(prevState => ({ ...prevState, newState }));
   };
 
@@ -22,19 +33,24 @@ export default function Configurator() {
     <div>
       Configurator
       <RadioGroup
-        sizes={SIZE}
-        onChange={e => handleSelect(e, "size")}
+        data={SIZE}
+        onChange={e => handleChange(e, "size")}
         currentState={pizza.size}
       />
       <RadioGroup
-        sizes={THICKNESS}
-        onChange={e => handleSelect(e, "thickness")}
+        data={THICKNESS}
+        onChange={e => handleChange(e, "thickness")}
         currentState={pizza.thickness}
       />
       <RadioGroup
-        sizes={SAUCE}
-        onChange={e => handleSelect(e, "sauce")}
+        data={SAUCE}
+        onChange={e => handleChange(e, "sauce")}
         currentState={pizza.sauce}
+      />
+      <CheckboxGroup
+        data={CHEESE}
+        onChange={e => handleSelect(e, "cheese")}
+        currentState={pizza.cheese}
       />
       {/* 
       <div>

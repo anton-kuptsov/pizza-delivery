@@ -1,5 +1,3 @@
-import "./radio.module.css";
-
 export default function Radio({
   id = "id",
   text = "Text",
