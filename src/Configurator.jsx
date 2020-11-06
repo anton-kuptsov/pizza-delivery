@@ -10,7 +10,7 @@ import {
   VEGGIES,
   MEAT
 } from "./const";
-import { RadioGroup, CheckboxGroup } from "components/SelectorGroups";
+import { SelectorsGroup } from "components/SelectorGroups";
 
 export default function Configurator() {
   const [pizza, setPizza] = useState(INITIAL_PIZZA);
@@ -38,29 +38,29 @@ export default function Configurator() {
 
   return (
     <div>
-      Pizaa Configurator
-      <RadioGroup
+      Pizza Configurator
+      <SelectorsGroup
         data={SIZE}
         onChange={e => handleChange(e, "size")}
         currState={pizza.size}
         currPrice={pizzaPrice}
         updPrice={setPizzaPrice}
       />
-      <RadioGroup
+      <SelectorsGroup
         data={DOUGH}
         onChange={e => handleChange(e, "dough")}
         currState={pizza.dough}
         currPrice={pizzaPrice}
         updPrice={setPizzaPrice}
       />
-      <RadioGroup
+      <SelectorsGroup
         data={SAUCE}
         onChange={e => handleChange(e, "sauce")}
         currState={pizza.sauce}
         currPrice={pizzaPrice}
         updPrice={setPizzaPrice}
       />
-      <CheckboxGroup
+      <SelectorsGroup
         type="checkbox"
         data={CHEESE}
         onChange={e => handleSelect(e, "cheese")}
@@ -68,7 +68,7 @@ export default function Configurator() {
         currPrice={additionalPrice}
         updPrice={setAdditionalPrice}
       />
-      <CheckboxGroup
+      <SelectorsGroup
         type="checkbox"
         data={VEGGIES}
         onChange={e => handleSelect(e, "veggies")}
@@ -76,7 +76,7 @@ export default function Configurator() {
         currPrice={additionalPrice}
         updPrice={setAdditionalPrice}
       />
-      <CheckboxGroup
+      <SelectorsGroup
         type="checkbox"
         data={MEAT}
         onChange={e => handleSelect(e, "meat")}
@@ -87,11 +87,11 @@ export default function Configurator() {
       <div style={{ marginTop: "1rem" }}>
         Dough: {pizza.size}, {pizza.dough}
       </div>
-      <div>{`Sauce: ${pizza.sauce}`}</div>
+      <div>Sauce: {pizza.sauce}</div>
       <div>{`Cheese: ${pizza.cheese}`}</div>
       <div>{`Veggies: ${pizza.veggies}`}</div>
       <div>{`Meat: ${pizza.meat}`}</div>
-      <div>{`Price: ${orderTotal} RUB`}</div>
+      <div>Price: {orderTotal} RUB</div>
     </div>
   );
 }

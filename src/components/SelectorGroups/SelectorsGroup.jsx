@@ -1,6 +1,6 @@
 import Selector from "components/Selector";
 
-export default function RadioGroup({
+export default function SelectorsGroup({
   type = "radio",
   data,
   currState,
@@ -8,9 +8,18 @@ export default function RadioGroup({
   updPrice,
   onChange
 }) {
+  const isRadio = type === "radio";
+
+  const isChecked = variant =>
+    isRadio
+      ? currState === variant
+        ? true
+        : false
+      : currState.indexOf(variant) !== -1;
+
   const handleChange = (e, price) => {
     onChange(e);
-    if (type === "radio") {
+    if (isRadio) {
       price && updPrice(price);
     } else {
       const result = e.target.checked ? currPrice + price : currPrice - price;
@@ -28,8 +37,13 @@ export default function RadioGroup({
           name={item.variant}
           text={item.variant}
           value={item.value}
-          checked={currState === item.variant ? true : false}
-          onChange={e => handleChange(e, item.price && item.price())}
+          checked={isChecked(item.variant)}
+          onChange={e =>
+            handleChange(
+              e,
+              isRadio ? item.price && item.price() : item.additionalPrice
+            )
+          }
         />
       ))}
     </div>
