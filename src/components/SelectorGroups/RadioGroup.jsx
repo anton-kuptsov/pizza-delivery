@@ -1,10 +1,11 @@
-import Radio from "components/Radio";
+import Selector from "components/Selector";
 
-export default function RadioGroup({ data, currentState, onChange }) {
+export default function RadioGroup({ type, data, currentState, onChange }) {
   return (
     <div>
       {data.map(item => (
-        <Radio
+        <Selector
+          type={type}
           key={item.id}
           id={item.variant + item.id}
           name={item.variant}

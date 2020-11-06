@@ -20,7 +20,7 @@ export default function Configurator() {
   };
 
   const handleSelect = (e, key) => {
-    const value = e.target.value;
+    const value = e.target.name;
     const newState = pizza;
     newState[key].indexOf(value) === -1
       ? newState[key].push(value)
@@ -48,16 +48,12 @@ export default function Configurator() {
         currentState={pizza.sauce}
       />
       <CheckboxGroup
+        type="checkbox"
         data={CHEESE}
         onChange={e => handleSelect(e, "cheese")}
         currentState={pizza.cheese}
       />
       {/* 
-      <div>
-        <Checkbox text="Моцарелла" checked={false} />
-        <Checkbox text="Чеддер" checked={false} />
-        <Checkbox text="ДорБлю" checked={false} />
-      </div>
       <div>
         <Checkbox text="Помидор" checked={false} />
         <Checkbox text="Грибы" checked={false} />
@@ -69,6 +65,7 @@ export default function Configurator() {
         <Checkbox text="Ветчина" checked={false} />
       </div> */}
       <div>{`Config: ${pizza.size}, ${pizza.thickness}, ${pizza.sauce}`}</div>
+      <div>{`Cheese: ${pizza.cheese}`}</div>
       {/* <div>Price: {pizzaPrice} RUB</div> */}
     </div>
   );
