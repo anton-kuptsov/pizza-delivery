@@ -4,7 +4,7 @@ export const SIZE = [
   {
     id: 1,
     type: "radio",
-    variant: "30 cm",
+    variant: "Стандарт (30см)",
     value: 30,
     additionalPrice: 0,
     price: function(add) {
@@ -14,7 +14,7 @@ export const SIZE = [
   {
     id: 2,
     type: "radio",
-    variant: "35 cm",
+    variant: "Большая (35см)",
     value: 35,
     additionalPrice: 50,
     price: function(add) {
