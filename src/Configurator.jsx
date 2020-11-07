@@ -19,19 +19,21 @@ export default function Configurator() {
     setCheckout(true);
   };
 
+  console.log(pizza, ingridients);
+
   const handleChangePizza = (e, key) => {
     const newState = pizza;
 
     if (e.target.type === "radio") {
       newState[key] = e.target.name;
-      setPizza(prevState => ({ ...prevState, newState }));
+      setPizza(newState);
     } else {
       const value = e.target.name;
       newState[key].indexOf(value) === -1
         ? newState[key].push(value)
         : (newState[key] = newState[key].filter(item => item !== value));
 
-      setPizza(prevState => ({ ...prevState, newState }));
+      setPizza(newState);
     }
   };
 
@@ -47,8 +49,8 @@ export default function Configurator() {
               <SelectorsGroup
                 key={item}
                 data={ingridients[item]}
-                onChange={e => handleChangePizza(e, item.toLowerCase())}
-                currConfig={pizza[item.toLowerCase()]}
+                onChange={e => handleChangePizza(e, item)}
+                currConfig={pizza[item]}
                 pizzaPrice={pizzaPrice}
                 updPizzaPrice={setPizzaPrice}
                 additionalPrice={additionalPrice}

@@ -137,10 +137,10 @@ export const MEAT = [
 ];
 
 export const INITIAL_PIZZA_CONFIG = {
-  size: SIZE[0].variant,
-  dough: DOUGH[0].variant,
-  sauce: SAUCE[0].variant,
-  cheese: [],
-  veggies: [],
-  meat: []
+  SIZE: SIZE[0].variant,
+  DOUGH: DOUGH[0].variant,
+  SAUCE: SAUCE[0].variant,
+  CHEESE: [],
+  VEGGIES: [],
+  MEAT: []
 };
