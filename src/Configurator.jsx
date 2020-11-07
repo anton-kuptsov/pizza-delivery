@@ -1,31 +1,27 @@
 import React, { useState } from "react";
-
-import {
-  INITIAL_PIZZA,
-  INITIAL_PRICE,
-  SIZE,
-  DOUGH,
-  SAUCE,
-  CHEESE,
-  VEGGIES,
-  MEAT
-} from "./const";
-import { SelectorsGroup } from "components/SelectorGroups";
+import { SelectorsGroup } from "./components/SelectorGroups";
+import { Button } from "./components/Button";
+import { Checkout } from "./Checkout";
+import * as _data from "./consts";
 
 export default function Configurator() {
-  const [pizza, setPizza] = useState(INITIAL_PIZZA);
-  const [pizzaPrice, setPizzaPrice] = useState(INITIAL_PRICE);
+  const { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE, ...data } = _data;
+
+  const [pizza, setPizza] = useState(INITIAL_PIZZA_CONFIG);
+  const [pizzaPrice, setPizzaPrice] = useState(INITIAL_PIZZA_PRICE);
   const [additionalPrice, setAdditionalPrice] = useState(0);
+  const [isCheckout, setCheckout] = useState(false);
 
-  const orderTotal = pizzaPrice + additionalPrice;
+  const totalOrder = pizzaPrice + additionalPrice;
 
-  const handleChange = (e, key) => {
+  const handleChangeRadio = (e, key) => {
     const newState = pizza;
     newState[key] = e.target.name;
     setPizza(prevState => ({ ...prevState, newState }));
+    console.log(e.target.type);
   };
 
-  const handleSelect = (e, key) => {
+  const handleSelectCheckbox = (e, key) => {
     const value = e.target.name;
     const newState = pizza;
 
@@ -34,64 +30,86 @@ export default function Configurator() {
       : (newState[key] = newState[key].filter(item => item !== value));
 
     setPizza(prevState => ({ ...prevState, newState }));
+    console.log(e.target.type);
+  };
+  const handleCheckout = e => {
+    e.preventDefault();
+    setCheckout(true);
   };
 
-  return (
-    <div>
-      Pizza Configurator
-      <SelectorsGroup
-        data={SIZE}
-        onChange={e => handleChange(e, "size")}
-        currState={pizza.size}
-        currPrice={pizzaPrice}
-        updPrice={setPizzaPrice}
-      />
-      <SelectorsGroup
-        data={DOUGH}
-        onChange={e => handleChange(e, "dough")}
-        currState={pizza.dough}
-        currPrice={pizzaPrice}
-        updPrice={setPizzaPrice}
-      />
-      <SelectorsGroup
-        data={SAUCE}
-        onChange={e => handleChange(e, "sauce")}
-        currState={pizza.sauce}
-        currPrice={pizzaPrice}
-        updPrice={setPizzaPrice}
-      />
-      <SelectorsGroup
-        type="checkbox"
-        data={CHEESE}
-        onChange={e => handleSelect(e, "cheese")}
-        currState={pizza.cheese}
-        currPrice={additionalPrice}
-        updPrice={setAdditionalPrice}
-      />
-      <SelectorsGroup
-        type="checkbox"
-        data={VEGGIES}
-        onChange={e => handleSelect(e, "veggies")}
-        currState={pizza.veggies}
-        currPrice={additionalPrice}
-        updPrice={setAdditionalPrice}
-      />
-      <SelectorsGroup
-        type="checkbox"
-        data={MEAT}
-        onChange={e => handleSelect(e, "meat")}
-        currState={pizza.meat}
-        currPrice={additionalPrice}
-        updPrice={setAdditionalPrice}
-      />
-      <div style={{ marginTop: "1rem" }}>
-        Dough: {pizza.size}, {pizza.dough}
-      </div>
-      <div>Sauce: {pizza.sauce}</div>
-      <div>{`Cheese: ${pizza.cheese}`}</div>
-      <div>{`Veggies: ${pizza.veggies}`}</div>
-      <div>{`Meat: ${pizza.meat}`}</div>
-      <div>Price: {orderTotal} RUB</div>
+  return isCheckout ? (
+    <Checkout pizza={pizza} totalOrder={totalOrder} />
+  ) : (
+    <div className={"container"}>
+      <form onSubmit={handleCheckout}>
+        <fieldset>
+          <legend>Pizza Configurator</legend>
+          <div>
+            {/* {Object.keys(data).map(item => (
+              <SelectorsGroup
+                key={item}
+                data={data[item]}
+                onChange={e => handleChangeRadio(e, item.toLowerCase())}
+                currState={pizza.size}
+                currPrice={pizzaPrice}
+                updPrice={setPizzaPrice}
+              />
+            ))} */}
+
+            <SelectorsGroup
+              data={data.SIZE}
+              onChange={e => handleChangeRadio(e, "size")}
+              currState={pizza.size}
+              currPrice={pizzaPrice}
+              updPrice={setPizzaPrice}
+            />
+            <SelectorsGroup
+              data={data.DOUGH}
+              onChange={e => handleChangeRadio(e, "dough")}
+              currState={pizza.dough}
+              currPrice={pizzaPrice}
+              updPrice={setPizzaPrice}
+            />
+            <SelectorsGroup
+              data={data.SAUCE}
+              onChange={e => handleChangeRadio(e, "sauce")}
+              currState={pizza.sauce}
+              currPrice={pizzaPrice}
+              updPrice={setPizzaPrice}
+            />
+            <SelectorsGroup
+              type="checkbox"
+              data={data.CHEESE}
+              onChange={e => handleSelectCheckbox(e, "cheese")}
+              currState={pizza.cheese}
+              currPrice={additionalPrice}
+              updPrice={setAdditionalPrice}
+            />
+            <SelectorsGroup
+              type="checkbox"
+              data={data.VEGGIES}
+              onChange={e => handleSelectCheckbox(e, "veggies")}
+              currState={pizza.veggies}
+              currPrice={additionalPrice}
+              updPrice={setAdditionalPrice}
+            />
+            <SelectorsGroup
+              type="checkbox"
+              data={data.MEAT}
+              onChange={e => handleSelectCheckbox(e, "meat")}
+              currState={pizza.meat}
+              currPrice={additionalPrice}
+              updPrice={setAdditionalPrice}
+            />
+
+            <div className="container">
+              <Button className="checkout-button">
+                Checkout {totalOrder} RUB
+              </Button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
     </div>
   );
 }

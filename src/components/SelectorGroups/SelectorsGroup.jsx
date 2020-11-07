@@ -1,8 +1,8 @@
-import Selector from "components/Selector";
+import Selector from "./Selector";
 
 export default function SelectorsGroup({
   type = "radio",
-  data,
+  data = [],
   currState,
   currPrice,
   updPrice,

@@ -1,4 +1,4 @@
-export const INITIAL_PRICE = 200;
+export const INITIAL_PIZZA_PRICE = 200;
 
 export const SIZE = [
   {
@@ -7,7 +7,7 @@ export const SIZE = [
     value: 30,
     additionalPrice: 0,
     price: function() {
-      return INITIAL_PRICE + this.additionalPrice;
+      return INITIAL_PIZZA_PRICE + this.additionalPrice;
     }
   },
   {
@@ -16,7 +16,7 @@ export const SIZE = [
     value: 35,
     additionalPrice: 50,
     price: function() {
-      return INITIAL_PRICE + this.additionalPrice;
+      return INITIAL_PIZZA_PRICE + this.additionalPrice;
     }
   }
 ];
@@ -60,18 +60,21 @@ export const SAUCE = [
 export const CHEESE = [
   {
     id: 8,
+    type: "checkbox",
     variant: "Моцарелла",
     value: "mozzarella",
     additionalPrice: 29
   },
   {
     id: 9,
+    type: "checkbox",
     variant: "Чеддер",
     value: "cheddar",
     additionalPrice: 29
   },
   {
     id: 10,
+    type: "checkbox",
     variant: "Дор блю",
     value: "dorblu",
     additionalPrice: 29
@@ -120,7 +123,7 @@ export const MEAT = [
   }
 ];
 
-export const INITIAL_PIZZA = {
+export const INITIAL_PIZZA_CONFIG = {
   size: SIZE[0].variant,
   dough: DOUGH[0].variant,
   sauce: SAUCE[0].variant,
