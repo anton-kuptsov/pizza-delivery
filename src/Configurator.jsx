@@ -3,16 +3,16 @@ import { SelectorsGroup } from "./components/SelectorGroups";
 import { Button } from "./components/Button";
 import { Checkout } from "./Checkout";
 import * as _config from "./configData";
+import { calcOptionalPrice } from "./utils";
 
 export default function Configurator() {
   const { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE, ...ingridients } = _config;
 
   const [pizza, setPizza] = useState(INITIAL_PIZZA_CONFIG);
-  const [pizzaPrice, setPizzaPrice] = useState(INITIAL_PIZZA_PRICE);
   const [additionalPrice, setAdditionalPrice] = useState(0);
   const [isCheckout, setCheckout] = useState(false);
 
-  const totalOrder = pizzaPrice + additionalPrice;
+  const totalOrder = calcOptionalPrice(pizza) + additionalPrice;
 
   const handleCheckout = e => {
     e.preventDefault();
@@ -51,9 +51,6 @@ export default function Configurator() {
                 data={ingridients[item]}
                 onChange={e => handleChangePizza(e, item)}
                 currConfig={pizza[item]}
-                pizzaPrice={pizzaPrice}
-                updPizzaPrice={setPizzaPrice}
-                additionalPrice={additionalPrice}
                 updAdditionalPrice={setAdditionalPrice}
               />
             ))}

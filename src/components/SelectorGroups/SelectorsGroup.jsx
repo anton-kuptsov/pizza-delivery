@@ -3,8 +3,6 @@ import Selector from "./Selector";
 export default function SelectorsGroup({
   data = [],
   currConfig,
-  updPizzaPrice,
-  additionalPrice,
   updAdditionalPrice,
   onChange
 }) {
@@ -14,26 +12,21 @@ export default function SelectorsGroup({
       type === "radio"
         ? currConfig === variant && true
         : currConfig.indexOf(variant) !== -1 && true;
-    // console.log(type, variant, result);
-
     return result;
   };
 
   const handleChange = (e, type, price) => {
     onChange(e);
-    if (type === "radio") {
-      price && updPizzaPrice(price);
-    } else {
-      const result = e.target.checked
-        ? additionalPrice + price
-        : additionalPrice - price;
-      updAdditionalPrice(result);
+    if (type !== "radio") {
+      updAdditionalPrice(prevState =>
+        e.target.checked ? prevState + price : prevState - price
+      );
     }
   };
 
   return (
     <div>
-      {data.map(({ type, id, variant, value, price, additionalPrice }) => (
+      {data.map(({ type, id, variant, value, additionalPrice }) => (
         <Selector
           type={type}
           key={id}
@@ -42,13 +35,7 @@ export default function SelectorsGroup({
           text={variant}
           value={value}
           checked={isChecked(type, variant)}
-          onChange={e =>
-            handleChange(
-              e,
-              type,
-              price ? price(additionalPrice) : additionalPrice
-            )
-          }
+          onChange={e => handleChange(e, type, additionalPrice)}
         />
       ))}
     </div>

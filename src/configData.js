@@ -1,25 +1,17 @@
-export const INITIAL_PIZZA_PRICE = 200;
-
 export const SIZE = [
   {
     id: 1,
     type: "radio",
     variant: "Стандарт (30см)",
     value: 30,
-    additionalPrice: 0,
-    price: function(add) {
-      return INITIAL_PIZZA_PRICE + add;
-    }
+    additionalPrice: 0
   },
   {
     id: 2,
     type: "radio",
     variant: "Большая (35см)",
     value: 35,
-    additionalPrice: 50,
-    price: function(add) {
-      return INITIAL_PIZZA_PRICE + add;
-    }
+    additionalPrice: 50
   }
 ];
 
@@ -53,14 +45,14 @@ export const SAUCE = [
     type: "radio",
     variant: "Белый",
     value: "white",
-    additionalPrice: 0
+    additionalPrice: 5
   },
   {
     id: 7,
     type: "radio",
     variant: "Острый",
     value: "hot",
-    additionalPrice: 0
+    additionalPrice: 10
   }
 ];
 
@@ -144,3 +136,5 @@ export const INITIAL_PIZZA_CONFIG = {
   VEGGIES: [],
   MEAT: []
 };
+
+export const INITIAL_PIZZA_PRICE = 200;
