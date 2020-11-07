@@ -20,17 +20,20 @@ export default function Configurator() {
   };
 
   const handleChangePizza = (e, key) => {
-    const newState = Object.assign({}, pizza);
-
     if (e.target.type === "radio") {
-      newState[key] = e.target.name;
-      setPizza(newState);
+      setPizza(prevState => ({ ...prevState, [key]: e.target.name }));
     } else {
       const value = e.target.name;
-      newState[key].indexOf(value) === -1
-        ? newState[key].push(value)
-        : (newState[key] = newState[key].filter(item => item !== value));
-      setPizza(newState);
+      const isNotExist = pizza[key].indexOf(value) === -1;
+      isNotExist
+        ? setPizza(prevState => ({
+            ...prevState,
+            [key]: [...prevState[key], value]
+          }))
+        : setPizza(prevState => ({
+            ...prevState,
+            [key]: prevState[key].filter(item => item !== value)
+          }));
     }
   };
 
