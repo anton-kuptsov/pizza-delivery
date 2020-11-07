@@ -1,47 +1,50 @@
 import Selector from "./Selector";
 
 export default function SelectorsGroup({
-  type = "radio",
   data = [],
-  currState,
-  currPrice,
-  updPrice,
+  currConfig,
+  updPizzaPrice,
+  additionalPrice,
+  updAdditionalPrice,
   onChange
 }) {
-  const isRadio = type === "radio";
+  const isChecked = (type, variant) => {
+    let result = false;
+    result =
+      type === "radio"
+        ? currConfig === variant && true
+        : currConfig.indexOf(variant) !== -1 && true;
+    return result;
+  };
 
-  const isChecked = variant =>
-    isRadio
-      ? currState === variant
-        ? true
-        : false
-      : currState.indexOf(variant) !== -1;
-
-  const handleChange = (e, price) => {
+  const handleChange = (e, type, price) => {
     onChange(e);
-    if (isRadio) {
-      price && updPrice(price);
+    if (type === "radio") {
+      price && updPizzaPrice(price);
     } else {
-      const result = e.target.checked ? currPrice + price : currPrice - price;
-      updPrice(result);
+      const result = e.target.checked
+        ? additionalPrice + price
+        : additionalPrice - price;
+      updAdditionalPrice(result);
     }
   };
 
   return (
     <div>
-      {data.map(item => (
+      {data.map(({ type, id, variant, value, price, additionalPrice }) => (
         <Selector
           type={type}
-          key={item.id}
-          id={item.variant + item.id}
-          name={item.variant}
-          text={item.variant}
-          value={item.value}
-          checked={isChecked(item.variant)}
+          key={id}
+          id={value + "-" + id}
+          name={variant}
+          text={variant}
+          value={value}
+          checked={isChecked(type, variant)}
           onChange={e =>
             handleChange(
               e,
-              isRadio ? item.price && item.price() : item.additionalPrice
+              type,
+              price ? price(additionalPrice) : additionalPrice
             )
           }
         />
