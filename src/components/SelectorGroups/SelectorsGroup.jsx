@@ -14,6 +14,8 @@ export default function SelectorsGroup({
       type === "radio"
         ? currConfig === variant && true
         : currConfig.indexOf(variant) !== -1 && true;
+    // console.log(type, variant, result);
+
     return result;
   };
 

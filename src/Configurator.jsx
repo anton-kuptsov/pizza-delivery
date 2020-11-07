@@ -19,10 +19,8 @@ export default function Configurator() {
     setCheckout(true);
   };
 
-  console.log(pizza, ingridients);
-
   const handleChangePizza = (e, key) => {
-    const newState = pizza;
+    const newState = Object.assign({}, pizza);
 
     if (e.target.type === "radio") {
       newState[key] = e.target.name;
@@ -32,7 +30,6 @@ export default function Configurator() {
       newState[key].indexOf(value) === -1
         ? newState[key].push(value)
         : (newState[key] = newState[key].filter(item => item !== value));
-
       setPizza(newState);
     }
   };
