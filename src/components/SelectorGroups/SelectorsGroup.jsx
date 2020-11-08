@@ -1,11 +1,6 @@
 import Selector from "./Selector";
 
-export default function SelectorsGroup({
-  data = [],
-  currConfig,
-  setAdditionalCost,
-  onChange
-}) {
+export default function SelectorsGroup({ data = [], currConfig, onChange }) {
   const isChecked = (type, variant) => {
     let result = false;
     result =
@@ -15,18 +10,9 @@ export default function SelectorsGroup({
     return result;
   };
 
-  const handleChange = (e, type, price) => {
-    onChange(e);
-    if (type !== "radio") {
-      setAdditionalCost(prevState =>
-        e.target.checked ? prevState + price : prevState - price
-      );
-    }
-  };
-
   return (
     <div>
-      {data.map(({ type, id, variant, value, additionalPrice }) => (
+      {data.map(({ type, id, variant, value }) => (
         <Selector
           type={type}
           key={id}
@@ -35,7 +21,7 @@ export default function SelectorsGroup({
           text={variant}
           value={value}
           checked={isChecked(type, variant)}
-          onChange={e => handleChange(e, type, additionalPrice)}
+          onChange={onChange}
         />
       ))}
     </div>

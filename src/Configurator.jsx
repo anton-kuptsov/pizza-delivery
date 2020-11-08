@@ -3,16 +3,15 @@ import { SelectorsGroup } from "./components/SelectorGroups";
 import { Button } from "./components/Button";
 import { Checkout } from "./Checkout";
 import * as _config from "./configData";
-import { baseCostCalc } from "./utils";
+import { totalCostCalc } from "./utils";
 
 export default function Configurator() {
   const { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE, ...ingridients } = _config;
 
   const [pizza, setPizza] = useState(INITIAL_PIZZA_CONFIG);
-  const [additionalCost, setAdditionalCost] = useState(0);
   const [isCheckout, setCheckout] = useState(false);
 
-  const totalCost = baseCostCalc(pizza) + additionalCost;
+  const totalCost = totalCostCalc(pizza);
 
   const handleCheckout = e => {
     e.preventDefault();
@@ -51,10 +50,8 @@ export default function Configurator() {
                 data={ingridients[item]}
                 onChange={e => handleChangePizza(e, item)}
                 currConfig={pizza[item]}
-                setAdditionalCost={setAdditionalCost}
               />
             ))}
-
             <div className="container">
               <Button className="checkout-button">
                 Checkout {totalCost} RUB
