@@ -1,6 +1,6 @@
 import { Button } from "./components/Button";
 
-export const Checkout = ({ pizza, totalOrder }) => {
+export const Checkout = ({ pizza, totalCost }) => {
   return (
     <div className={"container"}>
       <div>
@@ -20,7 +20,7 @@ export const Checkout = ({ pizza, totalOrder }) => {
         <span className="order-item-name">Meat:</span> {`${pizza.MEAT}`}
       </div>
       <div>
-        <span className="order-item-name">Total:</span> {totalOrder} RUB
+        <span className="order-item-name">Total:</span> {totalCost} RUB
       </div>
       <div className="container">
         <Button className="order-button">Order</Button>

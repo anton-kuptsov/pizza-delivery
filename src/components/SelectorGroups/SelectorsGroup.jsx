@@ -3,7 +3,7 @@ import Selector from "./Selector";
 export default function SelectorsGroup({
   data = [],
   currConfig,
-  updAdditionalPrice,
+  setAdditionalCost,
   onChange
 }) {
   const isChecked = (type, variant) => {
@@ -18,7 +18,7 @@ export default function SelectorsGroup({
   const handleChange = (e, type, price) => {
     onChange(e);
     if (type !== "radio") {
-      updAdditionalPrice(prevState =>
+      setAdditionalCost(prevState =>
         e.target.checked ? prevState + price : prevState - price
       );
     }

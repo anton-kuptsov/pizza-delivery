@@ -3,16 +3,16 @@ import { SelectorsGroup } from "./components/SelectorGroups";
 import { Button } from "./components/Button";
 import { Checkout } from "./Checkout";
 import * as _config from "./configData";
-import { calcOptionalPrice } from "./utils";
+import { baseCostCalc } from "./utils";
 
 export default function Configurator() {
   const { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE, ...ingridients } = _config;
 
   const [pizza, setPizza] = useState(INITIAL_PIZZA_CONFIG);
-  const [additionalPrice, setAdditionalPrice] = useState(0);
+  const [additionalCost, setAdditionalCost] = useState(0);
   const [isCheckout, setCheckout] = useState(false);
 
-  const totalOrder = calcOptionalPrice(pizza) + additionalPrice;
+  const totalCost = baseCostCalc(pizza) + additionalCost;
 
   const handleCheckout = e => {
     e.preventDefault();
@@ -20,10 +20,10 @@ export default function Configurator() {
   };
 
   const handleChangePizza = (e, key) => {
+    const value = e.target.name;
     if (e.target.type === "radio") {
-      setPizza(prevState => ({ ...prevState, [key]: e.target.name }));
+      setPizza(prevState => ({ ...prevState, [key]: value }));
     } else {
-      const value = e.target.name;
       const isNotExist = pizza[key].indexOf(value) === -1;
       isNotExist
         ? setPizza(prevState => ({
@@ -38,7 +38,7 @@ export default function Configurator() {
   };
 
   return isCheckout ? (
-    <Checkout pizza={pizza} totalOrder={totalOrder} />
+    <Checkout pizza={pizza} totalCost={totalCost} />
   ) : (
     <div className={"container"}>
       <form onSubmit={handleCheckout}>
@@ -51,13 +51,13 @@ export default function Configurator() {
                 data={ingridients[item]}
                 onChange={e => handleChangePizza(e, item)}
                 currConfig={pizza[item]}
-                updAdditionalPrice={setAdditionalPrice}
+                setAdditionalCost={setAdditionalCost}
               />
             ))}
 
             <div className="container">
               <Button className="checkout-button">
-                Checkout {totalOrder} RUB
+                Checkout {totalCost} RUB
               </Button>
             </div>
           </div>
