@@ -12,14 +12,14 @@ export default function SelectorsGroup({ data = [], currConfig, onChange }) {
 
   return (
     <div>
-      {data.map(({ type, id, variant, value }) => (
+      {data.map(({ type, id, variant, name }) => (
         <Selector
           type={type}
           key={id}
-          id={value + "-" + id}
-          name={variant}
+          id={name + "-" + id}
+          name={name}
           text={variant}
-          value={value}
+          value={variant}
           checked={isChecked(type, variant)}
           onChange={onChange}
         />

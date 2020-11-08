@@ -19,7 +19,7 @@ export default function Configurator() {
   };
 
   const handleChangePizza = (e, key) => {
-    const value = e.target.name;
+    const value = e.target.value;
     if (e.target.type === "radio") {
       setPizza(prevState => ({ ...prevState, [key]: value }));
     } else {
