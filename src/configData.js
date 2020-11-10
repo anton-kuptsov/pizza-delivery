@@ -1,21 +1,21 @@
-export const SIZE = [
+const SIZE = [
   {
     id: 1,
     type: "radio",
     variant: "Стандарт (30см)",
-    name: "Standart30",
+    name: "standart30",
     additionalPrice: 0
   },
   {
     id: 2,
     type: "radio",
     variant: "Большая (35см)",
-    name: "Big35",
+    name: "big35",
     additionalPrice: 50
   }
 ];
 
-export const DOUGH = [
+const DOUGH = [
   {
     id: 3,
     type: "radio",
@@ -32,7 +32,7 @@ export const DOUGH = [
   }
 ];
 
-export const SAUCE = [
+const SAUCE = [
   {
     id: 5,
     type: "radio",
@@ -56,7 +56,7 @@ export const SAUCE = [
   }
 ];
 
-export const CHEESE = [
+const CHEESE = [
   {
     id: 8,
     type: "checkbox",
@@ -80,7 +80,7 @@ export const CHEESE = [
   }
 ];
 
-export const VEGGIES = [
+const VEGGIES = [
   {
     id: 11,
     type: "checkbox",
@@ -104,7 +104,7 @@ export const VEGGIES = [
   }
 ];
 
-export const MEAT = [
+const MEAT = [
   {
     id: 14,
     type: "checkbox",
@@ -138,3 +138,4 @@ export const INITIAL_PIZZA_CONFIG = {
 };
 
 export const INITIAL_PIZZA_PRICE = 200;
+export const PIZZA_OPTIONS = { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT };

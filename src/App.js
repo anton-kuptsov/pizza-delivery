@@ -1,11 +1,7 @@
 import Configurator from "./Configurator";
 
 function App() {
-  return (
-    <>
-      <Configurator />
-    </>
-  );
+  return <Configurator />;
 }
 
 export default App;

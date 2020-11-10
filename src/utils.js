@@ -1,7 +1,7 @@
-import * as data from "./configData";
+import { PIZZA_OPTIONS, INITIAL_PIZZA_PRICE } from "./configData";
 
 export const totalCostCalc = pizzaConfig => {
-  let totalBaseCost = data.INITIAL_PIZZA_PRICE;
+  let totalBaseCost = INITIAL_PIZZA_PRICE;
   const checkedOptions = [];
 
   const addCheckedOptions = (options, dataArr) =>
@@ -12,7 +12,7 @@ export const totalCostCalc = pizzaConfig => {
         );
 
   Object.keys(pizzaConfig).forEach(key =>
-    addCheckedOptions(pizzaConfig[key], data[key])
+    addCheckedOptions(pizzaConfig[key], PIZZA_OPTIONS[key])
   );
 
   const arrayWithPrices = checkedOptions.map(item => item.additionalPrice);

@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { SelectorsGroup } from "./components/SelectorGroups";
 import { Button } from "./components/Button";
 import { Checkout } from "./Checkout";
-import * as _config from "./configData";
+// import * as configData from "./configData";
+import { PIZZA_OPTIONS, INITIAL_PIZZA_CONFIG } from "./configData";
 import { totalCostCalc } from "./utils";
 
 export default function Configurator() {
-  const { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE, ...ingridients } = _config;
+  // const {
+  //   // INITIAL_PIZZA_CONFIG,
+  //   // INITIAL_PIZZA_PRICE,
+  //   ...ingridients
+  // } = configData;
+  // console.log(PIZZA_OPTIONS);
 
   const [pizza, setPizza] = useState(INITIAL_PIZZA_CONFIG);
   const [isCheckout, setCheckout] = useState(false);
@@ -44,10 +50,10 @@ export default function Configurator() {
         <fieldset>
           <legend>Pizza Configurator</legend>
           <div>
-            {Object.keys(ingridients).map(item => (
+            {Object.keys(PIZZA_OPTIONS).map(item => (
               <SelectorsGroup
                 key={item}
-                data={ingridients[item]}
+                data={PIZZA_OPTIONS[item]}
                 onChange={e => handleChangePizza(e, item)}
                 currConfig={pizza[item]}
               />
