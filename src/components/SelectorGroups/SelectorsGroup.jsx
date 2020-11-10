@@ -1,4 +1,4 @@
-import Selector from "./Selector";
+import OptionInput from "./OptionInput";
 
 export default function SelectorsGroup({ data = [], currConfig, onChange }) {
   const isChecked = (type, variant) => {
@@ -13,7 +13,7 @@ export default function SelectorsGroup({ data = [], currConfig, onChange }) {
   return (
     <div>
       {data.map(({ type, id, variant, name }) => (
-        <Selector
+        <OptionInput
           type={type}
           key={id}
           id={name + "-" + id}
