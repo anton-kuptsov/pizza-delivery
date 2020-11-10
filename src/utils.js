@@ -1,22 +1,18 @@
 import { PIZZA_OPTIONS, INITIAL_PIZZA_PRICE } from "./configData";
 
 export const totalCostCalc = pizzaConfig => {
-  let totalBaseCost = INITIAL_PIZZA_PRICE;
-  const checkedOptions = [];
+  const optionsArr = Object.entries(pizzaConfig)
+    .map(item =>
+      Array.isArray(item[1])
+        ? item[1].map(el => PIZZA_OPTIONS[item[0]].filter(a => a.value === el))
+        : PIZZA_OPTIONS[item[0]].filter(a => a.value === item[1])
+    )
+    .flat(2);
 
-  const addCheckedOptions = (options, dataArr) =>
-    typeof options === "string"
-      ? checkedOptions.push(dataArr.filter(item => item.variant === options)[0])
-      : options.forEach(el =>
-          checkedOptions.push(dataArr.filter(item => item.variant === el)[0])
-        );
-
-  Object.keys(pizzaConfig).forEach(key =>
-    addCheckedOptions(pizzaConfig[key], PIZZA_OPTIONS[key])
+  const result = optionsArr.reduce(
+    (total, item) => total + item.additionalPrice,
+    INITIAL_PIZZA_PRICE
   );
 
-  const arrayWithPrices = checkedOptions.map(item => item.additionalPrice);
-  arrayWithPrices.forEach(item => (totalBaseCost += item));
-
-  return totalBaseCost;
+  return result;
 };
