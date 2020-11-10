@@ -2,18 +2,10 @@ import React, { useState } from "react";
 import { SelectorsGroup } from "./components/SelectorGroups";
 import { Button } from "./components/Button";
 import { Checkout } from "./Checkout";
-// import * as configData from "./configData";
 import { PIZZA_OPTIONS, INITIAL_PIZZA_CONFIG } from "./configData";
 import { totalCostCalc } from "./utils";
 
 export default function Configurator() {
-  // const {
-  //   // INITIAL_PIZZA_CONFIG,
-  //   // INITIAL_PIZZA_PRICE,
-  //   ...ingridients
-  // } = configData;
-  // console.log(PIZZA_OPTIONS);
-
   const [pizza, setPizza] = useState(INITIAL_PIZZA_CONFIG);
   const [isCheckout, setCheckout] = useState(false);
 
@@ -29,15 +21,15 @@ export default function Configurator() {
     if (e.target.type === "radio") {
       setPizza(prevState => ({ ...prevState, [key]: value }));
     } else {
-      const isNotExist = pizza[key].indexOf(value) === -1;
-      isNotExist
+      const isExist = pizza[key].indexOf(value) !== -1;
+      isExist
         ? setPizza(prevState => ({
             ...prevState,
-            [key]: [...prevState[key], value]
+            [key]: prevState[key].filter(item => item !== value)
           }))
         : setPizza(prevState => ({
             ...prevState,
-            [key]: prevState[key].filter(item => item !== value)
+            [key]: [...prevState[key], value]
           }));
     }
   };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Selector = React.forwardRef(function Selector(
+const OptionInput = React.forwardRef(function OptionInput(
   {
     id = "id",
     text = "Text",
@@ -29,4 +29,4 @@ const Selector = React.forwardRef(function Selector(
     </span>
   );
 });
-export default Selector;
+export default OptionInput;
