@@ -3,14 +3,14 @@ const SIZE = [
     id: 1,
     type: "radio",
     value: "Стандарт (30см)",
-    name: "SIZE",
+    name: "size",
     additionalPrice: 0
   },
   {
     id: 2,
     type: "radio",
     value: "Большая (35см)",
-    name: "SIZE",
+    name: "size",
     additionalPrice: 50
   }
 ];
