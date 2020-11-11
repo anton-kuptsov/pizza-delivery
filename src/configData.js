@@ -3,14 +3,14 @@ const SIZE = [
     id: 1,
     type: "radio",
     value: "Стандарт (30см)",
-    name: "standart30",
+    name: "SIZE",
     additionalPrice: 0
   },
   {
     id: 2,
     type: "radio",
     value: "Большая (35см)",
-    name: "big35",
+    name: "SIZE",
     additionalPrice: 50
   }
 ];
@@ -20,14 +20,14 @@ const DOUGH = [
     id: 3,
     type: "radio",
     value: "Тонкое",
-    name: "thin",
+    name: "dough",
     additionalPrice: 0
   },
   {
     id: 4,
     type: "radio",
     value: "Пышное",
-    name: "thick",
+    name: "dough",
     additionalPrice: 0
   }
 ];
@@ -37,21 +37,21 @@ const SAUCE = [
     id: 5,
     type: "radio",
     value: "Томатный",
-    name: "tomato",
+    name: "sauce",
     additionalPrice: 0
   },
   {
     id: 6,
     type: "radio",
     value: "Белый",
-    name: "white",
+    name: "sauce",
     additionalPrice: 5
   },
   {
     id: 7,
     type: "radio",
     value: "Острый",
-    name: "hot",
+    name: "sauce",
     additionalPrice: 10
   }
 ];
@@ -61,21 +61,21 @@ const CHEESE = [
     id: 8,
     type: "checkbox",
     value: "Моцарелла",
-    name: "mozzarella",
+    name: "cheese",
     additionalPrice: 29
   },
   {
     id: 9,
     type: "checkbox",
     value: "Чеддер",
-    name: "cheddar",
+    name: "cheese",
     additionalPrice: 29
   },
   {
     id: 10,
     type: "checkbox",
     value: "Дор блю",
-    name: "dorblu",
+    name: "cheese",
     additionalPrice: 29
   }
 ];
@@ -85,21 +85,21 @@ const VEGGIES = [
     id: 11,
     type: "checkbox",
     value: "Томаты",
-    name: "tomato",
+    name: "veggies",
     additionalPrice: 29
   },
   {
     id: 12,
     type: "checkbox",
     value: "Грибы",
-    name: "mushrooms",
+    name: "veggies",
     additionalPrice: 29
   },
   {
     id: 13,
     type: "checkbox",
     value: "Перец",
-    name: "pepper",
+    name: "veggies",
     additionalPrice: 29
   }
 ];
@@ -109,29 +109,29 @@ const MEAT = [
     id: 14,
     type: "checkbox",
     value: "Бекон",
-    name: "bacon",
+    name: "meat",
     additionalPrice: 29
   },
   {
     id: 15,
     type: "checkbox",
     value: "Пепперони",
-    name: "pepperoni",
+    name: "meat",
     additionalPrice: 29
   },
   {
     id: 16,
     type: "checkbox",
     value: "Ветчина",
-    name: "ham",
+    name: "meat",
     additionalPrice: 29
   }
 ];
 
 export const INITIAL_PIZZA_CONFIG = {
-  SIZE: SIZE[0].value,
-  DOUGH: DOUGH[0].value,
-  SAUCE: SAUCE[0].value,
+  SIZE: [SIZE[0].value],
+  DOUGH: [DOUGH[0].value],
+  SAUCE: [SAUCE[0].value],
   CHEESE: [],
   VEGGIES: [],
   MEAT: []
