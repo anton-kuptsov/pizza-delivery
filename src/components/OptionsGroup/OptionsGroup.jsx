@@ -4,9 +4,12 @@ import { PIZZA_OPTIONS, INITIAL_PIZZA_CONFIG } from "../../configData";
 export default function OptionsGroup({ options, groupName, setPizzaConfig }) {
   const optionsRef = React.useRef([]);
 
-  const onChange = (type, arr) => {
+  const onChange = (actionType, arr) => {
     const selected = arr.filter(item => optionsRef.current[item.id].checked);
-    setPizzaConfig({ type: type, payload: selected.map(item => item.value) });
+    setPizzaConfig({
+      type: actionType,
+      payload: selected.map(item => item.value)
+    });
   };
 
   return (
