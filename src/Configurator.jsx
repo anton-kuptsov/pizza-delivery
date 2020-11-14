@@ -3,7 +3,7 @@ import { OptionsGroup } from "./components/OptionsGroup";
 import { Button } from "./components/Button";
 import { Checkout } from "./Checkout";
 import { PIZZA_OPTIONS, INITIAL_PIZZA_CONFIG } from "./configData";
-import { totalCostCalc } from "./utils";
+import { totalCostCalc } from "./totalCostCalc";
 import { reducer } from "./reducers";
 
 export default function Configurator() {

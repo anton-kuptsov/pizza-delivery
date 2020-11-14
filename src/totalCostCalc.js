@@ -1,6 +1,6 @@
 import { PIZZA_OPTIONS, INITIAL_PIZZA_PRICE } from "./configData";
 
-export const totalCostCalc = pizzaConfig => {
+export const totalCostCalc = (pizzaConfig = INITIAL_PIZZA_CONFIG) => {
   const optionsArr = Object.entries(pizzaConfig)
     .map(item =>
       item[1].map(el => PIZZA_OPTIONS[item[0]].filter(a => a.value === el))
