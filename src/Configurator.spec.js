@@ -40,7 +40,7 @@ describe("Configurator", () => {
       fireEvent.click(getByText("Ветчина"));
       fireEvent.click(getByText("Checkout 229 RUB"));
       expect(getByText("Ветчина")).toBeInTheDocument();
-      expect(getByText("Total:")).toBeInTheDocument();
+      expect(getByText("Total cost:")).toBeInTheDocument();
       expect(getByText("229 RUB")).toBeInTheDocument();
       expect(getByText("Order")).toBeInTheDocument();
     });

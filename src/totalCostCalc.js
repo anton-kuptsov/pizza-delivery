@@ -1,4 +1,8 @@
-import { PIZZA_OPTIONS, INITIAL_PIZZA_PRICE } from "./configData";
+import {
+  PIZZA_OPTIONS,
+  INITIAL_PIZZA_PRICE,
+  INITIAL_PIZZA_CONFIG
+} from "./configData";
 
 export const totalCostCalc = (pizzaConfig = INITIAL_PIZZA_CONFIG) => {
   const optionsArr = Object.entries(pizzaConfig)

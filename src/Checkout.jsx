@@ -5,34 +5,35 @@ export const Checkout = ({
   pizza = INITIAL_PIZZA_CONFIG,
   totalCost = INITIAL_PIZZA_PRICE
 }) => {
+  const { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } = pizza;
   return (
     <div className="container">
       <div>
         <span className="order-item-name">Size: </span>
-        <span>{pizza.SIZE[0]}</span>
+        <span>{SIZE}</span>
       </div>
       <div>
         <span className="order-item-name">Dough: </span>
-        <span>{pizza.DOUGH[0]}</span>
+        <span>{DOUGH}</span>
       </div>
       <div>
         <span className="order-item-name">Sauce: </span>
-        <span>{pizza.SAUCE[0]}</span>
+        <span>{SAUCE}</span>
       </div>
       <div>
         <span className="order-item-name">Cheese: </span>
-        <span>{pizza.CHEESE.join(", ")}</span>
+        <span>{CHEESE.join(", ")}</span>
       </div>
       <div>
         <span className="order-item-name">Veggies: </span>
-        <span>{pizza.VEGGIES.join(", ")}</span>
+        <span>{VEGGIES.join(", ")}</span>
       </div>
       <div>
         <span className="order-item-name">Meat: </span>
-        <span>{pizza.MEAT.join(", ")}</span>
+        <span>{MEAT.join(", ")}</span>
       </div>
       <div>
-        <span className="order-item-name">Total: </span>
+        <span className="order-item-name">Total cost: </span>
         <span>{totalCost} RUB</span>
       </div>
       <div className="container">
