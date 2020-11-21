@@ -4,6 +4,8 @@ import * as ROUTES from "./Routes";
 import Configurator from "./Configurator";
 import { NotFoundPage } from "./NotFoundPage";
 import { LoginPage } from "./LoginPage";
+import { SignupPage } from "./SignupPage";
+import { CheckoutPage } from "./CheckoutPage";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Configurator />
         </Route>
         <Route path={ROUTES.LOGIN} component={LoginPage} />
+        <Route path={ROUTES.SIGNUP} component={SignupPage} />
+        <Route path={ROUTES.CHECKOUT} component={CheckoutPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </>

@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
-import { Checkout } from "./Checkout";
+import { CheckoutPage } from "./CheckoutPage";
 
 describe("Checkout", () => {
   it("renders correctly", () => {
-    const { container, getByText } = render(<Checkout />);
+    const { container, getByText } = render(<CheckoutPage />);
 
     expect(container.getElementsByTagName("div")).toBeTruthy();
     expect(container.getElementsByClassName("container")).toBeTruthy();

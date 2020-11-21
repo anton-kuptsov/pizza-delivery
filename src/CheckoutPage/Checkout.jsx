@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "./components/Button";
-import { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE } from "./configData";
+import { Button } from "../components/Button";
+import { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE } from "../configData";
 
-export const Checkout = ({
+export const CheckoutPage = ({
   pizza = INITIAL_PIZZA_CONFIG,
   totalCost = INITIAL_PIZZA_PRICE
 }) => {
