@@ -53,7 +53,7 @@ describe("OptionsGroup", () => {
 
     it("passes pizza checkbox option", () => {
       const setPizzaConfig = jest.fn();
-      const { container, getByText } = render(
+      const { getByText } = render(
         <OptionsGroup
           groupName="MEAT"
           options={[
