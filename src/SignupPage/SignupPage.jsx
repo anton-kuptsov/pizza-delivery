@@ -6,23 +6,23 @@ export const SignupPage = () => {
       <form>
         <fieldset>
           <legend>Sign up</legend>
-          <label>
+          <label for="name">
             Name:
-            <input type="text" placeholder="name" />
+            <input type="text" id="name" placeholder="name" />
           </label>
           <br />
-          <label>
+          <label for="email">
             Email:
-            <input type="email" placeholder="email@" />
+            <input type="email" id="email" placeholder="email@" />
           </label>
           <br />
-          <label>
+          <label for="password">
             Password:
-            <input type="password" placeholder="password" />
+            <input type="password" id="password" placeholder="password" />
           </label>
-          <label>
+          <label for="password-dbl">
             Repeat Password:
-            <input type="password" placeholder="password" />
+            <input type="password" id="password-dbl" placeholder="password" />
           </label>
         </fieldset>
       </form>

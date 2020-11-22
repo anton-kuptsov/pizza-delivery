@@ -6,13 +6,13 @@ export const LoginPage = () => {
       <form>
         <fieldset>
           <legend>Login</legend>
-          <label>
+          <label for="email">
             Email:
-            <input type="email" placeholder="email@" />
+            <input type="email" id="email" placeholder="email@" />
           </label>
-          <label>
+          <label for="password">
             Password:
-            <input type="password" placeholder="password" />
+            <input type="password" id="password" placeholder="password" />
           </label>
         </fieldset>
       </form>
