@@ -3,8 +3,8 @@ import { NotFoundPage } from "./NotFoundPage";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
 
-describe("renders correctly", () => {
-  it("404 message", () => {
+describe("NotFoundPage", () => {
+  it("renders correctly", () => {
     const { getByText } = render(<NotFoundPage />);
     expect(getByText("404 Page Not Found")).toBeInTheDocument();
   });
