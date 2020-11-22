@@ -1,3 +1,6 @@
+import React from "react";
+import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
 import { render, fireEvent } from "@testing-library/react";
 import Configurator from "./Configurator";
 
@@ -36,13 +39,15 @@ describe("Configurator", () => {
 
   describe("on pizza submit", () => {
     it("passes checked options", () => {
-      const { getByText } = render(<Configurator />);
+      const history = createMemoryHistory();
+      const { getByText } = render(
+        <Router history={history}>
+          <Configurator />
+        </Router>
+      );
       fireEvent.click(getByText("Ветчина"));
       fireEvent.click(getByText("Checkout 229 RUB"));
-      expect(getByText("Ветчина")).toBeInTheDocument();
-      expect(getByText("Total cost:")).toBeInTheDocument();
-      expect(getByText("229 RUB")).toBeInTheDocument();
-      expect(getByText("Order")).toBeInTheDocument();
+      expect(history.location.pathname).toEqual("/checkout");
     });
   });
 });

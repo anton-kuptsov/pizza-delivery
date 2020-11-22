@@ -1,9 +1,16 @@
-import { render } from "@testing-library/react";
-import { CheckoutPage } from "./CheckoutPage";
+import { render, fireEvent } from "@testing-library/react";
+import { CheckoutPage } from "./Checkout";
+import { Router } from "react-router-dom";
+import { createMemoryHistory } from "history";
 
 describe("Checkout", () => {
   it("renders correctly", () => {
-    const { container, getByText } = render(<CheckoutPage />);
+    const history = createMemoryHistory();
+    const { container, getByText } = render(
+      <Router history={history}>
+        <CheckoutPage />
+      </Router>
+    );
 
     expect(container.getElementsByTagName("div")).toBeTruthy();
     expect(container.getElementsByClassName("container")).toBeTruthy();
@@ -17,5 +24,7 @@ describe("Checkout", () => {
     expect(getByText("Veggies:")).toBeInTheDocument();
     expect(getByText("Meat:")).toBeInTheDocument();
     expect(getByText("200 RUB")).toBeInTheDocument();
+    fireEvent.click(getByText("Order"));
+    expect(history.location.pathname).toEqual("/order");
   });
 });
