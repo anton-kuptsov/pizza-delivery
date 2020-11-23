@@ -1,7 +1,11 @@
 import React from "react";
 import { Link, Route, Switch } from "react-router-dom";
-import * as ROUTES from "./Routes";
 import Configurator from "./Configurator";
+import { LoginPage } from "./LoginPage";
+import { NotFoundPage } from "./NotFoundPage";
+import { SignupPage } from "./SignupPage";
+import { CheckoutPage } from "./CheckoutPage";
+import { OrderPage } from "./OrderPage";
 
 function App() {
   return (
@@ -14,14 +18,14 @@ function App() {
         }}
       >
         <div>
-          <Link to={ROUTES.HOME}>Home</Link>
+          <Link to="/">Home</Link>
         </div>
         <div style={{ display: "flex" }}>
           <div>
-            <Link to={ROUTES.LOGIN}>Login</Link>
+            <Link to="/login">Login</Link>
           </div>
           <div style={{ marginLeft: "1rem" }}>
-            <Link to={ROUTES.SIGNUP}>Sign up</Link>
+            <Link to="/signup">Sign up</Link>
           </div>
         </div>
       </nav>
@@ -30,11 +34,21 @@ function App() {
         <Route exact path="/">
           <Configurator />
         </Route>
-        <Route path={ROUTES.LOGIN} component={ROUTES.LOGIN_PAGE} />
-        <Route path={ROUTES.SIGNUP} component={ROUTES.SIGNUP_PAGE} />
-        <Route path={ROUTES.CHECKOUT} component={ROUTES.CHECKOUT_PAGE} />
-        <Route path={ROUTES.ORDER} component={ROUTES.ORDER_PAGE} />
-        <Route component={ROUTES.NOTFOUND_PAGE} />
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        <Route path="/signup">
+          <SignupPage />
+        </Route>
+        <Route path="/checkout">
+          <CheckoutPage />
+        </Route>
+        <Route path="/order">
+          <OrderPage />
+        </Route>
+        <Route>
+          <NotFoundPage />
+        </Route>
       </Switch>
     </>
   );

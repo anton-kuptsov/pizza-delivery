@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "../components/Button";
-import * as ROUTES from "../Routes";
 import { Link } from "react-router-dom";
 import { usePizza } from "../PizzaContext";
 import { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE } from "../configData";
@@ -42,7 +41,7 @@ export const CheckoutPage = () => {
         <span>{totalCost} RUB</span>
       </div>
       <div className="container">
-        <Link to={ROUTES.ORDER}>
+        <Link to="/order">
           <Button className="order-button">Order</Button>
         </Link>
       </div>

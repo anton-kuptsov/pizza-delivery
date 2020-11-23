@@ -5,7 +5,6 @@ import { Button } from "./components/Button";
 import { PIZZA_OPTIONS, INITIAL_PIZZA_PRICE } from "./configData";
 
 import { useHistory } from "react-router-dom";
-import * as ROUTES from "./Routes";
 import { usePizza } from "./PizzaContext";
 
 export default function Configurator({ _usePizzaHook = usePizza }) {
@@ -14,7 +13,7 @@ export default function Configurator({ _usePizzaHook = usePizza }) {
 
   const handleCheckout = e => {
     e.preventDefault();
-    history.push(ROUTES.CHECKOUT);
+    history.push("/checkout");
   };
 
   return (
