@@ -2,14 +2,14 @@ import React from "react";
 import { RadioGroup } from "./components/RadioGroup";
 import { CheckboxGroup } from "./components/CheckboxGroup";
 import { Button } from "./components/Button";
-import { PIZZA_OPTIONS, INITIAL_PIZZA_CONFIG } from "./configData";
+import { PIZZA_OPTIONS, INITIAL_PIZZA_PRICE } from "./configData";
 
 import { useHistory } from "react-router-dom";
 import * as ROUTES from "./Routes";
 import { usePizza } from "./PizzaContext";
 
 export default function Configurator({ _usePizzaHook = usePizza }) {
-  const { setPizzaConfig, totalCost } = _usePizzaHook();
+  const { setPizzaConfig, totalCost = INITIAL_PIZZA_PRICE } = _usePizzaHook();
   const history = useHistory();
 
   const handleCheckout = e => {
