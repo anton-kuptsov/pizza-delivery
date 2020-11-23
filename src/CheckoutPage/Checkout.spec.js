@@ -2,18 +2,13 @@ import { render, fireEvent } from "@testing-library/react";
 import { CheckoutPage } from "./Checkout";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { INITIAL_PIZZA_CONFIG } from "../configData";
 
 describe("Checkout", () => {
   it("renders correctly", () => {
     const history = createMemoryHistory();
     const { container, getByText } = render(
       <Router history={history}>
-        <CheckoutPage
-          _usePizzaHook={() => ({
-            setPizza: () => {}
-          })}
-        />
+        <CheckoutPage />
       </Router>
     );
 
@@ -29,6 +24,7 @@ describe("Checkout", () => {
     expect(getByText("Veggies:")).toBeInTheDocument();
     expect(getByText("Meat:")).toBeInTheDocument();
     expect(getByText("Total cost:")).toBeInTheDocument();
+    expect(container).toHaveTextContent("200 RUB");
     fireEvent.click(getByText("Order"));
     expect(history.location.pathname).toEqual("/order");
   });

@@ -1,9 +1,10 @@
 import React from "react";
 import { PIZZA_OPTIONS } from "../../configData";
 import { usePizza } from "../../PizzaContext";
+import { INITIAL_PIZZA_CONFIG } from "../../configData";
 
 export const CheckboxGroup = ({ options, groupName, setPizzaConfig }) => {
-  const { pizzaConfig } = usePizza();
+  const { pizzaConfig = INITIAL_PIZZA_CONFIG } = usePizza() || {};
   const optionsRef = React.useRef([]);
 
   const onChange = (actionType, arr) => {

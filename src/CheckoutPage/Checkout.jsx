@@ -3,12 +3,14 @@ import { Button } from "../components/Button";
 import * as ROUTES from "../Routes";
 import { Link } from "react-router-dom";
 import { usePizza } from "../PizzaContext";
-import { INITIAL_PIZZA_CONFIG } from "../configData";
+import { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE } from "../configData";
 
-export const CheckoutPage = ({ _usePizzaHook = usePizza }) => {
-  const { pizzaConfig, totalCost } = _usePizzaHook();
-  const { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } =
-    pizzaConfig || INITIAL_PIZZA_CONFIG;
+export const CheckoutPage = () => {
+  const {
+    pizzaConfig = INITIAL_PIZZA_CONFIG,
+    totalCost = INITIAL_PIZZA_PRICE
+  } = usePizza() || {};
+  const { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } = pizzaConfig;
   return (
     <div className="container">
       <div>
