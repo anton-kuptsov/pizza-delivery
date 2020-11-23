@@ -1,14 +1,12 @@
 import React from "react";
 import { Button } from "../components/Button";
-import { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE } from "../configData";
 import * as ROUTES from "../Routes";
 import { Link } from "react-router-dom";
+import { usePizza } from "../PizzaContext";
 
-export const CheckoutPage = ({
-  pizza = INITIAL_PIZZA_CONFIG,
-  totalCost = INITIAL_PIZZA_PRICE
-}) => {
-  const { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } = pizza;
+export const CheckoutPage = () => {
+  const { pizzaConfig, totalCost } = usePizza();
+  const { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } = pizzaConfig;
   return (
     <div className="container">
       <div>

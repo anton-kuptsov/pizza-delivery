@@ -2,7 +2,7 @@ import React from "react";
 import { PIZZA_OPTIONS } from "../../configData";
 import { usePizza } from "../../PizzaContext";
 
-export default function OptionsGroup({ options, groupName, setPizzaConfig }) {
+export default function RadioGroup({ options, groupName, setPizzaConfig }) {
   const { pizzaConfig } = usePizza();
   const optionsRef = React.useRef([]);
 
@@ -18,11 +18,11 @@ export default function OptionsGroup({ options, groupName, setPizzaConfig }) {
     <div
       onChange={() => onChange("SET_" + groupName, PIZZA_OPTIONS[groupName])}
     >
-      {options.map(({ type, id, value, name }) => (
+      {options.map(({ id, value, name }) => (
         <label key={id}>
           <input
             ref={e => (optionsRef.current[id] = e)}
-            type={type}
+            type="radio"
             name={name}
             value={value}
             defaultChecked={
