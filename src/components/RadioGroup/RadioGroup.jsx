@@ -2,7 +2,7 @@ import React from "react";
 import { PIZZA_OPTIONS } from "../../configData";
 import { usePizza } from "../../PizzaContext";
 
-export default function RadioGroup({ options, groupName, setPizzaConfig }) {
+export const RadioGroup = ({ options, groupName, setPizzaConfig }) => {
   const { pizzaConfig } = usePizza();
   const optionsRef = React.useRef([]);
 
@@ -36,4 +36,4 @@ export default function RadioGroup({ options, groupName, setPizzaConfig }) {
       ))}
     </div>
   );
-}
+};

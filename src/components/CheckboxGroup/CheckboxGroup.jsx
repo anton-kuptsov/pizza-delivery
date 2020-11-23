@@ -2,7 +2,7 @@ import React from "react";
 import { PIZZA_OPTIONS } from "../../configData";
 import { usePizza } from "../../PizzaContext";
 
-export default function RadioGroup({ options, groupName, setPizzaConfig }) {
+export const CheckboxGroup = ({ options, groupName, setPizzaConfig }) => {
   const { pizzaConfig } = usePizza();
   const optionsRef = React.useRef([]);
 
@@ -22,7 +22,7 @@ export default function RadioGroup({ options, groupName, setPizzaConfig }) {
         <label key={id}>
           <input
             ref={e => (optionsRef.current[id] = e)}
-            type="radio"
+            type="checkbox"
             name={name}
             value={value}
             defaultChecked={
@@ -36,4 +36,4 @@ export default function RadioGroup({ options, groupName, setPizzaConfig }) {
       ))}
     </div>
   );
-}
+};

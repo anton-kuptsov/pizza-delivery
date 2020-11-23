@@ -1,6 +1,6 @@
 import React from "react";
-import { OptionsGroup } from "./components/OptionsGroup";
 import { RadioGroup } from "./components/RadioGroup";
+import { CheckboxGroup } from "./components/CheckboxGroup";
 import { Button } from "./components/Button";
 import { PIZZA_OPTIONS } from "./configData";
 
@@ -39,14 +39,21 @@ export default function Configurator() {
               options={PIZZA_OPTIONS["SAUCE"]}
               setPizzaConfig={setPizzaConfig}
             />
-            {/* {Object.keys(PIZZA_OPTIONS).map(item => (
-              <OptionsGroup
-                key={item}
-                groupName={item}
-                options={PIZZA_OPTIONS[item]}
-                setPizzaConfig={setPizzaConfig}
-              />
-            ))} */}
+            <CheckboxGroup
+              groupName={"CHEESE"}
+              options={PIZZA_OPTIONS["CHEESE"]}
+              setPizzaConfig={setPizzaConfig}
+            />
+            <CheckboxGroup
+              groupName={"VEGGIES"}
+              options={PIZZA_OPTIONS["VEGGIES"]}
+              setPizzaConfig={setPizzaConfig}
+            />
+            <CheckboxGroup
+              groupName={"MEAT"}
+              options={PIZZA_OPTIONS["MEAT"]}
+              setPizzaConfig={setPizzaConfig}
+            />
           </div>
         </fieldset>
         <div className="container">
