@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useContext } from "react";
+import { createContext, useReducer, useContext } from "react";
 import { reducer } from "./reducers";
 import { INITIAL_PIZZA_CONFIG } from "./configData";
 import { totalCostCalc } from "./totalCostCalc";

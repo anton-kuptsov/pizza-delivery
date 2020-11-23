@@ -1,4 +1,3 @@
-// import { render, fireEvent } from "@testing-library/react";
 import { totalCostCalc } from "./totalCostCalc";
 
 describe("calc total cost", () => {
