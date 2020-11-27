@@ -2,11 +2,7 @@ import React from "react";
 import { RadioGroup } from "./components/RadioGroup";
 import { CheckboxGroup } from "./components/CheckboxGroup";
 import { Button } from "./components/Button";
-import {
-  PIZZA_OPTIONS,
-  INITIAL_PIZZA_PRICE,
-  INITIAL_PIZZA_CONFIG
-} from "./configData";
+import { PIZZA_OPTIONS, INITIAL_PIZZA_CONFIG } from "./configData";
 import { totalCostCalc } from "./totalCostCalc";
 
 import { useHistory } from "react-router-dom";
@@ -14,7 +10,7 @@ import { usePizza } from "./PizzaContext";
 import { useForm } from "react-hook-form";
 
 export default function Configurator({ _usePizzaHook = usePizza }) {
-  const { setPizzaConfig, totalCost = INITIAL_PIZZA_PRICE } = _usePizzaHook();
+  const { setPizzaConfig } = _usePizzaHook();
   const history = useHistory();
 
   const { register, handleSubmit, watch } = useForm({
@@ -22,13 +18,11 @@ export default function Configurator({ _usePizzaHook = usePizza }) {
   });
 
   const values = watch();
-  const price = totalCostCalc(values);
-  console.log("watch", price);
+  const totalCost = totalCostCalc(values);
   const handleCheckout = data => {
     // e.preventDefault();
-
     setPizzaConfig(data);
-    // history.push("/checkout");
+    history.push("/checkout");
   };
 
   return (
@@ -39,32 +33,32 @@ export default function Configurator({ _usePizzaHook = usePizza }) {
           <div>
             <RadioGroup
               ref={register}
-              name="SIZE"
+              name="size"
               options={PIZZA_OPTIONS["SIZE"]}
             />
             <RadioGroup
               ref={register}
-              name="DOUGH"
+              name="dough"
               options={PIZZA_OPTIONS["DOUGH"]}
             />
             <RadioGroup
               ref={register}
-              name="SAUCE"
+              name="sauce"
               options={PIZZA_OPTIONS["SAUCE"]}
             />
             <CheckboxGroup
               ref={register}
-              name="CHEESE"
+              name="cheese"
               options={PIZZA_OPTIONS["CHEESE"]}
             />
             <CheckboxGroup
               ref={register}
-              name="VEGGIES"
+              name="veggies"
               options={PIZZA_OPTIONS["VEGGIES"]}
             />
             <CheckboxGroup
               ref={register}
-              name="MEAT"
+              name="meat"
               options={PIZZA_OPTIONS["MEAT"]}
             />
           </div>

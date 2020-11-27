@@ -1,6 +1,8 @@
 import React from "react";
+import { PIZZA_OPTIONS } from "../../configData";
 
-export const RadioGroup = React.forwardRef(({ options, name }, ref) => {
+export const RadioGroup = React.forwardRef(({ name }, ref) => {
+  const options = PIZZA_OPTIONS[name.toUpperCase()];
   return (
     <div>
       {Object.keys(options).map(key => (

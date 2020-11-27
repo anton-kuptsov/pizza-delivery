@@ -11,7 +11,7 @@ export const SIZE = {
   }
 };
 
-const DOUGH = {
+export const DOUGH = {
   thin: {
     id: 3,
     value: "Тонкое",
@@ -24,7 +24,7 @@ const DOUGH = {
   }
 };
 
-const SAUCE = {
+export const SAUCE = {
   tomato: {
     id: 5,
     value: "Томатный",
@@ -42,7 +42,7 @@ const SAUCE = {
   }
 };
 
-const CHEESE = {
+export const CHEESE = {
   mocarella: {
     id: 8,
     value: "Моцарелла",
@@ -60,7 +60,7 @@ const CHEESE = {
   }
 };
 
-const VEGGIES = {
+export const VEGGIES = {
   tomatos: {
     id: 11,
     value: "Томаты",
@@ -78,7 +78,7 @@ const VEGGIES = {
   }
 };
 
-const MEAT = {
+export const MEAT = {
   beacon: {
     id: 14,
     value: "Бекон",
@@ -97,12 +97,12 @@ const MEAT = {
 };
 
 export const INITIAL_PIZZA_CONFIG = {
-  SIZE: "standart",
-  DOUGH: "thin",
-  SAUCE: "tomato",
-  CHEESE: [],
-  VEGGIES: [],
-  MEAT: []
+  size: "standart",
+  dough: "thin",
+  sauce: "tomato",
+  cheese: [],
+  veggies: [],
+  meat: []
 };
 
 export const INITIAL_PIZZA_PRICE = 200;
