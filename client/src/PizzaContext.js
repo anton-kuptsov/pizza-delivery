@@ -11,7 +11,7 @@ export const PizzaProvider = ({ children }) => {
     INITIAL_PIZZA_CONFIG
   );
   const totalCost = totalCostCalc(pizzaConfig);
-
+  console.log(pizzaConfig);
   return (
     <PizzaContext.Provider value={{ pizzaConfig, setPizzaConfig, totalCost }}>
       {children}

@@ -1,40 +1,14 @@
 import React from "react";
-import { PIZZA_OPTIONS } from "../../configData";
-import { usePizza } from "../../PizzaContext";
-import { INITIAL_PIZZA_CONFIG } from "../../configData";
 
-export const CheckboxGroup = ({ options, groupName, setPizzaConfig }) => {
-  const { pizzaConfig = INITIAL_PIZZA_CONFIG } = usePizza() || {};
-  const optionsRef = React.useRef([]);
-
-  const onChange = (actionType, arr) => {
-    const selected = arr.filter(item => optionsRef.current[item.id].checked);
-    setPizzaConfig({
-      type: actionType,
-      payload: selected.map(item => item.value)
-    });
-  };
-
+export const CheckboxGroup = React.forwardRef(({ options, name }, ref) => {
   return (
-    <div
-      onChange={() => onChange("SET_" + groupName, PIZZA_OPTIONS[groupName])}
-    >
-      {options.map(({ id, value, name }) => (
-        <label key={id}>
-          <input
-            ref={e => (optionsRef.current[id] = e)}
-            type="checkbox"
-            name={name}
-            value={value}
-            defaultChecked={
-              value === pizzaConfig[groupName].filter(item => item === value)[0]
-                ? true
-                : false
-            }
-          />
-          {value}
+    <div>
+      {Object.keys(options).map(key => (
+        <label key={options[key].id}>
+          <input ref={ref} type="checkbox" name={name} value={key} />
+          {options[key].value}
         </label>
       ))}
     </div>
   );
-};
+});
