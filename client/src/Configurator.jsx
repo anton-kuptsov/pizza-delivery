@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import { usePizza } from "./PizzaContext";
 import { useForm } from "react-hook-form";
 
-export default function Configurator({ _usePizzaHook = usePizza }) {
+export default function Configurator() {
   const { setPizzaConfig } = usePizza();
   const history = useHistory();
 
@@ -20,7 +20,6 @@ export default function Configurator({ _usePizzaHook = usePizza }) {
 
   const handleCheckout = data => {
     setPizzaConfig(data);
-    console.log(data);
     history.push("/checkout");
   };
 
