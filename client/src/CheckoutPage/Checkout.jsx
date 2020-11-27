@@ -2,39 +2,40 @@ import React from "react";
 import { Button } from "../components/Button";
 import { Link } from "react-router-dom";
 import { usePizza } from "../PizzaContext";
-import { INITIAL_PIZZA_CONFIG, INITIAL_PIZZA_PRICE } from "../configData";
+import { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } from "../configData";
+import { totalCostCalc } from "../totalCostCalc";
 
 export const CheckoutPage = () => {
-  const {
-    pizzaConfig = INITIAL_PIZZA_CONFIG,
-    totalCost = INITIAL_PIZZA_PRICE
-  } = usePizza() || {};
-  const { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } = pizzaConfig;
+  const { pizzaConfig } = usePizza();
+  const totalCost = totalCostCalc(pizzaConfig);
+
+  const { size, dough, sauce, cheese, veggies, meat } = pizzaConfig;
+
   return (
     <div className="container">
       <div>
         <span className="order-item-name">Size: </span>
-        <span>{SIZE}</span>
+        <span>{SIZE[size].value}</span>
       </div>
       <div>
         <span className="order-item-name">Dough: </span>
-        <span>{DOUGH}</span>
+        <span>{DOUGH[dough].value}</span>
       </div>
       <div>
         <span className="order-item-name">Sauce: </span>
-        <span>{SAUCE}</span>
+        <span>{SAUCE[sauce].value}</span>
       </div>
       <div>
         <span className="order-item-name">Cheese: </span>
-        <span>{CHEESE.join(", ")}</span>
+        <span>{cheese.map(item => CHEESE[item].value).join(", ")}</span>
       </div>
       <div>
         <span className="order-item-name">Veggies: </span>
-        <span>{VEGGIES.join(", ")}</span>
+        <span>{veggies.map(item => VEGGIES[item].value).join(", ")}</span>
       </div>
       <div>
         <span className="order-item-name">Meat: </span>
-        <span>{MEAT.join(", ")}</span>
+        <span>{meat.map(item => MEAT[item].value).join(", ")}</span>
       </div>
       <div>
         <span className="order-item-name">Total cost: </span>

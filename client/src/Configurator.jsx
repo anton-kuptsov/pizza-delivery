@@ -10,18 +10,17 @@ import { usePizza } from "./PizzaContext";
 import { useForm } from "react-hook-form";
 
 export default function Configurator({ _usePizzaHook = usePizza }) {
-  const { setPizzaConfig } = _usePizzaHook();
+  const { setPizzaConfig } = usePizza();
   const history = useHistory();
 
   const { register, handleSubmit, watch } = useForm({
     defaultValues: INITIAL_PIZZA_CONFIG
   });
+  const totalCost = totalCostCalc(watch());
 
-  const values = watch();
-  const totalCost = totalCostCalc(values);
   const handleCheckout = data => {
-    // e.preventDefault();
     setPizzaConfig(data);
+    console.log(data);
     history.push("/checkout");
   };
 
