@@ -1,48 +1,62 @@
-import React, { useState } from "react";
-import { OptionsGroup } from "./components/OptionsGroup";
+import React from "react";
+import { RadioGroup } from "./components/RadioGroup";
+import { CheckboxGroup } from "./components/CheckboxGroup";
 import { Button } from "./components/Button";
-import { Checkout } from "./Checkout";
-import { PIZZA_OPTIONS, INITIAL_PIZZA_CONFIG } from "./configData";
-import { totalCostCalc } from "./utils";
-import { reducer } from "./reducers";
+import { PIZZA_OPTIONS, INITIAL_PIZZA_PRICE } from "./configData";
 
-export default function Configurator() {
-  const [isCheckout, setCheckout] = useState(false);
-  const [pizzaConfig, setPizzaConfig] = React.useReducer(
-    reducer,
-    INITIAL_PIZZA_CONFIG
-  );
+import { useHistory } from "react-router-dom";
+import { usePizza } from "./PizzaContext";
 
-  const totalCost = totalCostCalc(pizzaConfig);
+export default function Configurator({ _usePizzaHook = usePizza }) {
+  const { setPizzaConfig, totalCost = INITIAL_PIZZA_PRICE } = _usePizzaHook();
+  const history = useHistory();
 
   const handleCheckout = e => {
     e.preventDefault();
-    setCheckout(true);
+    history.push("/checkout");
   };
 
-  return isCheckout ? (
-    <Checkout pizza={pizzaConfig} totalCost={totalCost} />
-  ) : (
+  return (
     <div className={"container"}>
       <form onSubmit={handleCheckout}>
         <fieldset>
           <legend>Pizza Configurator</legend>
           <div>
-            {Object.keys(PIZZA_OPTIONS).map(item => (
-              <OptionsGroup
-                key={item}
-                groupName={item}
-                options={PIZZA_OPTIONS[item]}
-                setPizzaConfig={setPizzaConfig}
-              />
-            ))}
-            <div className="container">
-              <Button className="checkout-button">
-                Checkout {totalCost} RUB
-              </Button>
-            </div>
+            <RadioGroup
+              groupName={"SIZE"}
+              options={PIZZA_OPTIONS["SIZE"]}
+              setPizzaConfig={setPizzaConfig}
+            />
+            <RadioGroup
+              groupName={"DOUGH"}
+              options={PIZZA_OPTIONS["DOUGH"]}
+              setPizzaConfig={setPizzaConfig}
+            />
+            <RadioGroup
+              groupName={"SAUCE"}
+              options={PIZZA_OPTIONS["SAUCE"]}
+              setPizzaConfig={setPizzaConfig}
+            />
+            <CheckboxGroup
+              groupName={"CHEESE"}
+              options={PIZZA_OPTIONS["CHEESE"]}
+              setPizzaConfig={setPizzaConfig}
+            />
+            <CheckboxGroup
+              groupName={"VEGGIES"}
+              options={PIZZA_OPTIONS["VEGGIES"]}
+              setPizzaConfig={setPizzaConfig}
+            />
+            <CheckboxGroup
+              groupName={"MEAT"}
+              options={PIZZA_OPTIONS["MEAT"]}
+              setPizzaConfig={setPizzaConfig}
+            />
           </div>
         </fieldset>
+        <div className="container">
+          <Button className="checkout-button">Checkout {totalCost} RUB</Button>
+        </div>
       </form>
     </div>
   );
