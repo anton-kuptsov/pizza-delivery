@@ -9,8 +9,8 @@ import { useHistory } from "react-router-dom";
 import { usePizza } from "./PizzaContext";
 import { useForm } from "react-hook-form";
 
-export default function Configurator() {
-  const { setPizzaConfig } = usePizza();
+export default function Configurator({ _usePizzaHook = usePizza }) {
+  const { setPizzaConfig } = _usePizzaHook();
   const history = useHistory();
 
   const { register, handleSubmit, watch } = useForm({

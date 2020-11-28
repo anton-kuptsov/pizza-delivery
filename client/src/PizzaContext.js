@@ -1,5 +1,4 @@
 import { createContext, useState, useContext } from "react";
-import { reducer } from "./reducers";
 import { INITIAL_PIZZA_CONFIG } from "./configData";
 
 const PizzaContext = createContext();

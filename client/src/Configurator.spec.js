@@ -39,17 +39,17 @@ describe("Configurator", () => {
           })}
         />
       );
-      fireEvent.click(getByText("Большая (35см)"));
-      expect(mockSetPizzaConfig).toBeCalledWith({
-        type: "SET_SIZE",
-        payload: ["Большая (35см)"]
-      });
+      // fireEvent.click(getByText("Большая (35см)"));
+      // expect(mockSetPizzaConfig).toBeCalledWith({
+      //   type: "SET_SIZE",
+      //   payload: ["Большая (35см)"]
+      // });
 
-      fireEvent.click(getByText("Бекон"));
-      expect(mockSetPizzaConfig).toBeCalledWith({
-        type: "SET_MEAT",
-        payload: ["Бекон"]
-      });
+      // fireEvent.click(getByText("Бекон"));
+      // expect(mockSetPizzaConfig).toBeCalledWith({
+      //   type: "SET_MEAT",
+      //   payload: ["Бекон"]
+      // });
     });
   });
 
