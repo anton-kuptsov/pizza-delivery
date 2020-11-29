@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { usePizza } from "../PizzaContext";
 import { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } from "../configData";
 import { totalCostCalc } from "../totalCostCalc";
+import { INITIAL_PIZZA_CONFIG } from "../configData";
 
 export const CheckoutPage = () => {
-  const { pizzaConfig } = usePizza();
+  //initial data for test
+  const { pizzaConfig = INITIAL_PIZZA_CONFIG } = usePizza() ?? {};
+
   const totalCost = totalCostCalc(pizzaConfig);
 
   const { size, dough, sauce, cheese, veggies, meat } = pizzaConfig;

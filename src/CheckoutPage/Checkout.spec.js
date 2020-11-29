@@ -8,7 +8,8 @@ describe("Checkout", () => {
     const history = createMemoryHistory();
     const { container, getByText } = render(
       <Router history={history}>
-        <CheckoutPage />
+        <CheckoutPage
+         />
       </Router>
     );
 
