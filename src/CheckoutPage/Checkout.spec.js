@@ -8,11 +8,9 @@ describe("Checkout", () => {
     const history = createMemoryHistory();
     const { container, getByText } = render(
       <Router history={history}>
-        <CheckoutPage
-         />
+        <CheckoutPage />
       </Router>
     );
-
     expect(container.getElementsByTagName("div")).toBeTruthy();
     expect(container.getElementsByClassName("container")).toBeTruthy();
     expect(getByText("Size:")).toBeInTheDocument();
@@ -26,6 +24,16 @@ describe("Checkout", () => {
     expect(getByText("Meat:")).toBeInTheDocument();
     expect(getByText("Total cost:")).toBeInTheDocument();
     expect(container).toHaveTextContent("200 RUB");
+  });
+
+  it("navigates to order page", () => {
+    const history = createMemoryHistory();
+    const { getByText } = render(
+      <Router history={history}>
+        <CheckoutPage />
+      </Router>
+    );
+
     fireEvent.click(getByText("Order"));
     expect(history.location.pathname).toEqual("/order");
   });
