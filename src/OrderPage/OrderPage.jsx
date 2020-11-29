@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export const OrderPage = () => {
+export const OrderPage = ({ formSubmit }) => {
   const { register, handleSubmit } = useForm();
   const [ccSystem, setCCSystem] = React.useState("");
 
@@ -22,7 +22,7 @@ export const OrderPage = () => {
   };
 
   const onSubmit = data => {
-    return;
+    formSubmit(data);
   };
   return (
     <div>
