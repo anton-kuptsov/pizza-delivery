@@ -12,7 +12,7 @@ describe("Signup Page", () => {
     expect(container).toHaveTextContent("Register");
   });
 
-  it("submit form", async () => {
+  it("on submit form", async () => {
     const formSubmit = jest.fn();
     const { getByText, getByLabelText } = render(
       <SignupPage formSubmit={formSubmit} />

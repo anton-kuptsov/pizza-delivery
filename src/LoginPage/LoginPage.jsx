@@ -1,15 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export const LoginPage = () => {
+export const LoginPage = ({ formSubmit }) => {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = data => {};
+  const onSubmit = data => {
+    formSubmit(data);
+  };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
-          <legend>Login</legend>
+          <legend>Login form</legend>
           <label htmlFor="email">
             Email:
             <input
