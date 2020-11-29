@@ -1,10 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export const SignupPage = () => {
+export const SignupPage = ({ formSubmit }) => {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = data => {};
+  const onSubmit = data => {
+    formSubmit(data);
+  };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -42,13 +44,13 @@ export const SignupPage = () => {
               placeholder="password"
             />
           </label>
-          <label htmlFor="password-dbl">
+          <label htmlFor="passwordDbl">
             Repeat Password:
             <input
               ref={register}
               type="password"
-              id="password-dbl"
-              name="password-dbl"
+              id="passwordDbl"
+              name="passwordDbl"
               placeholder="password"
             />
           </label>
