@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export const OrderPage = ({ formSubmit }) => {
-  const { register, handleSubmit } = useForm();
+export const OrderPage = ({ formSubmit = () => {} }) => {
+  const { register, handleSubmit, setValue, getValues } = useForm();
   const [ccSystem, setCCSystem] = React.useState("");
 
   const checkPaymentSystem = value => {
@@ -10,15 +10,15 @@ export const OrderPage = ({ formSubmit }) => {
     setCCSystem(number === "4" ? "Visa" : number === "5" ? "Master" : "");
   };
 
-  const normalizeCCNumber = value => {
+  const normalizeCCNumber = () => {
     const result =
-      value
+      getValues("cc_number")
         .replace(/\s/g, "")
         .match(/\d{1,4}/g)
         ?.join(" ")
         .substr(0, 19) || "";
-
-    return result;
+    setValue("cc_number", result);
+    checkPaymentSystem(result);
   };
 
   const onSubmit = data => {
@@ -70,10 +70,8 @@ export const OrderPage = ({ formSubmit }) => {
                 id="cc_number"
                 name="cc_number"
                 placeholder="1234 0000 0000 0000"
-                onChange={e => {
-                  const { value } = e.target;
-                  e.target.value = normalizeCCNumber(value);
-                  checkPaymentSystem(value);
+                onChange={() => {
+                  normalizeCCNumber();
                 }}
               />
               <span>{ccSystem}</span>
