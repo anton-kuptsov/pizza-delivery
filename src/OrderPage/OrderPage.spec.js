@@ -13,41 +13,44 @@ describe("OrderPage", () => {
     expect(getByText("CVV")).toBeInTheDocument();
     expect(getByText("Buy")).toBeInTheDocument();
   });
+  describe("on submit form", () => {
+    it("submits payment info", async () => {
+      const formSubmit = jest.fn();
+      const { getByText, getByLabelText } = render(
+        <OrderPage formSubmit={formSubmit} />
+      );
+      fireEvent.input(getByLabelText("First name:"), {
+        target: { value: "John" }
+      });
+      fireEvent.input(getByLabelText("Last name:"), {
+        target: { value: "Doe" }
+      });
+      fireEvent.input(getByLabelText("Email:"), {
+        target: { value: "email@mail.com" }
+      });
+      fireEvent.input(getByLabelText("Credit Card:"), {
+        target: { value: "1234123412341234" }
+      });
+      fireEvent.input(getByLabelText("Expire date:"), {
+        target: { value: "01/25" }
+      });
+      fireEvent.input(getByLabelText("CVV"), { target: { value: "000" } });
 
-  it("on submit form ", async () => {
-    const formSubmit = jest.fn();
-    const { getByText, getByLabelText } = render(
-      <OrderPage formSubmit={formSubmit} />
-    );
-    fireEvent.input(getByLabelText("First name:"), {
-      target: { value: "John" }
-    });
-    fireEvent.input(getByLabelText("Last name:"), { target: { value: "Doe" } });
-    fireEvent.input(getByLabelText("Email:"), {
-      target: { value: "email@mail.com" }
-    });
-    fireEvent.input(getByLabelText("Credit Card:"), {
-      target: { value: "1234123412341234" }
-    });
-    fireEvent.input(getByLabelText("Expire date:"), {
-      target: { value: "01/25" }
-    });
-    fireEvent.input(getByLabelText("CVV"), { target: { value: "000" } });
-
-    await act(async () => {
-      fireEvent.click(getByText("Buy"));
-    });
-    expect(formSubmit).toBeCalledWith({
-      first_name: "John",
-      last_name: "Doe",
-      email: "email@mail.com",
-      cc_number: "1234 1234 1234 1234",
-      cc_expire: "01/25",
-      cc_cvv: "000"
+      await act(async () => {
+        fireEvent.click(getByText("Buy"));
+      });
+      expect(formSubmit).toBeCalledWith({
+        first_name: "John",
+        last_name: "Doe",
+        email: "email@mail.com",
+        cc_number: "1234 1234 1234 1234",
+        cc_expire: "01/25",
+        cc_cvv: "000"
+      });
     });
   });
 
-  describe("normalizes credit card number", () => {
+  describe("create credit card number normalization", () => {
     it("groups by 4 digits", () => {
       const { getByLabelText } = render(<OrderPage />);
       fireEvent.input(getByLabelText("Credit Card:"), {
@@ -56,14 +59,14 @@ describe("OrderPage", () => {
       expect(getByLabelText("Credit Card:")).toHaveValue("1324 0000 1234 0000");
     });
 
-    it("contains only 16 digits", () => {
+    it("limits to 16 digits", () => {
       const { getByLabelText } = render(<OrderPage />);
       fireEvent.input(getByLabelText("Credit Card:"), {
         target: { value: "1324000012340000123456789" }
       });
       expect(getByLabelText("Credit Card:")).toHaveValue("1324 0000 1234 0000");
     });
-    it("contains only numbers", () => {
+    it("allows numbers only", () => {
       const { getByLabelText } = render(<OrderPage />);
       fireEvent.input(getByLabelText("Credit Card:"), {
         target: { value: "Asd132400001234as-++$@d0000" }
