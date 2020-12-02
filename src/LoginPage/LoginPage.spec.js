@@ -9,26 +9,27 @@ describe("Login Page", () => {
     expect(container).toHaveTextContent("Password:");
     expect(container).toHaveTextContent("Login");
   });
+  describe("on submit form", () => {
+    it("submit login data", async () => {
+      const formSubmit = jest.fn();
+      const { getByText, getByLabelText } = render(
+        <LoginPage formSubmit={formSubmit} />
+      );
 
-  it("on submit form", async () => {
-    const formSubmit = jest.fn();
-    const { getByText, getByLabelText } = render(
-      <LoginPage formSubmit={formSubmit} />
-    );
+      fireEvent.input(getByLabelText("Email:"), {
+        target: { value: "email@mail.com" }
+      });
+      fireEvent.input(getByLabelText("Password:"), {
+        target: { value: "pass" }
+      });
 
-    fireEvent.input(getByLabelText("Email:"), {
-      target: { value: "email@mail.com" }
-    });
-    fireEvent.input(getByLabelText("Password:"), {
-      target: { value: "pass" }
-    });
-
-    await act(async () => {
-      fireEvent.click(getByText("Login"));
-    });
-    expect(formSubmit).toBeCalledWith({
-      email: "email@mail.com",
-      password: "pass"
+      await act(async () => {
+        fireEvent.click(getByText("Login"));
+      });
+      expect(formSubmit).toBeCalledWith({
+        email: "email@mail.com",
+        password: "pass"
+      });
     });
   });
 });
