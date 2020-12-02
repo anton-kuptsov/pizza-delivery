@@ -4,9 +4,12 @@ describe("calc total cost", () => {
   it("total minimal cost", () => {
     expect(
       totalCostCalc({
-        SIZE: ["Стандарт (30см)"],
-        DOUGH: ["Тонкое"],
-        SAUCE: ["Томатный"]
+        size: 'standart',
+        dough: 'thin',
+        sauce: 'tomato',
+        cheese: [],
+        veggies: [],
+        meat:[]
       })
     ).toEqual(200);
   });

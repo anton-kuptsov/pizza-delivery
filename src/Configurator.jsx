@@ -2,56 +2,39 @@ import React from "react";
 import { RadioGroup } from "./components/RadioGroup";
 import { CheckboxGroup } from "./components/CheckboxGroup";
 import { Button } from "./components/Button";
-import { PIZZA_OPTIONS, INITIAL_PIZZA_PRICE } from "./configData";
+import { INITIAL_PIZZA_CONFIG } from "./configData";
+import { totalCostCalc } from "./totalCostCalc";
 
 import { useHistory } from "react-router-dom";
 import { usePizza } from "./PizzaContext";
+import { useForm } from "react-hook-form";
 
 export default function Configurator({ _usePizzaHook = usePizza }) {
-  const { setPizzaConfig, totalCost = INITIAL_PIZZA_PRICE } = _usePizzaHook();
+  const { setPizzaConfig } = _usePizzaHook();
   const history = useHistory();
 
-  const handleCheckout = e => {
-    e.preventDefault();
+  const { register, handleSubmit, watch } = useForm({
+    defaultValues: INITIAL_PIZZA_CONFIG
+  });
+  const totalCost = totalCostCalc(watch());
+
+  const handleCheckout = data => {
+    setPizzaConfig(data);
     history.push("/checkout");
   };
 
   return (
     <div className={"container"}>
-      <form onSubmit={handleCheckout}>
+      <form onSubmit={handleSubmit(handleCheckout)}>
         <fieldset>
           <legend>Pizza Configurator</legend>
           <div>
-            <RadioGroup
-              groupName={"SIZE"}
-              options={PIZZA_OPTIONS["SIZE"]}
-              setPizzaConfig={setPizzaConfig}
-            />
-            <RadioGroup
-              groupName={"DOUGH"}
-              options={PIZZA_OPTIONS["DOUGH"]}
-              setPizzaConfig={setPizzaConfig}
-            />
-            <RadioGroup
-              groupName={"SAUCE"}
-              options={PIZZA_OPTIONS["SAUCE"]}
-              setPizzaConfig={setPizzaConfig}
-            />
-            <CheckboxGroup
-              groupName={"CHEESE"}
-              options={PIZZA_OPTIONS["CHEESE"]}
-              setPizzaConfig={setPizzaConfig}
-            />
-            <CheckboxGroup
-              groupName={"VEGGIES"}
-              options={PIZZA_OPTIONS["VEGGIES"]}
-              setPizzaConfig={setPizzaConfig}
-            />
-            <CheckboxGroup
-              groupName={"MEAT"}
-              options={PIZZA_OPTIONS["MEAT"]}
-              setPizzaConfig={setPizzaConfig}
-            />
+            <RadioGroup ref={register} name="size" />
+            <RadioGroup ref={register} name="dough" />
+            <RadioGroup ref={register} name="sauce" />
+            <CheckboxGroup ref={register} name="cheese" />
+            <CheckboxGroup ref={register} name="veggies" />
+            <CheckboxGroup ref={register} name="meat" />
           </div>
         </fieldset>
         <div className="container">

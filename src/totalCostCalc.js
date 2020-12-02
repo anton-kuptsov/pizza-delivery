@@ -1,20 +1,45 @@
 import {
-  PIZZA_OPTIONS,
-  INITIAL_PIZZA_PRICE,
-  INITIAL_PIZZA_CONFIG
+  SIZE,
+  DOUGH,
+  SAUCE,
+  CHEESE,
+  VEGGIES,
+  MEAT,
+  INITIAL_PIZZA_PRICE
 } from "./configData";
 
-export const totalCostCalc = (pizzaConfig = INITIAL_PIZZA_CONFIG) => {
-  const optionsArr = Object.entries(pizzaConfig)
-    .map(item =>
-      item[1].map(el => PIZZA_OPTIONS[item[0]].filter(a => a.value === el))
-    )
-    .flat(2);
+export const totalCostCalc = ({
+  size,
+  dough,
+  sauce,
+  cheese,
+  veggies,
+  meat
+}) => {
+  const sizePrice = SIZE[size].additionalPrice;
+  const doughPrice = DOUGH[dough].additionalPrice;
+  const saucePrice = SAUCE[sauce].additionalPrice;
 
-  const result = optionsArr.reduce(
-    (total, item) => total + item.additionalPrice,
-    INITIAL_PIZZA_PRICE
+  const cheesePrice = cheese.reduce(
+    (total, item) => total + CHEESE[item].additionalPrice,
+    0
+  );
+  const veggiesPrice = veggies.reduce(
+    (total, item) => total + VEGGIES[item].additionalPrice,
+    0
+  );
+  const meatPrice = meat.reduce(
+    (total, item) => total + MEAT[item].additionalPrice,
+    0
   );
 
+  const result =
+    INITIAL_PIZZA_PRICE +
+    sizePrice +
+    doughPrice +
+    saucePrice +
+    cheesePrice +
+    veggiesPrice +
+    meatPrice;
   return result;
 };

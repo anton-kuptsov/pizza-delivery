@@ -1,29 +1,62 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 
-export const SignupPage = () => {
+export const SignupPage = ({ formSubmit }) => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = data => {
+    formSubmit(data);
+  };
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
           <legend>Sign up</legend>
           <label htmlFor="name">
             Name:
-            <input type="text" id="name" placeholder="name" />
+            <input
+              ref={register}
+              type="text"
+              name="name"
+              id="name"
+              placeholder="name"
+            />
           </label>
           <br />
           <label htmlFor="email">
             Email:
-            <input type="email" id="email" placeholder="email@" />
+            <input
+              ref={register}
+              type="email"
+              id="email"
+              name="email"
+              placeholder="email@"
+            />
           </label>
           <br />
           <label htmlFor="password">
             Password:
-            <input type="password" id="password" placeholder="password" />
+            <input
+              ref={register}
+              type="password"
+              id="password"
+              name="password"
+              placeholder="password"
+            />
           </label>
-          <label htmlFor="password-dbl">
+          <label htmlFor="passwordDbl">
             Repeat Password:
-            <input type="password" id="password-dbl" placeholder="password" />
+            <input
+              ref={register}
+              type="password"
+              id="passwordDbl"
+              name="passwordDbl"
+              placeholder="password"
+            />
           </label>
+          <div>
+            <button>Register</button>
+          </div>
         </fieldset>
       </form>
     </div>

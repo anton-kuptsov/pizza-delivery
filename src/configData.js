@@ -1,124 +1,108 @@
-const SIZE = [
-  {
+export const SIZE = {
+  standart: {
     id: 1,
     value: "Стандарт (30см)",
-    name: "size",
     additionalPrice: 0
   },
-  {
+  big: {
     id: 2,
     value: "Большая (35см)",
-    name: "size",
     additionalPrice: 50
   }
-];
+};
 
-const DOUGH = [
-  {
+export const DOUGH = {
+  thin: {
     id: 3,
     value: "Тонкое",
-    name: "dough",
     additionalPrice: 0
   },
-  {
+  lush: {
     id: 4,
     value: "Пышное",
-    name: "dough",
     additionalPrice: 0
   }
-];
+};
 
-const SAUCE = [
-  {
+export const SAUCE = {
+  tomato: {
     id: 5,
     value: "Томатный",
-    name: "sauce",
     additionalPrice: 0
   },
-  {
+  white: {
     id: 6,
     value: "Белый",
-    name: "sauce",
     additionalPrice: 5
   },
-  {
+  hot: {
     id: 7,
     value: "Острый",
-    name: "sauce",
     additionalPrice: 10
   }
-];
+};
 
-const CHEESE = [
-  {
+export const CHEESE = {
+  mocarella: {
     id: 8,
     value: "Моцарелла",
-    name: "cheese",
     additionalPrice: 29
   },
-  {
+  chedder: {
     id: 9,
     value: "Чеддер",
-    name: "cheese",
     additionalPrice: 29
   },
-  {
+  dorblue: {
     id: 10,
     value: "Дор блю",
-    name: "cheese",
     additionalPrice: 29
   }
-];
+};
 
-const VEGGIES = [
-  {
+export const VEGGIES = {
+  tomatos: {
     id: 11,
     value: "Томаты",
-    name: "veggies",
     additionalPrice: 29
   },
-  {
+  mushrooms: {
     id: 12,
     value: "Грибы",
-    name: "veggies",
     additionalPrice: 29
   },
-  {
+  pepper: {
     id: 13,
     value: "Перец",
-    name: "veggies",
     additionalPrice: 29
   }
-];
+};
 
-const MEAT = [
-  {
+export const MEAT = {
+  beacon: {
     id: 14,
     value: "Бекон",
-    name: "meat",
     additionalPrice: 29
   },
-  {
+  pepperoni: {
     id: 15,
     value: "Пепперони",
-    name: "meat",
     additionalPrice: 29
   },
-  {
+  ham: {
     id: 16,
     value: "Ветчина",
-    name: "meat",
     additionalPrice: 29
   }
-];
+};
 
 export const INITIAL_PIZZA_CONFIG = {
-  SIZE: [SIZE[0].value],
-  DOUGH: [DOUGH[0].value],
-  SAUCE: [SAUCE[0].value],
-  CHEESE: [],
-  VEGGIES: [],
-  MEAT: []
+  size: "standart",
+  dough: "thin",
+  sauce: "tomato",
+  cheese: [],
+  veggies: [],
+  meat: []
 };
 
 export const INITIAL_PIZZA_PRICE = 200;

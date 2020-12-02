@@ -1,19 +1,12 @@
-import { createContext, useReducer, useContext } from "react";
-import { reducer } from "./reducers";
+import { createContext, useState, useContext } from "react";
 import { INITIAL_PIZZA_CONFIG } from "./configData";
-import { totalCostCalc } from "./totalCostCalc";
 
 const PizzaContext = createContext();
 
 export const PizzaProvider = ({ children }) => {
-  const [pizzaConfig, setPizzaConfig] = useReducer(
-    reducer,
-    INITIAL_PIZZA_CONFIG
-  );
-  const totalCost = totalCostCalc(pizzaConfig);
-
+  const [pizzaConfig, setPizzaConfig] = useState(INITIAL_PIZZA_CONFIG);
   return (
-    <PizzaContext.Provider value={{ pizzaConfig, setPizzaConfig, totalCost }}>
+    <PizzaContext.Provider value={{ pizzaConfig, setPizzaConfig }}>
       {children}
     </PizzaContext.Provider>
   );
