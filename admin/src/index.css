@@ -25,8 +25,10 @@ input[type="checkbox"] {
 input[type="radio"] {
   border-radius: 50%;
 }
-input:hover,
-label:hover {
+input[type="checkbox"]:hover,
+label[type="checkbox"]:hover,
+input[type="radio"]:hover,
+label[type="radio"]:hover {
   cursor: pointer;
 }
 input:checked {
