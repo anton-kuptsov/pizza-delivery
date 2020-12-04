@@ -6,6 +6,7 @@ import { NotFoundPage } from "./NotFoundPage";
 import { SignupPage } from "./SignupPage";
 import { CheckoutPage } from "./CheckoutPage";
 import { OrderPage } from "./OrderPage";
+import { OrderListPage } from "OrdersListPage/OrderListPage";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
       >
         <div>
           <Link to="/">Home</Link>
+        </div>
+        <div>
+          <Link to="/orders-list">Orders List</Link>
         </div>
         <div style={{ display: "flex" }}>
           <div>
@@ -45,6 +49,9 @@ function App() {
         </Route>
         <Route path="/order">
           <OrderPage />
+        </Route>
+        <Route path="/orders-list">
+          <OrderListPage />
         </Route>
         <Route>
           <NotFoundPage />

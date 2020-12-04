@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { usePizza } from "../PizzaContext";
+import { INITIAL_PIZZA_CONFIG } from "../configData";
+import { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } from "../configData";
+import { postOrder } from "api";
 
-export const OrderPage = ({ formSubmit = () => {} }) => {
+export const OrderPage = () => {
+  const [isLoading, setLoading] = useState(false);
+  const [isError, setError] = useState(null);
+  const [isSuccess, setSuccess] = useState(false);
+
+  const { pizzaConfig = INITIAL_PIZZA_CONFIG } = usePizza() ?? {};
+  const { size, dough, sauce, cheese, veggies, meat } = pizzaConfig;
+
+  const pizzaOrder = `${SIZE[size].value},${DOUGH[dough].value},${
+    SAUCE[sauce].value
+  }|${cheese.map(item => CHEESE[item].value)}|${veggies.map(
+    item => VEGGIES[item].value
+  )}|${meat.map(item => MEAT[item].value)}`;
+
   const { register, handleSubmit, setValue, getValues } = useForm();
   const [ccSystem, setCCSystem] = React.useState("");
 
@@ -21,12 +38,38 @@ export const OrderPage = ({ formSubmit = () => {} }) => {
     checkPaymentSystem(result);
   };
 
-  const onSubmit = data => {
-    formSubmit(data);
-  };
+  const onSubmit = handleSubmit(async data => {
+    const order = {
+      ingredients: [pizzaOrder],
+      address: data.email,
+      name: data.first_name + " " + data.last_name,
+      card_number: data.cc_number
+    };
+    try {
+      setLoading(true);
+      const result = await postOrder(order);
+      if (result.status) {
+        setSuccess(true);
+      }
+      setError(null);
+      setLoading(false);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isSuccess) {
+    return <div>Your order accepted!</div>;
+  }
+
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      {isError && <div>{isError.message}</div>}
+      <form onSubmit={onSubmit}>
         <fieldset>
           <legend>Payment Info</legend>
           <div>

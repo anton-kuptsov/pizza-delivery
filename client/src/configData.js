@@ -55,7 +55,7 @@ export const CHEESE = {
   },
   dorblue: {
     id: 10,
-    value: "Дор блю",
+    value: "ДорБлю",
     additionalPrice: 29
   }
 };
