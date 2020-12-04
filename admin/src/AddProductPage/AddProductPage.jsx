@@ -9,14 +9,14 @@ export const AddProductPage = () => {
   const [data, setData] = useState(null);
 
   const onSubmit = handleSubmit(async data => {
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+    formData.append("name", data.name);
+    formData.append("slug", data.slug);
+    formData.append("price", data.price);
+    formData.append("category", data.category);
     try {
       setLoaded(false);
-      const formData = new FormData();
-      formData.append("image", data.image[0]);
-      formData.append("name", data.name);
-      formData.append("slug", data.slug);
-      formData.append("price", data.price);
-      formData.append("category", data.category);
       const result = await postIngridient(formData);
       setData(result);
       setLoaded(true);
