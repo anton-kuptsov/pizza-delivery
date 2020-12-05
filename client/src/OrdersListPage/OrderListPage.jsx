@@ -7,7 +7,12 @@ export const OrderListPage = () => {
     "ordersList",
     getOrders
   );
-  console.log(data);
+  if (isError) {
+    return <div>{error.message}</div>;
+  }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       {isSuccess &&

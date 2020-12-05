@@ -1,5 +1,20 @@
-import { act, fireEvent, render } from "@testing-library/react";
+import React from "react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { OrderPage } from "./OrderPage";
+import { postOrder } from "../api";
+
+jest.mock("../api", () => ({
+  postOrder: jest.fn()
+}));
+
+const getControlledPromise = () => {
+  let resolve, reject;
+  const promise = new Promise((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+  return { resolve, reject, promise };
+};
 
 describe("OrderPage", () => {
   it("renders correctly", () => {
@@ -13,12 +28,11 @@ describe("OrderPage", () => {
     expect(getByText("CVV")).toBeInTheDocument();
     expect(getByText("Buy")).toBeInTheDocument();
   });
-  describe("on submit form", () => {
-    it("submits payment info", async () => {
-      const formSubmit = jest.fn();
-      const { getByText, getByLabelText } = render(
-        <OrderPage formSubmit={formSubmit} />
-      );
+
+  describe("while loading", () => {
+    it("shows loading screen", async () => {
+      postOrder.mockImplementation(() => getControlledPromise().promise);
+      const { getByText, getByLabelText } = render(<OrderPage />);
       fireEvent.input(getByLabelText("First name:"), {
         target: { value: "John" }
       });
@@ -35,17 +49,42 @@ describe("OrderPage", () => {
         target: { value: "01/25" }
       });
       fireEvent.input(getByLabelText("CVV"), { target: { value: "000" } });
-
       await act(async () => {
         fireEvent.click(getByText("Buy"));
       });
-      expect(formSubmit).toBeCalledWith({
-        first_name: "John",
-        last_name: "Doe",
-        email: "email@mail.com",
-        cc_number: "1234 1234 1234 1234",
-        cc_expire: "01/25",
-        cc_cvv: "000"
+      expect(getByText("Loading...")).toBeInTheDocument();
+    });
+  });
+
+  describe("on submit form", () => {
+    it("submits payment info", async () => {
+      const { promise, resolve } = getControlledPromise();
+      postOrder.mockImplementation(() => promise);
+      resolve({
+        status: true
+      });
+      const { getByText, getByLabelText } = render(<OrderPage />);
+      fireEvent.input(getByLabelText("First name:"), {
+        target: { value: "John" }
+      });
+      fireEvent.input(getByLabelText("Last name:"), {
+        target: { value: "Doe" }
+      });
+      fireEvent.input(getByLabelText("Email:"), {
+        target: { value: "email@mail.com" }
+      });
+      fireEvent.input(getByLabelText("Credit Card:"), {
+        target: { value: "1234123412341234" }
+      });
+      fireEvent.input(getByLabelText("Expire date:"), {
+        target: { value: "01/25" }
+      });
+      fireEvent.input(getByLabelText("CVV"), { target: { value: "000" } });
+      await act(async () => {
+        fireEvent.click(getByText("Buy"));
+      });
+      await waitFor(() => {
+        expect(getByText("Your order accepted!")).toBeInTheDocument();
       });
     });
   });

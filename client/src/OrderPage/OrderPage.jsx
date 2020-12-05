@@ -76,7 +76,7 @@ export const OrderPage = () => {
             <label htmlFor="first_name">
               First name:
               <input
-                ref={register}
+                ref={register({ required: "Required field" })}
                 id="first_name"
                 name="first_name"
                 placeholder="John"
@@ -87,7 +87,7 @@ export const OrderPage = () => {
             <label htmlFor="last_name">
               Last name:
               <input
-                ref={register}
+                ref={register({ required: "Required field" })}
                 id="last_name"
                 name="last_name"
                 placeholder="Doe"
@@ -109,7 +109,7 @@ export const OrderPage = () => {
             <label htmlFor="cc_number">
               Credit Card:
               <input
-                ref={register}
+                ref={register({ required: "Required field" })}
                 id="cc_number"
                 name="cc_number"
                 placeholder="1234 0000 0000 0000"
@@ -124,7 +124,7 @@ export const OrderPage = () => {
             <label htmlFor="cc_expire">
               Expire date:
               <input
-                ref={register}
+                ref={register({ required: "Required field" })}
                 id="cc_expire"
                 name="cc_expire"
                 placeholder="12/25"
@@ -135,7 +135,7 @@ export const OrderPage = () => {
             <label htmlFor="cc_cvv">
               CVV
               <input
-                ref={register}
+                ref={register({ required: "Required field" })}
                 id="cc_cvv"
                 name="cc_cvv"
                 placeholder="000"
