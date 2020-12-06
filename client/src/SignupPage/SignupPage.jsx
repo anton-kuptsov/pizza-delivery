@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export const SignupPage = ({ formSubmit }) => {
+export const SignupPage = ({ formSubmit = () => {} }) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
