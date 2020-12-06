@@ -1,6 +1,6 @@
 import { render, waitFor } from "@testing-library/react";
 import { getOrders } from "../api";
-import { OrderListPage } from "./OrderListPage";
+import { OrderListPage } from "./OrdersListPage";
 
 jest.mock("../api", () => ({
   getOrders: jest.fn()

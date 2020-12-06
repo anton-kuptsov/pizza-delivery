@@ -6,7 +6,7 @@ import { NotFoundPage } from "./NotFoundPage";
 import { SignupPage } from "./SignupPage";
 import { CheckoutPage } from "./CheckoutPage";
 import { OrderPage } from "./OrderPage";
-import { OrderListPage } from "OrdersListPage/OrderListPage";
+import { OrderListPage } from "OrdersListPage";
 
 function App() {
   return (
