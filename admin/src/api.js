@@ -15,9 +15,16 @@ export const getIngridients = () => {
 export const postIngridient = data => {
   const URL = `${HOST}/ingredients`;
 
+  const formData = new FormData();
+  formData.append("image", data.image[0]);
+  formData.append("name", data.name);
+  formData.append("slug", data.slug);
+  formData.append("price", data.price);
+  formData.append("category", data.category);
+
   const result = fetch(URL, {
     method: "POST",
-    body: data
+    body: formData
   }).then(res => {
     if (res.ok) {
       return res.json();
