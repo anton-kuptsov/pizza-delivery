@@ -5,7 +5,7 @@ import { postIngridient } from "../api";
 export const AddProductPage = () => {
   const { register, handleSubmit, errors, reset } = useForm();
   const [error, setError] = useState(null);
-  const [isLoaded, setLoaded] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState(null);
 
   const onSubmit = handleSubmit(async data => {
@@ -16,15 +16,15 @@ export const AddProductPage = () => {
     formData.append("price", data.price);
     formData.append("category", data.category);
     try {
-      setLoaded(false);
+      setLoading(true);
       const result = await postIngridient(formData);
       setData(result);
-      setLoaded(true);
+      setLoading(false);
       setError(null);
       reset();
     } catch (error) {
       setError(error);
-      setLoaded(true);
+      setLoading(false);
     }
   });
 
@@ -111,8 +111,8 @@ export const AddProductPage = () => {
               {errors.image?.message}
             </p>
           )}
-          <button disabled={isLoaded ? false : true} style={{ margin: "1rem" }}>
-            {!isLoaded ? "Loading..." : "Add topping"}
+          <button disabled={isLoading} style={{ margin: "1rem" }}>
+            {isLoading ? "Loading..." : "Add topping"}
           </button>
         </fieldset>
       </form>

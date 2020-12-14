@@ -29,6 +29,20 @@ describe("Order List Page", () => {
     ]);
     const { getByText } = render(<OrderListPage />);
     expect(getByText("Loading...")).toBeInTheDocument();
+  });
+
+  it("renders correctly", async () => {
+    const { promise, resolve } = getControlledPromise();
+    getOrders.mockImplementation(() => promise);
+    resolve([
+      {
+        name: "John Doe",
+        ingredients: ["Большая (35см),Тонкое,Острый|ДорБлю|Перец|Ветчина"],
+        address: "email@email.com",
+        card_number: "1321 4465 4679 8798"
+      }
+    ]);
+    const { getByText } = render(<OrderListPage />);
     await waitFor(() => {
       expect(getByText("John Doe")).toBeInTheDocument();
     });
