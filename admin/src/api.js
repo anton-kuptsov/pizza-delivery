@@ -1,6 +1,6 @@
 const HOST = "http://localhost:3001";
 
-export const getIngridients = () => {
+export const getIngredients = () => {
   const URL = `${HOST}/ingredients`;
   const result = fetch(URL).then(res => {
     if (res.ok) {
@@ -12,7 +12,7 @@ export const getIngridients = () => {
   return result;
 };
 
-export const postIngridient = data => {
+export const postIngredient = data => {
   const URL = `${HOST}/ingredients`;
 
   const formData = new FormData();
@@ -35,7 +35,7 @@ export const postIngridient = data => {
   return result;
 };
 
-export const deleteIngridient = item => {
+export const deleteIngredient = item => {
   const URL = `${HOST}/ingredients/${item}`;
 
   const result = fetch(URL, {
@@ -50,7 +50,7 @@ export const deleteIngridient = item => {
   return result;
 };
 
-export const editIngridient = ({ item, data }) => {
+export const editIngredient = ({ item, data }) => {
   const URL = `${HOST}/ingredients/${item}`;
 
   const result = fetch(URL, {
@@ -66,7 +66,7 @@ export const editIngridient = ({ item, data }) => {
   return result;
 };
 
-export const getIngridient = (key, item) => {
+export const getIngredient = (key, item) => {
   const URL = `${HOST}/ingredients/${item}`;
   const result = fetch(URL).then(res => {
     if (res.ok) {

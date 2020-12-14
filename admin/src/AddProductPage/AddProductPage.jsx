@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { postIngridient } from "../api";
+import { postIngredient } from "../api";
 
 export const AddProductPage = () => {
   const { register, handleSubmit, errors, reset } = useForm();
@@ -11,7 +11,7 @@ export const AddProductPage = () => {
   const onSubmit = handleSubmit(async data => {
     try {
       setLoading(true);
-      const result = await postIngridient(data);
+      const result = await postIngredient(data);
       setData(result);
       setLoading(false);
       setError(null);

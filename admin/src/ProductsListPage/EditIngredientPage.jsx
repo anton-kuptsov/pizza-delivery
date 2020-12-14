@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export const EditIngridient = ({ item, updateItem, setEditItem }) => {
+export const EditIngredient = ({ item, updateItem, setEditItem }) => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(false);
 

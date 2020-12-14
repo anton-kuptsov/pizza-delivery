@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryCache } from "react-query";
-import { deleteIngridient, getIngridients, editIngridient } from "../api";
-import { EditIngridient } from "./EditIngridientPage";
+import { deleteIngredient, getIngredients, editIngredient } from "../api";
+import { EditIngredient } from "./EditIngredientPage";
 
 export const ProductsList = () => {
   const [editItem, setEditItem] = useState(null);
   const cache = useQueryCache();
   const { isError, isLoading, isSuccess, error, data } = useQuery(
     "ingridients",
-    getIngridients
+    getIngredients
   );
-  const [deleteItem] = useMutation(deleteIngridient, {
+  const [deleteItem] = useMutation(deleteIngredient, {
     onSuccess: () => {
       cache.invalidateQueries("ingridients");
     }
   });
-  const [updateItem] = useMutation(editIngridient, {
+  const [updateItem] = useMutation(editIngredient, {
     onSuccess: () => {
       cache.invalidateQueries("ingridients");
     }
@@ -24,7 +24,7 @@ export const ProductsList = () => {
   return (
     <div>
       {editItem ? (
-        <EditIngridient
+        <EditIngredient
           item={editItem}
           updateItem={updateItem}
           setEditItem={setEditItem}
