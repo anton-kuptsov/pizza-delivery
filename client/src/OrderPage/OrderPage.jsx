@@ -13,11 +13,14 @@ export const OrderPage = () => {
   const { pizzaConfig = INITIAL_PIZZA_CONFIG } = usePizza() ?? {};
   const { size, dough, sauce, cheese, veggies, meat } = pizzaConfig;
 
-  const pizzaOrder = `${SIZE[size].value},${DOUGH[dough].value},${
-    SAUCE[sauce].value
-  }|${cheese.map(item => CHEESE[item].value)}|${veggies.map(
-    item => VEGGIES[item].value
-  )}|${meat.map(item => MEAT[item].value)}`;
+  const pizzaOrder = [
+    SIZE[size].value,
+    DOUGH[dough].value,
+    SAUCE[sauce].value,
+    cheese.map(item => CHEESE[item].value),
+    veggies.map(item => VEGGIES[item].value),
+    meat.map(item => MEAT[item].value)
+  ].join(",");
 
   const { register, handleSubmit, setValue, getValues } = useForm();
   const [ccSystem, setCCSystem] = React.useState("");
