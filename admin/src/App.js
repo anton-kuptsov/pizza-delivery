@@ -6,14 +6,14 @@ function App() {
   return (
     <>
       <nav style={{ display: "flex", justifyContent: "space-around" }}>
-        <NavLink to="/">Add ingridient</NavLink>
-        <NavLink to="/ingridients">Ingridients List</NavLink>
+        <NavLink to="/">Add ingredient</NavLink>
+        <NavLink to="/ingredients">Ingredients List</NavLink>
       </nav>
       <Switch>
         <Route exact path="/">
           <AddProductPage />
         </Route>
-        <Route path="/ingridients">
+        <Route path="/ingredients">
           <ProductsList />
         </Route>
         <Route>404 error</Route>

@@ -53,9 +53,16 @@ export const deleteIngredient = item => {
 export const editIngredient = ({ item, data }) => {
   const URL = `${HOST}/ingredients/${item}`;
 
+  const formData = new FormData();
+  formData.append("image", data.image[0]);
+  formData.append("name", data.name);
+  formData.append("slug", data.slug);
+  formData.append("price", data.price);
+  formData.append("category", data.category);
+
   const result = fetch(URL, {
     method: "PUT",
-    body: data
+    body: formData
   }).then(res => {
     if (res.ok) {
       return res.json();

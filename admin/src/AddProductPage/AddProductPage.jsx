@@ -31,7 +31,7 @@ export const AddProductPage = () => {
       ) : (
         data?.status && (
           <div style={{ margin: "1rem auto", width: "400px", color: "green" }}>
-            Ingridient added success!
+            Ingredient added success!
           </div>
         )
       )}

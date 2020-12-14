@@ -7,17 +7,17 @@ export const ProductsList = () => {
   const [editItem, setEditItem] = useState(null);
   const cache = useQueryCache();
   const { isError, isLoading, isSuccess, error, data } = useQuery(
-    "ingridients",
+    "ingredients",
     getIngredients
   );
   const [deleteItem] = useMutation(deleteIngredient, {
     onSuccess: () => {
-      cache.invalidateQueries("ingridients");
+      cache.invalidateQueries("ingredients");
     }
   });
   const [updateItem] = useMutation(editIngredient, {
     onSuccess: () => {
-      cache.invalidateQueries("ingridients");
+      cache.invalidateQueries("ingredients");
     }
   });
 
@@ -31,7 +31,7 @@ export const ProductsList = () => {
         />
       ) : (
         <fieldset style={{ width: "fit-content", margin: "auto" }}>
-          <legend>Ingridients List</legend>
+          <legend>s List</legend>
           {isError && <span>{error?.message}</span>}
           {isLoading && <span>Loading ...</span>}
           {isSuccess &&
