@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { NavLink, Switch, Route } from "react-router-dom";
+import { AddProductPage } from "./AddProductPage";
+import { ProductsList } from "./ProductsListPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <nav style={{ display: "flex", justifyContent: "space-around" }}>
+        <NavLink to="/">Add ingredient</NavLink>
+        <NavLink to="/ingredients">Ingredients List</NavLink>
+      </nav>
+      <Switch>
+        <Route exact path="/">
+          <AddProductPage />
+        </Route>
+        <Route path="/ingredients">
+          <ProductsList />
+        </Route>
+        <Route>404 error</Route>
+      </Switch>
+    </>
   );
 }
 
