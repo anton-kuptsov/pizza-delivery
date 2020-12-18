@@ -1,4 +1,16 @@
-const HOST = "http://localhost:3001";
+const HOST = proccess.env.REACT_APP_HOST;
+
+export const getIngredients = () => {
+  const URL = `${HOST}/ingredients`;
+  const result = fetch(URL).then(res => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error("Error! Something went wrong.");
+    }
+  });
+  return result;
+};
 
 export const getOrders = () => {
   const URL = `${HOST}/orders`;

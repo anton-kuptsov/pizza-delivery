@@ -1,4 +1,4 @@
-const HOST = "http://localhost:3001";
+const HOST = proccess.env.REACT_APP_HOST;
 
 export const getIngredients = () => {
   const URL = `${HOST}/ingredients`;
