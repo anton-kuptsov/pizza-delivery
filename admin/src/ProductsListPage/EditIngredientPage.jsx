@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 export const EditIngredient = ({ item, updateItem, setEditItem }) => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const [isClose, setClose] = useState(false);
 
   const { name, price, slug, category } = item;
   const { register, handleSubmit } = useForm({
@@ -16,15 +17,19 @@ export const EditIngredient = ({ item, updateItem, setEditItem }) => {
   });
 
   const onSubmit = handleSubmit(async data => {
-    try {
+    if (isClose) {
+      setEditItem(null);
+    } else {
       setLoading(true);
-      const result = await updateItem({ item: data.slug, data: data });
-      if (result.status) {
-        setEditItem(null);
+      try {
+        const result = await updateItem({ item: data.slug, data: data });
+        if (result.status) {
+          setEditItem(null);
+        }
+      } catch (error) {
+        setError(error);
+        setLoading(false);
       }
-    } catch (error) {
-      setError(error);
-      setLoading(false);
     }
   });
 
@@ -98,14 +103,14 @@ export const EditIngredient = ({ item, updateItem, setEditItem }) => {
             <div>
               <label htmlFor="image">Picture:</label>
               <input
-                ref={register({ required: "Image is required" })}
+                ref={register({ required: isClose ? false : true })}
                 id="image"
                 type="file"
                 name="image"
               />
             </div>
             <button>Apply</button>
-            <button>Close</button>
+            <button onClick={() => setClose(true)}>Close</button>
           </div>
         </fieldset>
       </form>

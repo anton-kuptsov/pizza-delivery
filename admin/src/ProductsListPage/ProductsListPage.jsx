@@ -31,13 +31,21 @@ export const ProductsList = () => {
         />
       ) : (
         <fieldset style={{ width: "fit-content", margin: "auto" }}>
-          <legend>s List</legend>
+          <legend>List</legend>
           {isError && <span>{error?.message}</span>}
           {isLoading && <span>Loading ...</span>}
           {isSuccess &&
             data.map((item, i) => (
               <div key={item.name + i} style={itemStyle}>
-                <span>{item.name}</span>
+                <span>
+                  {item.name} ({item.category})
+                </span>
+                <span style={{ marginLeft: "0.5rem" }}>
+                  <img
+                    src={`http://localhost:3001/${item.image}`}
+                    alt={item.category}
+                  />
+                </span>
                 <span>
                   <button
                     style={{ margin: "0.5rem" }}

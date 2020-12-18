@@ -1,18 +1,17 @@
 import React from "react";
 import { Button } from "../components/Button";
 import { Link } from "react-router-dom";
-import { usePizza } from "../PizzaContext";
+
 import { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } from "../configData";
 import { totalCostCalc } from "../totalCostCalc";
-import { INITIAL_PIZZA_CONFIG } from "../configData";
+
+import { useSelector } from "react-redux";
+import { getPizza } from "state/pizza/selectors";
 
 export const CheckoutPage = () => {
-  //initial data for test
-  const { pizzaConfig = INITIAL_PIZZA_CONFIG } = usePizza() ?? {};
-
-  const totalCost = totalCostCalc(pizzaConfig);
-
-  const { size, dough, sauce, cheese, veggies, meat } = pizzaConfig;
+  const pizza = useSelector(getPizza);
+  const { size, dough, sauce, cheese, veggies, meat } = pizza;
+  const totalCost = totalCostCalc(pizza);
 
   return (
     <div className="container">

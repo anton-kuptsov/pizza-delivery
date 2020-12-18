@@ -6,12 +6,13 @@ import { INITIAL_PIZZA_CONFIG } from "./configData";
 import { totalCostCalc } from "./totalCostCalc";
 
 import { useHistory } from "react-router-dom";
-import { usePizza } from "./PizzaContext";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { setPizza } from "state/pizza/actions";
 
-export default function Configurator({ _usePizzaHook = usePizza }) {
-  const { setPizzaConfig } = _usePizzaHook();
+export default function Configurator() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const { register, handleSubmit, watch } = useForm({
     defaultValues: INITIAL_PIZZA_CONFIG
@@ -19,7 +20,7 @@ export default function Configurator({ _usePizzaHook = usePizza }) {
   const totalCost = totalCostCalc(watch());
 
   const handleCheckout = data => {
-    setPizzaConfig(data);
+    dispatch(setPizza(data));
     history.push("/checkout");
   };
 
