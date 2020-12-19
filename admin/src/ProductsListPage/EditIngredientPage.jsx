@@ -88,7 +88,7 @@ export const EditIngredient = ({ item, updateItem, setEditItem }) => {
                 name="category"
               >
                 {categories.map(item => (
-                  <option>{item}</option>
+                  <option key={item}>{item}</option>
                 ))}
               </select>
             </div>

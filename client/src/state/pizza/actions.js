@@ -1,1 +1,1 @@
-export const setPizza = payload => ({ type: "set_pizza", payload });
+export const setPizza = payload => ({ type: "pizza/set_pizza", payload });

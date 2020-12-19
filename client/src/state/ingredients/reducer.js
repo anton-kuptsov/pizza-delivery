@@ -1,7 +1,28 @@
-export const ingredientsReducer = (state = [], action) => {
+export const ingredientsReducer = (
+  state = { pending: true, error: null, data: null },
+  action
+) => {
   switch (action.type) {
-    case "set_ingredients": {
-      return action.payload;
+    case "ingredients/success": {
+      return {
+        ...state,
+        error: null,
+        data: action.payload,
+        pending: false
+      };
+    }
+    case "ingredients/error": {
+      return {
+        ...state,
+        error: action.payload,
+        pending: false
+      };
+    }
+    case "ingredients/request": {
+      return {
+        ...state,
+        pending: true
+      };
     }
     default:
       return state;

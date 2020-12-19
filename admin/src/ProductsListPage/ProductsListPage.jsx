@@ -21,49 +21,52 @@ export const ProductsList = () => {
     }
   });
 
+  if (editItem) {
+    return (
+      <EditIngredient
+        item={editItem}
+        updateItem={updateItem}
+        setEditItem={setEditItem}
+      />
+    );
+  }
+
   return (
     <div>
-      {editItem ? (
-        <EditIngredient
-          item={editItem}
-          updateItem={updateItem}
-          setEditItem={setEditItem}
-        />
-      ) : (
-        <fieldset style={{ width: "fit-content", margin: "auto" }}>
-          <legend>List</legend>
-          {isError && <span>{error?.message}</span>}
-          {isLoading && <span>Loading ...</span>}
-          {isSuccess &&
-            data.map((item, i) => (
-              <div key={item.name + i} style={itemStyle}>
-                <span>
-                  {item.name} ({item.category})
-                </span>
-                <span style={{ marginLeft: "0.5rem" }}>
-                  <img
-                    src={`http://localhost:3001/${item.image}`}
-                    alt={item.category}
-                  />
-                </span>
-                <span>
-                  <button
-                    style={{ margin: "0.5rem" }}
-                    onClick={() => setEditItem(item)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    style={{ margin: "0.5rem" }}
-                    onClick={() => deleteItem(item.slug)}
-                  >
-                    X
-                  </button>
-                </span>
-              </div>
-            ))}
-        </fieldset>
-      )}
+      <fieldset style={{ width: "fit-content", margin: "auto" }}>
+        <legend>List</legend>
+        {isError && <span>{error?.message}</span>}
+        {isLoading && <span>Loading ...</span>}
+        {isSuccess &&
+          data.map((item, i) => (
+            <div key={item.name + i} style={itemStyle}>
+              <span>
+                {item.name} ({item.category})
+              </span>
+              <span style={{ marginLeft: "0.5rem" }}>
+                <img
+                  src={process.env.REACT_APP_HOST + "/" + item.image}
+                  alt={item.category}
+                  style={{ maxWidth: "4rem" }}
+                />
+              </span>
+              <span>
+                <button
+                  style={{ margin: "0.5rem" }}
+                  onClick={() => setEditItem(item)}
+                >
+                  Edit
+                </button>
+                <button
+                  style={{ margin: "0.5rem" }}
+                  onClick={() => deleteItem(item.slug)}
+                >
+                  X
+                </button>
+              </span>
+            </div>
+          ))}
+      </fieldset>
     </div>
   );
 };

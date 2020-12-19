@@ -48,7 +48,7 @@ export const CHEESE = {
     value: "Моцарелла",
     additionalPrice: 29
   },
-  chedder: {
+  cheddar: {
     id: 9,
     value: "Чеддер",
     additionalPrice: 29

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RadioGroup } from "./components/RadioGroup";
 import { CheckboxGroup } from "./components/CheckboxGroup";
 import { Button } from "./components/Button";
@@ -7,28 +7,50 @@ import { totalCostCalc } from "./totalCostCalc";
 
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setPizza } from "state/pizza/actions";
-import { getIngredients } from "api";
+import {
+  getIngredientsByCategory,
+  getIsLoading
+} from "state/ingredients/selectors";
+import { fetchIngredients } from "state/ingredients/thunk";
 
 export default function Configurator() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoading);
 
-  // const test = async () => {
-  //   return await getIngredients();
-  // };
-  // console.log(test());
+  useEffect(() => {
+    dispatch(fetchIngredients());
+  }, []);
+
+  const size = useSelector(getIngredientsByCategory("size"));
+  const dough = useSelector(getIngredientsByCategory("dough"));
+  const sauce = useSelector(getIngredientsByCategory("sauce"));
+  const cheese = useSelector(getIngredientsByCategory("cheese"));
+  const meat = useSelector(getIngredientsByCategory("meat"));
+  const veggies = useSelector(getIngredientsByCategory("veggies"));
 
   const { register, handleSubmit, watch } = useForm({
     defaultValues: INITIAL_PIZZA_CONFIG
   });
-  const totalCost = totalCostCalc(watch());
+  const totalCost = totalCostCalc(watch(), [
+    ...size,
+    ...dough,
+    ...sauce,
+    ...cheese,
+    ...meat,
+    ...veggies
+  ]);
 
   const handleCheckout = data => {
     dispatch(setPizza(data));
     history.push("/checkout");
   };
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <div className={"container"}>
@@ -36,12 +58,12 @@ export default function Configurator() {
         <fieldset>
           <legend>Pizza Configurator</legend>
           <div>
-            <RadioGroup ref={register} name="size" />
-            <RadioGroup ref={register} name="dough" />
-            <RadioGroup ref={register} name="sauce" />
-            <CheckboxGroup ref={register} name="cheese" />
-            <CheckboxGroup ref={register} name="veggies" />
-            <CheckboxGroup ref={register} name="meat" />
+            <RadioGroup ref={register} name="size" items={size} />
+            <RadioGroup ref={register} name="dough" items={dough} />
+            <RadioGroup ref={register} name="sauce" items={sauce} />
+            <CheckboxGroup ref={register} name="cheese" items={cheese} />
+            <CheckboxGroup ref={register} name="veggies" items={veggies} />
+            <CheckboxGroup ref={register} name="meat" items={meat} />
           </div>
         </fieldset>
         <div className="container">

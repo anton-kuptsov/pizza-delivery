@@ -2,13 +2,7 @@ const HOST = process.env.REACT_APP_HOST;
 
 export const getIngredients = () => {
   const URL = `${HOST}/ingredients`;
-  const result = fetch(URL).then(res => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      throw new Error("Error! Something went wrong.");
-    }
-  });
+  const result = fetch(URL).then(res => res.json());
   return result;
 };
 

@@ -57,7 +57,7 @@ export const AddProductPage = () => {
             <label htmlFor="category">Category:</label>
             <select ref={register} id="category" name="category">
               {categories.map(item => (
-                <option>{item}</option>
+                <option key={item}>{item}</option>
               ))}
             </select>
           </div>
