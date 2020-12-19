@@ -22,7 +22,7 @@ export default function Configurator() {
 
   useEffect(() => {
     dispatch(fetchIngredients());
-  }, []);
+  }, [dispatch]);
 
   const size = useSelector(getIngredientsByCategory("size"));
   const dough = useSelector(getIngredientsByCategory("dough"));
@@ -58,9 +58,9 @@ export default function Configurator() {
         <fieldset>
           <legend>Pizza Configurator</legend>
           <div>
-            <RadioGroup ref={register} name="size" items={size} />
-            <RadioGroup ref={register} name="dough" items={dough} />
-            <RadioGroup ref={register} name="sauce" items={sauce} />
+            <RadioGroup ref={register} items={size} />
+            <RadioGroup ref={register} items={dough} />
+            <RadioGroup ref={register} items={sauce} />
             <CheckboxGroup ref={register} name="cheese" items={cheese} />
             <CheckboxGroup ref={register} name="veggies" items={veggies} />
             <CheckboxGroup ref={register} name="meat" items={meat} />
