@@ -1,5 +1,5 @@
 export const ingredientsReducer = (
-  state = { pending: true, error: null, data: null },
+  state = { pending: true, error: null, data: [] },
   action
 ) => {
   switch (action.type) {
