@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../components/Button";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { totalCostCalc } from "../totalCostCalc";
 
@@ -9,15 +9,10 @@ import { getPizza } from "state/pizza/selectors";
 import { getIngredients } from "state/ingredients/selectors";
 
 export const CheckoutPage = () => {
-  const history = useHistory();
   const pizza = useSelector(getPizza);
   const ingredients = useSelector(getIngredients);
 
   const { size, dough, sauce, cheese, veggies, meat } = pizza;
-
-  if (ingredients === null) {
-    history.push("/");
-  }
 
   const getInrgedientName = value =>
     ingredients.find(i => i.slug === value)?.name;

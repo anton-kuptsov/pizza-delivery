@@ -1,7 +1,14 @@
 import { INITIAL_PIZZA_PRICE } from "./configData";
 
 export const totalCostCalc = (pizzaConfig, ingredientsData) => {
-  const { size, dough, sauce, cheese, veggies, meat } = pizzaConfig;
+  const {
+    size,
+    dough,
+    sauce,
+    cheese = [],
+    veggies = [],
+    meat = []
+  } = pizzaConfig;
 
   const getIngredientPrice = value =>
     ingredientsData.find(i => i.slug === value)?.price;

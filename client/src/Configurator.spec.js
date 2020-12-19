@@ -1,7 +1,7 @@
 import React from "react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
-import { render, fireEvent, act, waitFor } from "@testing-library/react";
+import { render, fireEvent, act } from "@testing-library/react";
 import Configurator from "./Configurator";
 import { Provider } from "react-redux";
 import { ingredientsReducer } from "state/ingredients/reducer";
