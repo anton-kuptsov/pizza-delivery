@@ -9,10 +9,16 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setPizza } from "state/pizza/actions";
+import { getIngredients } from "api";
 
 export default function Configurator() {
   const history = useHistory();
   const dispatch = useDispatch();
+
+  // const test = async () => {
+  //   return await getIngredients();
+  // };
+  // console.log(test());
 
   const { register, handleSubmit, watch } = useForm({
     defaultValues: INITIAL_PIZZA_CONFIG

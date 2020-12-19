@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { postIngredient } from "../api";
+import { categories } from "../config";
 
 export const AddProductPage = () => {
   const { register, handleSubmit, errors, reset } = useForm();
@@ -55,10 +56,9 @@ export const AddProductPage = () => {
           <div>
             <label htmlFor="category">Category:</label>
             <select ref={register} id="category" name="category">
-              <option>Cheese</option>
-              <option>Sauce</option>
-              <option>Veggies</option>
-              <option>Meat</option>
+              {categories.map(item => (
+                <option>{item}</option>
+              ))}
             </select>
           </div>
           <div>

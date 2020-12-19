@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { categories } from "../config";
 
 export const EditIngredient = ({ item, updateItem, setEditItem }) => {
   const [error, setError] = useState(null);
@@ -86,10 +87,9 @@ export const EditIngredient = ({ item, updateItem, setEditItem }) => {
                 id="category"
                 name="category"
               >
-                <option>Cheese</option>
-                <option>Sauce</option>
-                <option>Veggies</option>
-                <option>Meat</option>
+                {categories.map(item => (
+                  <option>{item}</option>
+                ))}
               </select>
             </div>
           </div>
