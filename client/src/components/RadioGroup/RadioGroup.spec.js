@@ -6,11 +6,16 @@ describe("RadioGroup", () => {
   it("renders correctly", () => {
     const { getByText } = render(
       <RadioGroup
-        name="size"
-        
+        items={[
+          {
+            id: "1",
+            name: "Стандарт (30см)",
+            category: "size",
+            slug: "standart"
+          }
+        ]}
       />
     );
     expect(getByText("Стандарт (30см)")).toBeInTheDocument();
   });
-
 });
