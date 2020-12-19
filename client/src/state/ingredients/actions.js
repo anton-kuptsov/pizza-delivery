@@ -7,7 +7,7 @@ export const ingredientsSuccess = payload => ({
   payload
 });
 
-export const ingredientsError = payload => ({
+export const ingredientsError = error => ({
   type: "ingredients/error",
-  payload
+  error
 });

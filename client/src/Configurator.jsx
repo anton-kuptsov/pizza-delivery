@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPizza } from "state/pizza/actions";
 import {
   getIngredientsByCategory,
+  getIsError,
   getIsLoading
 } from "state/ingredients/selectors";
 import { fetchIngredients } from "state/ingredients/thunk";
@@ -19,6 +20,7 @@ export default function Configurator() {
   const history = useHistory();
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsLoading);
+  const isError = useSelector(getIsError);
 
   useEffect(() => {
     dispatch(fetchIngredients());
@@ -50,6 +52,9 @@ export default function Configurator() {
 
   if (isLoading) {
     return <div>Loading</div>;
+  }
+  if (isError) {
+    return <div>{isError}</div>;
   }
 
   return (
