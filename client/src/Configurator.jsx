@@ -61,9 +61,9 @@ export default function Configurator() {
             <RadioGroup ref={register} items={size} />
             <RadioGroup ref={register} items={dough} />
             <RadioGroup ref={register} items={sauce} />
-            <CheckboxGroup ref={register} name="cheese" items={cheese} />
-            <CheckboxGroup ref={register} name="veggies" items={veggies} />
-            <CheckboxGroup ref={register} name="meat" items={meat} />
+            <CheckboxGroup ref={register} items={cheese} />
+            <CheckboxGroup ref={register} items={veggies} />
+            <CheckboxGroup ref={register} items={meat} />
           </div>
         </fieldset>
         <div className="container">

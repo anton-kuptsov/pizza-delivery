@@ -5,7 +5,14 @@ describe("CheckboxGroup", () => {
   it("renders correctly", () => {
     const { getByText } = render(
       <CheckboxGroup
-      name="cheese"
+        items={[
+          {
+            id: "1",
+            name: "Моцарелла",
+            category: "cheese",
+            slug: "mocarella"
+          }
+        ]}
       />
     );
     expect(getByText("Моцарелла")).toBeInTheDocument();
