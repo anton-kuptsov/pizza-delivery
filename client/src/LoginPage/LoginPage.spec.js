@@ -1,5 +1,7 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { createMemoryHistory } from "history";
 import { Provider } from "react-redux";
+import { Router } from "react-router-dom";
 import { combineReducers, createStore } from "redux";
 import { authReducer } from "state/auth/reducer";
 import { LoginPage } from "./LoginPage";
@@ -24,9 +26,12 @@ describe("Login Page", () => {
   });
   describe("on auth events", () => {
     it("on login", async () => {
+      const history = createMemoryHistory();
       const { getByText, getByLabelText } = render(
         <Provider store={store}>
-          <LoginPage />
+          <Router history={history}>
+            <LoginPage />
+          </Router>
         </Provider>
       );
 
@@ -42,23 +47,8 @@ describe("Login Page", () => {
       });
 
       await waitFor(() => {
-        expect(getByText("Hello, email@mail.com")).toBeInTheDocument();
+        expect(history.location.pathname).toEqual("/");
       });
-    });
-  });
-  it("on logout", async () => {
-    const { getByText, getByLabelText } = render(
-      <Provider store={store}>
-        <LoginPage />
-      </Provider>
-    );
-
-    await act(async () => {
-      fireEvent.click(getByText("LogOut"));
-    });
-
-    await waitFor(() => {
-      expect(getByLabelText("Email:")).toBeInTheDocument();
     });
   });
 });
