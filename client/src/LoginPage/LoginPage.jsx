@@ -1,10 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { setLoggedIn, setLoggedOut } from "state/auth/actions";
 import { getAuth } from "state/auth/selectors";
 
 export const LoginPage = () => {
+  const history = useHistory();
   const auth = useSelector(getAuth);
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
@@ -18,13 +20,9 @@ export const LoginPage = () => {
   };
 
   if (auth) {
-    return (
-      <div>
-        <div>Hello, {auth}</div>
-        <button onClick={handleLogOut}>LogOut</button>
-      </div>
-    );
+    history.push("/");
   }
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
