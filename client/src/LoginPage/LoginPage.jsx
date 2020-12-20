@@ -1,12 +1,30 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoggedIn, setLoggedOut } from "state/auth/actions";
+import { getAuth } from "state/auth/selectors";
 
-export const LoginPage = ({ formSubmit = () => {} }) => {
+export const LoginPage = () => {
+  const auth = useSelector(getAuth);
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
-    formSubmit(data);
+    dispatch(setLoggedIn(data.email));
   };
+
+  const handleLogOut = () => {
+    dispatch(setLoggedOut());
+  };
+
+  if (auth) {
+    return (
+      <div>
+        <div>Hello, {auth}</div>
+        <button onClick={handleLogOut}>LogOut</button>
+      </div>
+    );
+  }
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
