@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { setLoggedIn, setLoggedOut } from "state/auth/actions";
+import { setLoggedIn } from "state/auth/actions";
 import { getAuth } from "state/auth/selectors";
 
 export const LoginPage = () => {
@@ -13,10 +13,6 @@ export const LoginPage = () => {
 
   const onSubmit = data => {
     dispatch(setLoggedIn(data.email));
-  };
-
-  const handleLogOut = () => {
-    dispatch(setLoggedOut());
   };
 
   if (auth) {
