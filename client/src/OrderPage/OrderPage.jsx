@@ -26,7 +26,6 @@ export const OrderPage = () => {
     veggies.map(item => getIngredientName(item)),
     meat.map(item => getIngredientName(item))
   ].join(",");
-  console.log(pizzaOrder);
 
   const { register, handleSubmit, setValue, getValues } = useForm();
   const [ccSystem, setCCSystem] = React.useState("");
