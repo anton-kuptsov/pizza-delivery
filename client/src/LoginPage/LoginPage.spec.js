@@ -24,8 +24,8 @@ describe("Login Page", () => {
     expect(container).toHaveTextContent("Password:");
     expect(container).toHaveTextContent("Login");
   });
-  describe("on auth events", () => {
-    it("on login", async () => {
+  describe("on LogIn event", () => {
+    it("redirects to root page", async () => {
       const history = createMemoryHistory();
       const { getByText, getByLabelText } = render(
         <Provider store={store}>

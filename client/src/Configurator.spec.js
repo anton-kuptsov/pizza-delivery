@@ -45,22 +45,25 @@ describe("Configurator", () => {
     });
   });
 
-  describe("with fetched ingridients", () => {
-    it("minimal cost with default options", async () => {
+  describe("with default options", () => {
+    it("shows minimal cost", async () => {
       const { promise, resolve } = getControlledPromise();
       getIngredients.mockImplementation(() => promise);
       resolve(ingridientsData);
+
       const { getByText } = render(
         <Provider store={store}>
           <Configurator />
         </Provider>
       );
+
       await waitFor(() => {
         expect(getByText("Checkout 200 RUB")).toBeInTheDocument();
       });
     });
-
-    it("with additional options checked", async () => {
+  });
+  describe("with additional options", () => {
+    it("", async () => {
       const history = createMemoryHistory();
       const { promise, resolve } = getControlledPromise();
       getIngredients.mockImplementation(() => promise);
@@ -74,13 +77,16 @@ describe("Configurator", () => {
       );
 
       await waitFor(() => {
-        expect(getByText("Checkout 200 RUB")).toBeInTheDocument();
+        expect(getByText("Pizza Configurator")).toBeInTheDocument();
       });
+
       fireEvent.click(getByText("Большая (35см)"));
       fireEvent.click(getByText("Бекон"));
+
       await act(async () => {
         fireEvent.click(getByText("Checkout 279 RUB"));
       });
+
       expect(store.getState()).toEqual({
         auth: false,
         ingredients: { data: ingridientsData, error: null, pending: false },
