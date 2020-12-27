@@ -62,8 +62,8 @@ describe("Configurator", () => {
       });
     });
   });
-  describe("with additional options", () => {
-    it("", async () => {
+  describe("when additional options selected", () => {
+    it("passes data to store", async () => {
       const history = createMemoryHistory();
       const { promise, resolve } = getControlledPromise();
       getIngredients.mockImplementation(() => promise);
