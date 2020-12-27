@@ -50,8 +50,8 @@ export const deleteIngredient = item => {
   return result;
 };
 
-export const editIngredient = ({ item, data }) => {
-  const URL = `${HOST}/ingredients/${item}`;
+export const editIngredient = ({ id, data }) => {
+  const URL = `${HOST}/ingredients/${id}`;
 
   const formData = new FormData();
   formData.append("image", data.image[0]);

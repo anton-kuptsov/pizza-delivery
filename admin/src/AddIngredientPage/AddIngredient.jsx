@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { postIngredient } from "../api";
+import { CategorySelector } from "../CategorySelector";
 import { categories } from "../config";
 
-export const AddProductPage = () => {
+export const AddIngredient = () => {
   const { register, handleSubmit, errors, reset } = useForm();
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(false);
@@ -32,15 +33,15 @@ export const AddProductPage = () => {
       ) : (
         data?.status && (
           <div style={{ margin: "1rem auto", width: "400px", color: "green" }}>
-            Ingredient added success!
+            Ингредиент добавлен успешно!
           </div>
         )
       )}
       <form onSubmit={onSubmit}>
         <fieldset style={{ width: "400px", margin: "auto" }}>
-          <legend>Add new topping</legend>
+          <legend>Добавить ингредиент</legend>
           <div>
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="name">Наименование:</label>
             <input
               ref={register({ required: "Name is required" })}
               id="name"
@@ -54,15 +55,15 @@ export const AddProductPage = () => {
             )}
           </div>
           <div>
-            <label htmlFor="category">Category:</label>
-            <select ref={register} id="category" name="category">
-              {categories.map(item => (
-                <option key={item}>{item}</option>
-              ))}
-            </select>
+            <label htmlFor="category">Категория:</label>
+            <CategorySelector
+              id="category"
+              name="category"
+              items={categories}
+            />
           </div>
           <div>
-            <label htmlFor="price">Price:</label>
+            <label htmlFor="price">Цена:</label>
             <input
               ref={register({
                 required: "Price is required"
@@ -78,7 +79,7 @@ export const AddProductPage = () => {
             </p>
           )}
           <div>
-            <label htmlFor="slug">Slug:</label>
+            <label htmlFor="slug">Код:</label>
             <input
               ref={register({ required: "Slug is required" })}
               id="slug"
@@ -92,7 +93,7 @@ export const AddProductPage = () => {
             </p>
           )}
           <div>
-            <label htmlFor="image">Picture:</label>
+            <label htmlFor="image">Картинка:</label>
             <input
               ref={register({ required: "Image is required" })}
               id="image"
@@ -106,7 +107,7 @@ export const AddProductPage = () => {
             </p>
           )}
           <button disabled={isLoading} style={{ margin: "1rem" }}>
-            {isLoading ? "Loading..." : "Add topping"}
+            {isLoading ? "Загрузка..." : "Добавить"}
           </button>
         </fieldset>
       </form>
