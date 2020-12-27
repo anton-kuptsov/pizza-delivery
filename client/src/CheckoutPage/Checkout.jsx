@@ -6,7 +6,11 @@ import { totalCostCalc } from "../totalCostCalc";
 
 import { useSelector } from "react-redux";
 import { getPizza } from "state/pizza/selectors";
-import { getIngredients } from "state/ingredients/selectors";
+import {
+  getIngredientNameBySlug,
+  getIngredients,
+  getIngredientsByCategory
+} from "state/ingredients/selectors";
 
 export const CheckoutPage = () => {
   const pizza = useSelector(getPizza);
