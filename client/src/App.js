@@ -6,14 +6,14 @@ import { NotFoundPage } from "./NotFoundPage";
 import { SignupPage } from "./SignupPage";
 import { CheckoutPage } from "./CheckoutPage";
 import { OrderPage } from "./OrderPage";
-import { OrderListPage } from "OrdersListPage";
-import { Navbar } from "Navbar";
+import { OrderListPage } from "./OrdersListPage";
+import { Navbar } from "./NavBar";
+import "./styles/base.scss";
 
 function App() {
   return (
     <>
       <Navbar />
-
       <Switch>
         <Route exact path="/">
           <Configurator />

@@ -1,0 +1,28 @@
+@import "./_colors";
+@import "./functions";
+@import "./sets";
+
+.wrapper {
+  background-color: $gray100;
+  @extend %text-sm-medium;
+  border-radius: rem(12px);
+  label {
+    padding: rem(4px) rem(12px);
+    border-radius: rem(10px);
+    margin: rem(2px);
+    color: $gray600;
+    &:hover {
+      color: $black;
+      transition: all 0.4s ease;
+    }
+  }
+  input:checked + label {
+    color: $black;
+    background-color: $white;
+    box-shadow: $shadow-sm;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  input {
+    display: none;
+  }
+}

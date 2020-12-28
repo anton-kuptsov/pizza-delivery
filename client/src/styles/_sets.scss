@@ -1,0 +1,62 @@
+%font-normal {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-style: normal;
+}
+
+%text-base {
+  @extend %font-normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+%text-base-medium {
+  @extend %font-normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+%text-base-bold {
+  @extend %font-normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+%text-sm {
+  @extend %font-normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+%text-sm-medium {
+  @extend %font-normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+%text-xs {
+  @extend %font-normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+}
+%text-xs-medium {
+  @extend %font-normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+%text-lg-medium {
+  @extend %font-normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+}
+%text-lg-bold {
+  @extend %font-normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 28px;
+}

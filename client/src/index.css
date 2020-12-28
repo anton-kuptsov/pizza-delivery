@@ -2,12 +2,7 @@ html {
   font-family: sans-serif;
 }
 
-label {
-  margin-right: 15px;
-  line-height: 32px;
-}
-
-input[type="radio"],
+/* input[type="radio"], */
 input[type="checkbox"] {
   appearance: none;
 
@@ -22,9 +17,9 @@ input[type="checkbox"] {
   position: relative;
   top: 4px;
 }
-input[type="radio"] {
+/* input[type="radio"] {
   border-radius: 50%;
-}
+} */
 input:hover,
 label:hover {
   cursor: pointer;
