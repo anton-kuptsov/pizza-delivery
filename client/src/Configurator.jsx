@@ -36,6 +36,7 @@ export default function Configurator() {
   const { register, handleSubmit, watch } = useForm({
     defaultValues: INITIAL_PIZZA_CONFIG
   });
+
   const totalCost = totalCostCalc(watch(), [
     ...size,
     ...dough,
@@ -53,6 +54,7 @@ export default function Configurator() {
   if (isLoading) {
     return <div>Loading</div>;
   }
+
   if (isError) {
     return <div>{isError}</div>;
   }

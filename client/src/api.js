@@ -1,4 +1,4 @@
-const HOST = process.env.REACT_APP_HOST;
+import { HOST } from "./configData";
 
 export const getIngredients = () => {
   const URL = `${HOST}/ingredients`;
