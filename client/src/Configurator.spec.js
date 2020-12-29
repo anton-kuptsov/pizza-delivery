@@ -58,7 +58,7 @@ describe("Configurator", () => {
       );
 
       await waitFor(() => {
-        expect(getByText("Checkout 200 RUB")).toBeInTheDocument();
+        expect(getByText("Заказать за 200 руб")).toBeInTheDocument();
       });
     });
   });
@@ -80,11 +80,11 @@ describe("Configurator", () => {
         expect(getByText("Pizza Configurator")).toBeInTheDocument();
       });
 
-      fireEvent.click(getByText("Большая (35см)"));
+      fireEvent.click(getByText("35см"));
       fireEvent.click(getByText("Бекон"));
 
       await act(async () => {
-        fireEvent.click(getByText("Checkout 279 RUB"));
+        fireEvent.click(getByText("Заказать за 279 руб"));
       });
 
       expect(store.getState()).toEqual({
@@ -116,10 +116,10 @@ describe("Configurator", () => {
         </Router>
       );
       await waitFor(() => {
-        expect(getByText("Checkout 200 RUB")).toBeInTheDocument();
+        expect(getByText("Заказать за 200 руб")).toBeInTheDocument();
       });
       await act(async () => {
-        fireEvent.click(getByText("Checkout 200 RUB"));
+        fireEvent.click(getByText("Заказать за 200 руб"));
       });
       expect(history.location.pathname).toEqual("/checkout");
     });
@@ -130,14 +130,14 @@ const ingridientsData = [
   {
     category: "size",
     id: "hX0-HEYo",
-    name: "Стандарт (30см)",
+    name: "30см",
     price: 0,
     slug: "standart"
   },
   {
     category: "size",
     id: "7CdL-mnQ",
-    name: "Большая (35см)",
+    name: "35см",
     price: 50,
     slug: "big"
   },

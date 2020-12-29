@@ -1,0 +1,22 @@
+@import "./_colors";
+@import "./functions";
+@import "./_sets";
+
+.container {
+  display: flex;
+  align-items: center;
+  .logo {
+    display: flex;
+    margin-right: rem(4px);
+  }
+  .name {
+    @extend %text-lg-bold;
+    line-height: rem(20px);
+    & > span:first-child {
+      color: $primary;
+    }
+    & > span:last-child {
+      color: $secondary;
+    }
+  }
+}

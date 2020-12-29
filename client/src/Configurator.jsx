@@ -64,7 +64,7 @@ export default function Configurator() {
     <div className={style.container}>
       <form onSubmit={handleSubmit(handleCheckout)}>
         <fieldset>
-          <legend>Pizza Configurator</legend>
+          <legend>Pizza</legend>
           <div>
             <div className={style.container__base}>
               <div className={style.wrapper}>
@@ -82,7 +82,7 @@ export default function Configurator() {
             </div>
             <div className={style.container__sauge}>
               <div className={style.wrapper}>
-                <span>Соус</span>
+                <span></span>
                 <div>
                   <RadioGroup ref={register} items={sauce} />
                 </div>

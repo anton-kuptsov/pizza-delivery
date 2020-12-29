@@ -22,9 +22,16 @@
   font-display: block;
   src: url("../fonts/MPLUSRounded1c-Bold.ttf") format("woff2");
 }
+body {
+  margin: 0;
+  padding: 0;
+}
 
 label {
   &:hover {
     cursor: pointer;
   }
+}
+a {
+  text-decoration: none;
 }
