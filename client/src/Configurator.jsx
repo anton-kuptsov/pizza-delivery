@@ -15,6 +15,7 @@ import {
   getIsLoading
 } from "state/ingredients/selectors";
 import { fetchIngredients } from "state/ingredients/thunk";
+import style from "./styles/Configurator.module.scss";
 
 export default function Configurator() {
   const history = useHistory();
@@ -60,21 +61,60 @@ export default function Configurator() {
   }
 
   return (
-    <div className={"container"}>
+    <div className={style.container}>
       <form onSubmit={handleSubmit(handleCheckout)}>
         <fieldset>
           <legend>Pizza Configurator</legend>
           <div>
-            <RadioGroup ref={register} items={size} />
-            <RadioGroup ref={register} items={dough} />
-            <RadioGroup ref={register} items={sauce} />
-            <CheckboxGroup ref={register} items={cheese} />
-            <CheckboxGroup ref={register} items={veggies} />
-            <CheckboxGroup ref={register} items={meat} />
+            <div className={style.container__base}>
+              <div className={style.wrapper}>
+                <span>Размер</span>
+                <div>
+                  <RadioGroup ref={register} items={size} />
+                </div>
+              </div>
+              <div className={style.wrapper}>
+                <span>Тесто</span>
+                <div>
+                  <RadioGroup ref={register} items={dough} />
+                </div>
+              </div>
+            </div>
+            <div className={style.container__sauge}>
+              <div className={style.wrapper}>
+                <span>Соус</span>
+                <div>
+                  <RadioGroup ref={register} items={sauce} />
+                </div>
+              </div>
+            </div>
+            <div className={style.container__toppings}>
+              <CheckboxGroup
+                ref={register}
+                items={cheese}
+                selected={watch().cheese}
+              />
+            </div>
+            <div className={style.container__toppings}>
+              <CheckboxGroup
+                ref={register}
+                items={veggies}
+                selected={watch().veggies}
+              />
+            </div>
+            <div className={style.container__toppings}>
+              <CheckboxGroup
+                ref={register}
+                items={meat}
+                selected={watch().meat}
+              />
+            </div>
           </div>
         </fieldset>
-        <div className="container">
-          <Button className="checkout-button">Checkout {totalCost} RUB</Button>
+        <div className={style.container__btn}>
+          <Button className={style.btn__checkout}>
+            Заказать за {totalCost} руб
+          </Button>
         </div>
       </form>
     </div>

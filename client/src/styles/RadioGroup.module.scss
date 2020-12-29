@@ -1,12 +1,14 @@
 @import "./_colors";
 @import "./functions";
-@import "./sets";
+@import "./_sets";
 
 .wrapper {
   background-color: $gray100;
-  @extend %text-sm-medium;
   border-radius: rem(12px);
+
   label {
+    @extend %text-sm;
+    line-height: rem(32px);
     padding: rem(4px) rem(12px);
     border-radius: rem(10px);
     margin: rem(2px);
@@ -17,6 +19,7 @@
     }
   }
   input:checked + label {
+    @extend %text-sm-medium;
     color: $black;
     background-color: $white;
     box-shadow: $shadow-sm;

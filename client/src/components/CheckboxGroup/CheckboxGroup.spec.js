@@ -13,6 +13,7 @@ describe("CheckboxGroup", () => {
             slug: "mocarella"
           }
         ]}
+        selected={[]}
       />
     );
     expect(getByText("Моцарелла")).toBeInTheDocument();

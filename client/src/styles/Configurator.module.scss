@@ -1,0 +1,47 @@
+@import "./_colors";
+@import "./functions";
+@import "./_sets";
+
+%wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rem(4px);
+  span {
+    color: $gray600;
+    @extend %text-sm-medium;
+  }
+}
+
+.container {
+  .container__base {
+    display: flex;
+    div:not(:last-child) {
+      margin-right: 1rem;
+    }
+    .wrapper {
+      @extend %wrapper;
+    }
+  }
+  .container__sauge {
+    display: flex;
+    margin-top: 1rem;
+    .wrapper {
+      @extend %wrapper;
+    }
+  }
+  .container__toppings {
+    display: flex;
+    margin-top: rem(26px);
+    & > div:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  .container__btn {
+    width: 50%;
+    margin-top: 1rem;
+    .btn__checkout {
+      @extend %button-primary;
+    }
+  }
+}
