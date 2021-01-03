@@ -111,8 +111,8 @@ export default function Configurator() {
             </div>
           </div>
         </fieldset>
-        <div className={style.container__btn}>
-          <Button className={style.btn__checkout}>
+        <div className={style.footer}>
+          <Button type="submit" className={style.btn__checkout}>
             Заказать за {totalCost} руб
           </Button>
         </div>

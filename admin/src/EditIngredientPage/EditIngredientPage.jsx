@@ -54,6 +54,18 @@ export const EditIngredientPage = () => {
       <form onSubmit={onSubmit}>
         <fieldset style={{ width: "fit-content", margin: "1rem auto" }}>
           <legend>Редактирование ингридиента "{data.name}"</legend>
+
+          <div>
+            <label htmlFor="category">Категория:</label>
+            <CategorySelector
+              ref={register({ required: "Required field" })}
+              id="category"
+              name="category"
+              items={categories}
+              defaultValue={data.category}
+            />
+          </div>
+
           <div>
             <label htmlFor="name">Наименование:</label>
             <input
@@ -66,7 +78,7 @@ export const EditIngredientPage = () => {
             />
           </div>
           <div>
-            <label htmlFor="price">Цена:</label>
+            <label htmlFor="price">Цена (руб.):</label>
             <input
               type="tel"
               ref={register({ required: "Required field" })}
@@ -85,25 +97,24 @@ export const EditIngredientPage = () => {
               defaultValue={data.slug}
             />
           </div>
-          <div>
-            <div>
-              <label htmlFor="category">Категория:</label>
-              <CategorySelector
-                ref={register({ required: "Required field" })}
-                id="category"
-                name="category"
-                items={categories}
-                defaultValue={data.category}
-              />
-            </div>
-          </div>
+
           <div
             style={{
               display: "flex",
+              flexDirection: "column",
               justifyContent: "space-around",
               margin: "0.5rem auto"
             }}
           >
+            <div>
+              <label htmlFor="thumbnail">Превью:</label>
+              <input
+                ref={register({ required: "Required field" })}
+                id="thumbnail"
+                type="file"
+                name="thumbnail"
+              />
+            </div>
             <div>
               <label htmlFor="image">Картинка:</label>
               <input
@@ -113,7 +124,10 @@ export const EditIngredientPage = () => {
                 name="image"
               />
             </div>
-            <button>Сохранить</button>
+
+            <button style={{ marginTop: "1rem", height: "3rem" }}>
+              Сохранить
+            </button>
           </div>
         </fieldset>
       </form>
