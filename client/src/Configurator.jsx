@@ -65,7 +65,7 @@ export default function Configurator() {
     <div className={style.container}>
       <form onSubmit={handleSubmit(handleCheckout)}>
         <fieldset style={{ border: "none" }}>
-          <div>
+          <div className={style._preview}>
             <PizzaPreview
               pizza={watch()}
               size={size}
@@ -74,7 +74,8 @@ export default function Configurator() {
               meat={meat}
               veggies={veggies}
             />
-            <div className={style.container__base}>
+
+            <div className={style._base}>
               <div className={style.wrapper}>
                 <span>Размер</span>
                 <div>
@@ -88,7 +89,7 @@ export default function Configurator() {
                 </div>
               </div>
             </div>
-            <div className={style.container__sauge}>
+            <div className={style._sauge}>
               <div className={style.wrapper}>
                 <span></span>
                 <div>
@@ -96,21 +97,21 @@ export default function Configurator() {
                 </div>
               </div>
             </div>
-            <div className={style.container__toppings}>
+            <div className={style._toppings}>
               <CheckboxGroup
                 ref={register}
                 items={cheese}
                 selected={watch().cheese}
               />
             </div>
-            <div className={style.container__toppings}>
+            <div className={style._toppings}>
               <CheckboxGroup
                 ref={register}
                 items={veggies}
                 selected={watch().veggies}
               />
             </div>
-            <div className={style.container__toppings}>
+            <div className={style._toppings}>
               <CheckboxGroup
                 ref={register}
                 items={meat}

@@ -77,7 +77,7 @@ describe("Configurator", () => {
       );
 
       await waitFor(() => {
-        expect(getByText("Pizza")).toBeInTheDocument();
+        expect(getByText("Размер")).toBeInTheDocument();
       });
 
       fireEvent.click(getByText("35см"));
