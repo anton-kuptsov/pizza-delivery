@@ -51,9 +51,9 @@ export default function Configurator() {
   ]);
 
   const getToppingsName = (toppings, ingridients) => {
-    return toppings.map(item => {
-      return " • " + ingridients.filter(i => i.slug === item)[0].name;
-    });
+    return toppings.map(
+      item => " • " + ingridients.filter(i => i.slug === item)[0].name
+    );
   };
 
   const handleCheckout = data => {
