@@ -39,7 +39,9 @@ export default function Configurator() {
     defaultValues: INITIAL_PIZZA_CONFIG
   });
 
-  const totalCost = totalCostCalc(watch(), [
+  const pizza = watch();
+
+  const totalCost = totalCostCalc(pizza, [
     ...size,
     ...dough,
     ...sauce,
@@ -47,6 +49,12 @@ export default function Configurator() {
     ...meat,
     ...veggies
   ]);
+
+  const getToppingsName = (toppings, ingridients) => {
+    return toppings.map(item => {
+      return " • " + ingridients.filter(i => i.slug === item)[0].name;
+    });
+  };
 
   const handleCheckout = data => {
     dispatch(setPizza(data));
@@ -67,14 +75,26 @@ export default function Configurator() {
         <fieldset style={{ border: "none" }}>
           <div className={style._preview}>
             <PizzaPreview
-              pizza={watch()}
+              pizza={pizza}
               size={size}
               dough={dough}
               cheese={cheese}
               meat={meat}
               veggies={veggies}
             />
-
+            <div className={style.desc_wrapper}>
+              <span className={style.desc__name}>Маргарита</span>
+              <div className={style.desc__base}>
+                {size.filter(item => item.slug === pizza.size)[0]?.name} на{" "}
+                {pizza.dough === "thin" ? "тонком" : "толстом"} тесте
+              </div>
+              <div className={style.desc__toppings}>
+                {sauce.filter(item => item.slug === pizza.sauce)[0]?.name} соус
+                {getToppingsName(pizza.cheese, cheese)}
+                {getToppingsName(pizza.veggies, veggies)}
+                {getToppingsName(pizza.meat, meat)}
+              </div>
+            </div>
             <div className={style._base}>
               <div className={style.wrapper}>
                 <span>Размер</span>

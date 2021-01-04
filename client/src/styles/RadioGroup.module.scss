@@ -15,6 +15,7 @@
     margin: rem(2px);
     color: $gray600;
     border: 1px solid transparent;
+    transition: border 0.6s ease;
     &:hover,
     &:focus {
       color: $black;
@@ -25,14 +26,12 @@
     width: 0;
     height: 0;
     margin: 0;
-    // &:focus + label {
-    //   background: $secondary;
-    // }
   }
 
   input:checked {
     &:focus + label {
-      border: 1px solid $secondary;
+      border: 1px solid $gray600;
+      transition: all 0.3s ease;
     }
     & + label {
       @extend %text-sm-medium;
@@ -40,7 +39,7 @@
       box-shadow: $shadow-sm;
       background-color: $white;
       transition: color 0.2s ease, background-color 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease, border 0.25s ease;
     }
   }
 }
