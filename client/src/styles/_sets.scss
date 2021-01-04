@@ -63,7 +63,7 @@
 
 %button {
   @extend %text-base-bold;
-  border-radius: 16px;
+  border-radius: 0.5rem;
   width: 100%;
   height: rem(40px);
   cursor: pointer;
@@ -71,21 +71,21 @@
 
 %button-primary {
   @extend %button;
-  background: $primary;
+  background: $secondary;
   border: none;
   color: $white;
-  border: 1px solid $primary;
+  border: 1px solid $secondary;
   outline: none;
   transition: box-shadow 0.2s ease-in-out;
   &:hover {
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   }
   &:focus {
-    border: 1px solid $primary-dark;
+    border: 1px solid $secondary;
   }
   &:active {
     border: 0;
-    background: $primary-dark;
+    background: $secondary;
     box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
   }
 }

@@ -16,6 +16,7 @@ import {
 } from "state/ingredients/selectors";
 import { fetchIngredients } from "state/ingredients/thunk";
 import style from "./styles/Configurator.module.scss";
+import { PizzaPreview } from "./PizzaPreview";
 
 export default function Configurator() {
   const history = useHistory();
@@ -63,9 +64,16 @@ export default function Configurator() {
   return (
     <div className={style.container}>
       <form onSubmit={handleSubmit(handleCheckout)}>
-        <fieldset>
-          <legend>Pizza</legend>
+        <fieldset style={{ border: "none" }}>
           <div>
+            <PizzaPreview
+              pizza={watch()}
+              size={size}
+              dough={dough}
+              cheese={cheese}
+              meat={meat}
+              veggies={veggies}
+            />
             <div className={style.container__base}>
               <div className={style.wrapper}>
                 <span>Размер</span>
