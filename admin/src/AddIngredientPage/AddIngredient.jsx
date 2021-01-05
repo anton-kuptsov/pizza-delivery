@@ -57,6 +57,7 @@ export const AddIngredient = () => {
           <div>
             <label htmlFor="category">Категория:</label>
             <CategorySelector
+              ref={register({ required: "Required field" })}
               id="category"
               name="category"
               items={categories}
