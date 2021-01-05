@@ -1,0 +1,19 @@
+@import "./_colors";
+@import "./functions";
+@import "./_sets";
+
+.container {
+  position: relative;
+  .dough {
+    position: absolute;
+    top: 0;
+  }
+  .toppings {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    & > img {
+      width: 240px;
+    }
+  }
+}

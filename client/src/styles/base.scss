@@ -1,0 +1,37 @@
+@import "./functions.scss";
+
+@font-face {
+  font-family: "M PLUS Rounded 1c script=latin rev=2";
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url("../fonts/MPLUSRounded1c-Medium.ttf") format("woff2");
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c script=latin rev=2";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../fonts/MPLUSRounded1c-Regular.ttf") format("woff2");
+}
+
+@font-face {
+  font-family: "M PLUS Rounded 1c script=latin rev=2";
+  font-style: normal;
+  font-weight: 800;
+  font-display: block;
+  src: url("../fonts/MPLUSRounded1c-Bold.ttf") format("woff2");
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  &:hover {
+    cursor: pointer;
+  }
+}
+a {
+  text-decoration: none;
+}

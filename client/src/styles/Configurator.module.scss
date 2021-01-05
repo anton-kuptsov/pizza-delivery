@@ -1,0 +1,105 @@
+@import "./_colors";
+@import "./functions";
+@import "./_sets";
+
+%wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rem(4px);
+  span {
+    color: $gray600;
+    @extend %text-sm-medium;
+  }
+}
+
+.container {
+  margin-bottom: rem(64px);
+  ._preview {
+    max-width: rem(360px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ._base {
+    display: flex;
+
+    div:not(:last-child) {
+      margin-right: 1rem;
+    }
+    .wrapper {
+      @extend %wrapper;
+    }
+  }
+  ._sauge {
+    display: flex;
+    margin-top: 1rem;
+    .wrapper {
+      @extend %wrapper;
+    }
+  }
+  ._toppings {
+    display: flex;
+    margin-top: rem(26px);
+    & > div:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+  .desc_wrapper {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    .desc__name {
+      @extend %text-lg-medium;
+      margin-bottom: 0.5rem;
+      color: $black;
+    }
+    .desc__base {
+      @extend %text-xs;
+      color: $gray600;
+    }
+    .desc__toppings {
+      @extend %text-xs;
+      color: $gray600;
+    }
+  }
+
+  .footer {
+    width: 100%;
+    height: (64px);
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    background: $white;
+    box-shadow: $shadow-panel;
+    display: flex;
+    align-items: center;
+    .btn__checkout {
+      @extend %button-primary;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      &:focus {
+        animation: shake-horizontal 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+          both;
+      }
+    }
+  }
+}
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
+  90% {
+    transform: translateX(-8px);
+  }
+}
