@@ -1,9 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { HOST } from "../config";
 
 export const IngredientsItem = ({ deleteItem, item }) => {
   const history = useHistory();
-  const { name, price, image, id, slug, category } = item;
+  const { name, price, thumbnail, id, slug, category } = item;
 
   const handleEdit = () => {
     history.push(`/edit-ingredient/${id}`);
@@ -17,7 +18,7 @@ export const IngredientsItem = ({ deleteItem, item }) => {
           <div style={{ display: "flex" }}>
             <div style={{ marginLeft: "0.5rem" }}>
               <img
-                src={process.env.REACT_APP_HOST + "/" + image}
+                src={HOST + "/" + thumbnail}
                 alt={category}
                 style={{ maxWidth: "4rem", padding: "0.5rem" }}
               />

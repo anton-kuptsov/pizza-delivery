@@ -15,6 +15,8 @@ import {
   getIsLoading
 } from "state/ingredients/selectors";
 import { fetchIngredients } from "state/ingredients/thunk";
+import style from "./styles/Configurator.module.scss";
+import { PizzaPreview } from "./PizzaPreview";
 
 export default function Configurator() {
   const history = useHistory();
@@ -36,7 +38,10 @@ export default function Configurator() {
   const { register, handleSubmit, watch } = useForm({
     defaultValues: INITIAL_PIZZA_CONFIG
   });
-  const totalCost = totalCostCalc(watch(), [
+
+  const pizza = watch();
+
+  const totalCost = totalCostCalc(pizza, [
     ...size,
     ...dough,
     ...sauce,
@@ -44,6 +49,12 @@ export default function Configurator() {
     ...meat,
     ...veggies
   ]);
+
+  const getToppingsName = (toppings, ingridients) => {
+    return toppings.map(
+      item => " • " + ingridients.filter(i => i.slug === item)[0].name
+    );
+  };
 
   const handleCheckout = data => {
     dispatch(setPizza(data));
@@ -53,26 +64,86 @@ export default function Configurator() {
   if (isLoading) {
     return <div>Loading</div>;
   }
+
   if (isError) {
     return <div>{isError}</div>;
   }
 
   return (
-    <div className={"container"}>
+    <div className={style.container}>
       <form onSubmit={handleSubmit(handleCheckout)}>
-        <fieldset>
-          <legend>Pizza Configurator</legend>
-          <div>
-            <RadioGroup ref={register} items={size} />
-            <RadioGroup ref={register} items={dough} />
-            <RadioGroup ref={register} items={sauce} />
-            <CheckboxGroup ref={register} items={cheese} />
-            <CheckboxGroup ref={register} items={veggies} />
-            <CheckboxGroup ref={register} items={meat} />
+        <fieldset style={{ border: "none" }}>
+          <div className={style._preview}>
+            <PizzaPreview
+              pizza={pizza}
+              size={size}
+              dough={dough}
+              cheese={cheese}
+              meat={meat}
+              veggies={veggies}
+            />
+            <div className={style.desc_wrapper}>
+              <span className={style.desc__name}>Маргарита</span>
+              <div className={style.desc__base}>
+                {size.filter(item => item.slug === pizza.size)[0]?.name} на{" "}
+                {pizza.dough === "thin" ? "тонком" : "толстом"} тесте
+              </div>
+              <div className={style.desc__toppings}>
+                {sauce.filter(item => item.slug === pizza.sauce)[0]?.name} соус
+                {getToppingsName(pizza.cheese, cheese)}
+                {getToppingsName(pizza.veggies, veggies)}
+                {getToppingsName(pizza.meat, meat)}
+              </div>
+            </div>
+            <div className={style._base}>
+              <div className={style.wrapper}>
+                <span>Размер</span>
+                <div>
+                  <RadioGroup ref={register} items={size} />
+                </div>
+              </div>
+              <div className={style.wrapper}>
+                <span>Тесто</span>
+                <div>
+                  <RadioGroup ref={register} items={dough} />
+                </div>
+              </div>
+            </div>
+            <div className={style._sauge}>
+              <div className={style.wrapper}>
+                <span></span>
+                <div>
+                  <RadioGroup ref={register} items={sauce} />
+                </div>
+              </div>
+            </div>
+            <div className={style._toppings}>
+              <CheckboxGroup
+                ref={register}
+                items={cheese}
+                selected={watch().cheese}
+              />
+            </div>
+            <div className={style._toppings}>
+              <CheckboxGroup
+                ref={register}
+                items={veggies}
+                selected={watch().veggies}
+              />
+            </div>
+            <div className={style._toppings}>
+              <CheckboxGroup
+                ref={register}
+                items={meat}
+                selected={watch().meat}
+              />
+            </div>
           </div>
         </fieldset>
-        <div className="container">
-          <Button className="checkout-button">Checkout {totalCost} RUB</Button>
+        <div className={style.footer}>
+          <Button type="submit" className={style.btn__checkout}>
+            Заказать за {totalCost} руб
+          </Button>
         </div>
       </form>
     </div>

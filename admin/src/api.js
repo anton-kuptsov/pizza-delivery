@@ -1,4 +1,4 @@
-const HOST = process.env.REACT_APP_HOST;
+import { HOST } from "./config";
 
 export const getIngredients = () => {
   const URL = `${HOST}/ingredients`;
@@ -21,6 +21,7 @@ export const postIngredient = data => {
   formData.append("slug", data.slug);
   formData.append("price", data.price);
   formData.append("category", data.category);
+  formData.append("thumbnail", data.thumbnail[0]);
 
   const result = fetch(URL, {
     method: "POST",
@@ -59,6 +60,7 @@ export const editIngredient = ({ id, data }) => {
   formData.append("slug", data.slug);
   formData.append("price", data.price);
   formData.append("category", data.category);
+  formData.append("thumbnail", data.thumbnail[0]);
 
   const result = fetch(URL, {
     method: "PUT",

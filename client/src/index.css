@@ -1,14 +1,9 @@
-html {
+/* html {
   font-family: sans-serif;
-}
+} */
 
-label {
-  margin-right: 15px;
-  line-height: 32px;
-}
-
-input[type="radio"],
-input[type="checkbox"] {
+/* input[type="radio"], */
+/* input[type="checkbox"] {
   appearance: none;
 
   width: 16px;
@@ -21,19 +16,19 @@ input[type="checkbox"] {
 
   position: relative;
   top: 4px;
-}
-input[type="radio"] {
+} */
+/* input[type="radio"] {
   border-radius: 50%;
-}
-input:hover,
+} */
+/* input:hover,
 label:hover {
   cursor: pointer;
 }
 input:checked {
   border: 8px solid black;
-}
+} */
 
-button,
+/* button, */
 legend {
   color: white;
   background-color: black;
@@ -43,29 +38,29 @@ legend {
   font-size: 14px;
 }
 
-button:hover,
+/* button:hover,
 button:focus {
   color: #999;
   cursor: pointer;
-}
+} */
 
-button:active {
+/* button:active {
   background-color: white;
   color: black;
   outline: 1px solid black;
-}
+} */
 
-.container {
+/* .container {
   margin-left: auto;
   width: fit-content;
   margin-right: auto;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-}
+} */
 
-.checkout-button {
+/* .checkout-button {
   padding: 1rem;
-}
+} */
 .order-button {
   padding: 0.75rem;
 }

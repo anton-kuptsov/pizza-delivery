@@ -1,7 +1,7 @@
 import React from "react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
-import { render, fireEvent, act, wait, waitFor } from "@testing-library/react";
+import { render, fireEvent, act, waitFor } from "@testing-library/react";
 import Configurator from "./Configurator";
 import { Provider } from "react-redux";
 import { ingredientsReducer } from "state/ingredients/reducer";
@@ -58,7 +58,7 @@ describe("Configurator", () => {
       );
 
       await waitFor(() => {
-        expect(getByText("Checkout 200 RUB")).toBeInTheDocument();
+        expect(getByText("Заказать за 200 руб")).toBeInTheDocument();
       });
     });
   });
@@ -77,14 +77,14 @@ describe("Configurator", () => {
       );
 
       await waitFor(() => {
-        expect(getByText("Pizza Configurator")).toBeInTheDocument();
+        expect(getByText("Размер")).toBeInTheDocument();
       });
 
-      fireEvent.click(getByText("Большая (35см)"));
+      fireEvent.click(getByText("35см"));
       fireEvent.click(getByText("Бекон"));
 
       await act(async () => {
-        fireEvent.click(getByText("Checkout 279 RUB"));
+        fireEvent.click(getByText("Заказать за 279 руб"));
       });
 
       expect(store.getState()).toEqual({
@@ -116,10 +116,10 @@ describe("Configurator", () => {
         </Router>
       );
       await waitFor(() => {
-        expect(getByText("Checkout 200 RUB")).toBeInTheDocument();
+        expect(getByText("Заказать за 200 руб")).toBeInTheDocument();
       });
       await act(async () => {
-        fireEvent.click(getByText("Checkout 200 RUB"));
+        fireEvent.click(getByText("Заказать за 200 руб"));
       });
       expect(history.location.pathname).toEqual("/checkout");
     });
@@ -130,77 +130,145 @@ const ingridientsData = [
   {
     category: "size",
     id: "hX0-HEYo",
-    name: "Стандарт (30см)",
+    name: "30см",
     price: 0,
-    slug: "standart"
+    slug: "standart",
+    image: "mock.png",
+    thumbnail: "mock.png"
   },
   {
     category: "size",
     id: "7CdL-mnQ",
-    name: "Большая (35см)",
+    name: "35см",
     price: 50,
-    slug: "big"
+    slug: "big",
+    image: "mock.png",
+    thumbnail: "mock.png"
   },
-  { id: "8dL-mnQ", name: "Бекон", slug: "beacon", price: 29, category: "meat" },
-  { id: "9dL-mnQ", name: "Ветчина", slug: "ham", price: 29, category: "meat" },
+  {
+    id: "8dL-mnQ",
+    name: "Бекон",
+    slug: "beacon",
+    price: 29,
+    category: "meat",
+    image: "mock.png",
+    thumbnail: "mock.png"
+  },
+  {
+    id: "9dL-mnQ",
+    name: "Ветчина",
+    slug: "ham",
+    price: 29,
+    category: "meat",
+    image: "mock.png",
+    thumbnail: "mock.png"
+  },
   {
     id: "10dL-mnQ",
     name: "Пепперони",
     slug: "pepperoni",
     price: 29,
-    category: "meat"
+    category: "meat",
+    image: "mock.png",
+    thumbnail: "mock.png"
   },
   {
     id: "1dL-mnQ",
     name: "Моцарелла",
     slug: "mocarella",
     price: 29,
-    category: "cheese"
+    category: "cheese",
+    image: "mock.png",
+    thumbnail: "mock.png"
   },
   {
     id: "2dL-mnQ",
     name: "Чеддер",
     slug: "cheddar",
     price: 29,
-    category: "cheese"
+    category: "cheese",
+    image: "mock.png",
+    thumbnail: "mock.png"
   },
   {
     id: "3dL-mnQ",
     name: "ДорБлю",
     slug: "dorblue",
     price: 29,
-    category: "cheese"
+    category: "cheese",
+    image: "mock.png",
+    thumbnail: "mock.png"
   },
   {
     id: "oKS9NeQ6",
     name: "Томатный",
     slug: "tomato",
     price: 0,
-    category: "sauce"
+    category: "sauce",
+    image: "mock.png",
+    thumbnail: "mock.png"
   },
-  { id: "L2II-OVm", name: "Белый", slug: "white", price: 5, category: "sauce" },
-  { id: "E8bm-sTK", name: "Острый", slug: "hot", price: 10, category: "sauce" },
-  { id: "TVhtinML", name: "Тонкое", slug: "thin", price: 0, category: "dough" },
-  { id: "DAALLYiR", name: "Пышное", slug: "lush", price: 0, category: "dough" },
+  {
+    id: "L2II-OVm",
+    name: "Белый",
+    slug: "white",
+    price: 5,
+    category: "sauce",
+    image: "mock.png",
+    thumbnail: "mock.png"
+  },
+  {
+    id: "E8bm-sTK",
+    name: "Острый",
+    slug: "hot",
+    price: 10,
+    category: "sauce",
+    image: "mock.png",
+    thumbnail: "mock.png"
+  },
+  {
+    id: "TVhtinML",
+    name: "Тонкое",
+    slug: "thin",
+    price: 0,
+    category: "dough",
+    image: "mock.png",
+    thumbnail: "mock.png"
+  },
+  {
+    id: "DAALLYiR",
+    name: "Пышное",
+    slug: "lush",
+    price: 0,
+    category: "dough",
+    image: "mock.png",
+    thumbnail: "mock.png"
+  },
   {
     id: "4dL-mnQ",
     name: "Томаты",
     slug: "tomatos",
     price: 29,
-    category: "veggies"
+    category: "veggies",
+    image: "mock.png",
+    thumbnail: "mock.png"
   },
   {
     id: "5dL-mnQ",
     name: "Грибы",
     slug: "mushrooms",
     price: 29,
-    category: "veggies"
+    category: "veggies",
+    image: "mock.png",
+    thumbnail: "mock.png"
   },
   {
     id: "6dL-mnQ",
     name: "Перец",
     slug: "pepper",
     price: 29,
-    category: "veggies"
+    category: "veggies",
+    image: "mock.png",
+    thumbnail: "mock.png"
   }
 ];
