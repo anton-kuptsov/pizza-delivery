@@ -38,7 +38,7 @@ export const AddIngredient = () => {
         )
       )}
       <form onSubmit={onSubmit}>
-        <fieldset style={{ width: "400px", margin: "auto" }}>
+        <fieldset style={{ width: "fit-content", margin: "1rem auto" }}>
           <legend>Добавить ингредиент</legend>
           <div>
             <label htmlFor="name">Наименование:</label>
@@ -92,23 +92,46 @@ export const AddIngredient = () => {
               {errors.slug?.message}
             </p>
           )}
-          <div>
-            <label htmlFor="image">Картинка:</label>
-            <input
-              ref={register({ required: "Image is required" })}
-              id="image"
-              type="file"
-              name="image"
-            />
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              margin: "0.5rem auto"
+            }}
+          >
+            <div>
+              <label htmlFor="thumbnail">Превью:</label>
+              <input
+                ref={register({ required: "Required field" })}
+                id="thumbnail"
+                type="file"
+                name="thumbnail"
+              />
+            </div>
+            <div>
+              <label htmlFor="image">Картинка:</label>
+              <input
+                ref={register({ required: "Image is required" })}
+                id="image"
+                type="file"
+                name="image"
+              />
+            </div>
+
+            {errors?.image && (
+              <p style={{ color: "red", fontSize: "0.75rem" }}>
+                {errors.image?.message}
+              </p>
+            )}
+            <button
+              disabled={isLoading}
+              style={{ marginTop: "1rem", height: "3rem" }}
+            >
+              {isLoading ? "Загрузка..." : "Добавить"}
+            </button>
           </div>
-          {errors?.image && (
-            <p style={{ color: "red", fontSize: "0.75rem" }}>
-              {errors.image?.message}
-            </p>
-          )}
-          <button disabled={isLoading} style={{ margin: "1rem" }}>
-            {isLoading ? "Загрузка..." : "Добавить"}
-          </button>
         </fieldset>
       </form>
     </div>
