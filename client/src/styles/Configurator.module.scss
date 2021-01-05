@@ -14,10 +14,16 @@
 
 .container {
   margin-bottom: rem(64px);
+  & fieldset {
+    border: none;
+    padding: 0;
+  }
   ._preview {
     max-width: rem(360px);
     margin-left: auto;
     margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   ._base {
     display: flex;
@@ -39,9 +45,7 @@
   ._toppings {
     display: flex;
     margin-top: rem(26px);
-    & > div:not(:last-child) {
-      margin-right: 1rem;
-    }
+    justify-content: space-between;
   }
   .desc_wrapper {
     margin-top: 1rem;

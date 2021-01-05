@@ -5,6 +5,7 @@ import { postOrder } from "api";
 import { useSelector } from "react-redux";
 import { getPizza } from "state/pizza/selectors";
 import { getIngredients } from "state/ingredients/selectors";
+import { Loading } from "components/Loading/Loading";
 
 export const OrderPage = () => {
   const pizza = useSelector(getPizza);
@@ -68,7 +69,7 @@ export const OrderPage = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (isSuccess) {
     return <div>Your order accepted!</div>;

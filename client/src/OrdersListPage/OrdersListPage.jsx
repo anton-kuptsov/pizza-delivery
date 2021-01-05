@@ -1,4 +1,5 @@
 import { getOrders } from "api";
+import { Loading } from "components/Loading/Loading";
 import React from "react";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
@@ -14,7 +15,7 @@ export const OrderListPage = () => {
     return <div>{error.message}</div>;
   }
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (auth) {
     return (

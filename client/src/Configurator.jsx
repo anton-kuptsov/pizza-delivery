@@ -17,6 +17,7 @@ import {
 import { fetchIngredients } from "state/ingredients/thunk";
 import style from "./styles/Configurator.module.scss";
 import { PizzaPreview } from "./PizzaPreview";
+import { Loading } from "components/Loading/Loading";
 
 export default function Configurator() {
   const history = useHistory();
@@ -62,7 +63,7 @@ export default function Configurator() {
   };
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <Loading />;
   }
 
   if (isError) {
@@ -72,7 +73,7 @@ export default function Configurator() {
   return (
     <div className={style.container}>
       <form onSubmit={handleSubmit(handleCheckout)}>
-        <fieldset style={{ border: "none" }}>
+        <fieldset style={{ border: "none", padding: 0 }}>
           <div className={style._preview}>
             <PizzaPreview
               pizza={pizza}

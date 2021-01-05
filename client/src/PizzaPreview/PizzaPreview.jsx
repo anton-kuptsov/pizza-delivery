@@ -20,7 +20,7 @@ export const PizzaPreview = ({ pizza, dough, size, veggies, meat, cheese }) => {
         <img
           src={HOST + "/" + doughImage}
           alt="dough"
-          style={pizza.size !== "standart" ? { transform: "scale(1.1)" } : {}}
+          style={pizza.size !== "standart" ? { transform: "scale(1.05)" } : {}}
         />
       </div>
       <ToppingsPreview toppings={pizza.cheese} ingredients={cheese} />
