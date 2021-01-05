@@ -12,9 +12,9 @@ export const getIngredientNameBySlug = name => state => {
     return null;
   }
   if (Array.isArray(name)) {
-    return name
-      .map(item => state.ingredients.data.find(i => i.slug === item)?.name)
-      .join(", ");
+    return name.map(
+      item => " • " + state.ingredients.data.find(i => i.slug === item)?.name
+    );
   } else {
     return state.ingredients.data.find(i => i.slug === name)?.name;
   }

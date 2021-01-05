@@ -79,31 +79,7 @@
       @extend %button-primary;
       margin-left: 1rem;
       margin-right: 1rem;
-      &:focus {
-        animation: shake-horizontal 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955)
-          both;
-      }
+      background: $secondary;
     }
-  }
-}
-
-@keyframes shake-horizontal {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  50%,
-  70% {
-    transform: translateX(-10px);
-  }
-  40%,
-  60% {
-    transform: translateX(10px);
-  }
-  80% {
-    transform: translateX(8px);
-  }
-  90% {
-    transform: translateX(-8px);
   }
 }

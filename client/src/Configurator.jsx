@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { setPizza } from "./state/pizza/actions";
 import {
+  getIngredientNameBySlug,
   getIngredientsByCategory,
   getIsError,
   getIsLoading
@@ -41,6 +42,11 @@ export default function Configurator() {
   });
 
   const pizza = watch();
+  const pizzaSize = useSelector(getIngredientNameBySlug(pizza.size));
+  const pizzaSauce = useSelector(getIngredientNameBySlug(pizza.sauce));
+  const pizzaCheese = useSelector(getIngredientNameBySlug(pizza.cheese));
+  const pizzaMeat = useSelector(getIngredientNameBySlug(pizza.meat));
+  const pizzaVeggies = useSelector(getIngredientNameBySlug(pizza.veggies));
 
   const totalCost = totalCostCalc(pizza, [
     ...size,
@@ -50,12 +56,6 @@ export default function Configurator() {
     ...meat,
     ...veggies
   ]);
-
-  const getToppingsName = (toppings, ingridients) => {
-    return toppings.map(
-      item => " • " + ingridients.filter(i => i.slug === item)[0].name
-    );
-  };
 
   const handleCheckout = data => {
     dispatch(setPizza(data));
@@ -86,14 +86,14 @@ export default function Configurator() {
             <div className={style.desc_wrapper}>
               <span className={style.desc__name}>Маргарита</span>
               <div className={style.desc__base}>
-                {size.filter(item => item.slug === pizza.size)[0]?.name} на{" "}
-                {pizza.dough === "thin" ? "тонком" : "толстом"} тесте
+                {pizzaSize} на {pizza.dough === "thin" ? "тонком" : "толстом"}{" "}
+                тесте
               </div>
               <div className={style.desc__toppings}>
-                {sauce.filter(item => item.slug === pizza.sauce)[0]?.name} соус
-                {getToppingsName(pizza.cheese, cheese)}
-                {getToppingsName(pizza.veggies, veggies)}
-                {getToppingsName(pizza.meat, meat)}
+                {pizzaSauce} соус
+                {pizzaCheese}
+                {pizzaVeggies}
+                {pizzaMeat}
               </div>
             </div>
             <div className={style._base}>
