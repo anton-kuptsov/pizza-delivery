@@ -28,4 +28,5 @@ yarn-error.log*
 .eslintcache
 .editorconfig
 *.code-workspace
+/images
 

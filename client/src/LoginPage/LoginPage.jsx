@@ -1,12 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { setLoggedIn } from "state/auth/actions";
+import { getAuth } from "state/auth/selectors";
 
-export const LoginPage = ({ formSubmit = () => {} }) => {
+export const LoginPage = () => {
+  const history = useHistory();
+  const auth = useSelector(getAuth);
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
-    formSubmit(data);
+    dispatch(setLoggedIn(data.email));
   };
+
+  if (auth) {
+    history.push("/");
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>

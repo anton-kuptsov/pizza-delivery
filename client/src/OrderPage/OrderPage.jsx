@@ -1,25 +1,30 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { usePizza } from "../PizzaContext";
-import { INITIAL_PIZZA_CONFIG } from "../configData";
-import { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } from "../configData";
+
 import { postOrder } from "api";
+import { useSelector } from "react-redux";
+import { getPizza } from "state/pizza/selectors";
+import { getIngredients } from "state/ingredients/selectors";
 
 export const OrderPage = () => {
+  const pizza = useSelector(getPizza);
+  const ingredients = useSelector(getIngredients);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(null);
   const [isSuccess, setSuccess] = useState(false);
 
-  const { pizzaConfig = INITIAL_PIZZA_CONFIG } = usePizza() ?? {};
-  const { size, dough, sauce, cheese, veggies, meat } = pizzaConfig;
+  const { size, dough, sauce, cheese, veggies, meat } = pizza;
+
+  const getIngredientName = item =>
+    ingredients.find(i => i.slug === item)?.name;
 
   const pizzaOrder = [
-    SIZE[size].value,
-    DOUGH[dough].value,
-    SAUCE[sauce].value,
-    cheese.map(item => CHEESE[item].value),
-    veggies.map(item => VEGGIES[item].value),
-    meat.map(item => MEAT[item].value)
+    getIngredientName(size),
+    getIngredientName(dough),
+    getIngredientName(sauce),
+    cheese.map(item => getIngredientName(item)),
+    veggies.map(item => getIngredientName(item)),
+    meat.map(item => getIngredientName(item))
   ].join(",");
 
   const { register, handleSubmit, setValue, getValues } = useForm();

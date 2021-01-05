@@ -1,19 +1,38 @@
-import { act, fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { createMemoryHistory } from "history";
+import { Provider } from "react-redux";
+import { Router } from "react-router-dom";
+import { combineReducers, createStore } from "redux";
+import { authReducer } from "state/auth/reducer";
 import { LoginPage } from "./LoginPage";
+
+const store = createStore(
+  combineReducers({
+    auth: authReducer
+  })
+);
 
 describe("Login Page", () => {
   it("renders correctly", () => {
-    const { container } = render(<LoginPage />);
+    const { container } = render(
+      <Provider store={store}>
+        <LoginPage />
+      </Provider>
+    );
     expect(container).toHaveTextContent("Login form");
     expect(container).toHaveTextContent("Email:");
     expect(container).toHaveTextContent("Password:");
     expect(container).toHaveTextContent("Login");
   });
-  describe("on submit form", () => {
-    it("submit login data", async () => {
-      const formSubmit = jest.fn();
+  describe("on LogIn event", () => {
+    it("redirects to root page", async () => {
+      const history = createMemoryHistory();
       const { getByText, getByLabelText } = render(
-        <LoginPage formSubmit={formSubmit} />
+        <Provider store={store}>
+          <Router history={history}>
+            <LoginPage />
+          </Router>
+        </Provider>
       );
 
       fireEvent.input(getByLabelText("Email:"), {
@@ -26,9 +45,9 @@ describe("Login Page", () => {
       await act(async () => {
         fireEvent.click(getByText("Login"));
       });
-      expect(formSubmit).toBeCalledWith({
-        email: "email@mail.com",
-        password: "pass"
+
+      await waitFor(() => {
+        expect(history.location.pathname).toEqual("/");
       });
     });
   });

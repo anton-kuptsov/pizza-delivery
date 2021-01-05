@@ -1,44 +1,54 @@
 import React from "react";
 import { Button } from "../components/Button";
 import { Link } from "react-router-dom";
-import { usePizza } from "../PizzaContext";
-import { SIZE, DOUGH, SAUCE, CHEESE, VEGGIES, MEAT } from "../configData";
+
 import { totalCostCalc } from "../totalCostCalc";
-import { INITIAL_PIZZA_CONFIG } from "../configData";
+
+import { useSelector } from "react-redux";
+import { getPizza } from "state/pizza/selectors";
+import {
+  getIngredients,
+  getIngredientNameBySlug
+} from "state/ingredients/selectors";
 
 export const CheckoutPage = () => {
-  //initial data for test
-  const { pizzaConfig = INITIAL_PIZZA_CONFIG } = usePizza() ?? {};
+  const pizza = useSelector(getPizza);
+  const ingredients = useSelector(getIngredients);
 
-  const totalCost = totalCostCalc(pizzaConfig);
+  const size = useSelector(getIngredientNameBySlug(pizza.size));
+  const dough = useSelector(getIngredientNameBySlug(pizza.dough));
+  const sauce = useSelector(getIngredientNameBySlug(pizza.sauce));
+  const cheese = useSelector(getIngredientNameBySlug(pizza.cheese));
+  const meat = useSelector(getIngredientNameBySlug(pizza.meat));
+  const veggies = useSelector(getIngredientNameBySlug(pizza.veggies));
 
-  const { size, dough, sauce, cheese, veggies, meat } = pizzaConfig;
+  const totalCost = totalCostCalc(pizza, ingredients);
 
   return (
     <div className="container">
       <div>
         <span className="order-item-name">Size: </span>
-        <span>{SIZE[size].value}</span>
+        <span>{size}</span>
       </div>
       <div>
         <span className="order-item-name">Dough: </span>
-        <span>{DOUGH[dough].value}</span>
+        <span>{dough}</span>
       </div>
       <div>
         <span className="order-item-name">Sauce: </span>
-        <span>{SAUCE[sauce].value}</span>
+        <span>{sauce}</span>
       </div>
       <div>
         <span className="order-item-name">Cheese: </span>
-        <span>{cheese.map(item => CHEESE[item].value).join(", ")}</span>
+        <span>{cheese}</span>
       </div>
       <div>
         <span className="order-item-name">Veggies: </span>
-        <span>{veggies.map(item => VEGGIES[item].value).join(", ")}</span>
+        <span>{veggies}</span>
       </div>
       <div>
         <span className="order-item-name">Meat: </span>
-        <span>{meat.map(item => MEAT[item].value).join(", ")}</span>
+        <span>{meat}</span>
       </div>
       <div>
         <span className="order-item-name">Total cost: </span>
