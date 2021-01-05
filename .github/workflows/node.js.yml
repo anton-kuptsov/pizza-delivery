@@ -25,8 +25,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
+        working-directory: ./admin
       - run: npm run build --if-present
+        working-directory: ./admin
       - run: npm test
+        working-directory: ./admin
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
         env:
