@@ -8,16 +8,16 @@ import { totalCostCalc } from "./totalCostCalc";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { setPizza } from "state/pizza/actions";
+import { setPizza } from "./state/pizza/actions";
 import {
   getIngredientsByCategory,
   getIsError,
   getIsLoading
-} from "state/ingredients/selectors";
-import { fetchIngredients } from "state/ingredients/thunk";
+} from "./state/ingredients/selectors";
+import { fetchIngredients } from "./state/ingredients/thunk";
 import style from "./styles/Configurator.module.scss";
 import { PizzaPreview } from "./PizzaPreview";
-import { Loading } from "components/Loading/Loading";
+import { Loading } from "./components/Loading";
 
 export default function Configurator() {
   const history = useHistory();
@@ -122,21 +122,21 @@ export default function Configurator() {
               <CheckboxGroup
                 ref={register}
                 items={cheese}
-                selected={watch().cheese}
+                selected={pizza.cheese}
               />
             </div>
             <div className={style._toppings}>
               <CheckboxGroup
                 ref={register}
                 items={veggies}
-                selected={watch().veggies}
+                selected={pizza.veggies}
               />
             </div>
             <div className={style._toppings}>
               <CheckboxGroup
                 ref={register}
                 items={meat}
-                selected={watch().meat}
+                selected={pizza.meat}
               />
             </div>
           </div>

@@ -5,7 +5,7 @@ import { postOrder } from "api";
 import { useSelector } from "react-redux";
 import { getPizza } from "state/pizza/selectors";
 import { getIngredients } from "state/ingredients/selectors";
-import { Loading } from "components/Loading/Loading";
+import { Loading } from "components/Loading";
 
 export const OrderPage = () => {
   const pizza = useSelector(getPizza);

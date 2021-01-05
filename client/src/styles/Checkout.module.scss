@@ -1,0 +1,17 @@
+@import "./_colors";
+@import "./functions";
+@import "./_sets";
+
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: rem(56px);
+  background: $gray100;
+  .desc {
+    padding: 0.75rem 1rem 1rem 1rem;
+    width: 100vw;
+    box-shadow: $shadow-lg;
+    border-radius: 1rem;
+    background: $white;
+  }
+}
