@@ -46,6 +46,7 @@
     display: flex;
     margin-top: rem(26px);
     justify-content: space-between;
+    flex-wrap: wrap;
   }
   .desc_wrapper {
     margin-top: 1rem;

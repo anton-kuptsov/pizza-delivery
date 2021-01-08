@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../components/Button";
 import { useHistory } from "react-router-dom";
 
@@ -11,18 +11,33 @@ import {
   getIngredientNameBySlug
 } from "../state/ingredients/selectors";
 import style from "../styles/Checkout.module.scss";
+import { PaymentInfo } from "./PaymentInfo";
+import { Navbar } from "../NavBar";
 
 export const CheckoutPage = () => {
+  const [isDisable, setDisable] = useState(true);
   const history = useHistory();
   const pizza = useSelector(getPizza);
+  const formId = "payment_form";
 
   const ingredients = useSelector(getIngredients);
 
-  const size = useSelector(getIngredientNameBySlug(pizza.size));
-  const sauce = useSelector(getIngredientNameBySlug(pizza.sauce));
-  const cheese = useSelector(getIngredientNameBySlug(pizza.cheese));
-  const meat = useSelector(getIngredientNameBySlug(pizza.meat));
-  const veggies = useSelector(getIngredientNameBySlug(pizza.veggies));
+  const pizzaSize = useSelector(getIngredientNameBySlug(pizza.size));
+  const pizzaSauce = useSelector(getIngredientNameBySlug(pizza.sauce));
+  const pizzaCheese = useSelector(getIngredientNameBySlug(pizza.cheese));
+  const pizzaMeat = useSelector(getIngredientNameBySlug(pizza.meat));
+  const pizzaVeggies = useSelector(getIngredientNameBySlug(pizza.veggies));
+
+  const fullPizzaDesc =
+    pizzaSize +
+    " на " +
+    (pizza.dough === "thin" ? "тонком" : "толстом") +
+    " тесте • " +
+    pizzaSauce +
+    " соус " +
+    pizzaCheese?.join("") +
+    pizzaVeggies?.join("") +
+    pizzaMeat?.join("");
 
   const totalCost = totalCostCalc(pizza, ingredients);
 
@@ -31,20 +46,22 @@ export const CheckoutPage = () => {
   }
 
   return (
-    <div>
+    <div className={style.wrapper}>
+      <Navbar back title="Оформление заказа" />
       <div className={style.container}>
         <div className={style.desc}>
           <span className={style.desc__name}>Маргарита</span>
-          <div className={style.desc__base}>
-            {size} на {pizza.dough === "thin" ? "тонком" : "толстом"} тесте •{" "}
-            {sauce} соус {cheese}
-            {veggies}
-            {meat}
-          </div>
+          <div className={style.desc__base}>{fullPizzaDesc}</div>
           <div className={style.line} />
           <div className={style.price}>{totalCost} руб</div>
         </div>
+        <PaymentInfo
+          id={formId}
+          fullPizzaDesc={fullPizzaDesc}
+          setDisable={setDisable}
+        />
       </div>
+
       <div className={style.confirm_container}>
         <div className={style.info_row}>
           <div>Стоимость заказа</div>
@@ -60,7 +77,9 @@ export const CheckoutPage = () => {
           <div>{totalCost} руб</div>
         </div>
         <div className={style.order_button}>
-          <Button>Оплатить {totalCost} руб</Button>
+          <Button form={formId} type="submit" disabled={isDisable}>
+            Оплатить {totalCost} руб
+          </Button>
         </div>
       </div>
     </div>

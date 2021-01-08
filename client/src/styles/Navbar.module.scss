@@ -9,7 +9,24 @@
   height: rem(56px);
   margin-left: 1rem;
   margin-right: 1rem;
+
   nav {
     display: flex;
+    align-items: center;
+    & > a {
+      color: $gray600;
+      line-height: rem(48px);
+      width: rem(40px);
+      height: rem(40px);
+      text-align: center;
+      margin-right: 0.5rem;
+    }
   }
+  .title {
+    @extend %text-lg-bold;
+    color: $black;
+  }
+}
+.back {
+  background: $gray100;
 }

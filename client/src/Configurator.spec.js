@@ -36,9 +36,12 @@ const store = createStore(
 describe("Configurator", () => {
   describe("renders correctly", () => {
     it("on loading", () => {
+      const history = createMemoryHistory();
       const { container } = render(
         <Provider store={store}>
-          <Configurator />
+          <Router history={history}>
+            <Configurator />
+          </Router>
         </Provider>
       );
       expect(container).toHaveTextContent("Loading");
@@ -47,21 +50,23 @@ describe("Configurator", () => {
 
   describe("with default options", () => {
     it("shows minimal cost", async () => {
+      const history = createMemoryHistory();
       const { promise, resolve } = getControlledPromise();
       getIngredients.mockImplementation(() => promise);
       resolve(ingridientsData);
-
       const { getByText } = render(
         <Provider store={store}>
-          <Configurator />
+          <Router history={history}>
+            <Configurator />
+          </Router>
         </Provider>
       );
-
       await waitFor(() => {
         expect(getByText("Заказать за 200 руб")).toBeInTheDocument();
       });
     });
   });
+
   describe("when additional options selected", () => {
     it("passes data to store", async () => {
       const history = createMemoryHistory();

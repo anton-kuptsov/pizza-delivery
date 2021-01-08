@@ -2,68 +2,78 @@
 @import "./functions";
 @import "./_sets";
 
-.container {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: rem(56px);
+.wrapper {
   background: $gray100;
-  .desc {
-    padding: 0.75rem 1rem 1rem 1rem;
-    box-shadow: $shadow-lg;
-    border-radius: 1rem;
-    background: $white;
-    .desc__name {
-      color: $black;
-      @extend %text-base-medium;
-      margin-bottom: 0.5rem;
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background: $gray100;
+    margin-bottom: rem(160px);
+    .desc {
+      padding: 0.75rem 1rem 1rem 1rem;
+      box-shadow: $shadow-lg;
+      border-radius: 1rem;
+      background: $white;
+      .desc__name {
+        color: $black;
+        @extend %text-base-medium;
+        margin-bottom: 0.5rem;
+      }
+      .desc__base {
+        color: $gray600;
+        @extend %text-xs;
+      }
     }
-    .desc__base {
+    .price {
+      @extend %text-base-bold;
       color: $gray600;
-      @extend %text-xs;
     }
   }
-  .price {
-    @extend %text-base-bold;
+
+  .line {
+    height: 0;
+    border-bottom: 1px dashed $gray200;
+    margin: 0.5rem 0;
+  }
+
+  .confirm_container {
+    box-shadow: $shadow-panel;
+    width: 100%;
+    background: $white;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 1rem;
     color: $gray600;
-  }
-}
-
-.line {
-  height: 0;
-  border-bottom: 1px dashed $gray200;
-  margin: 0.5rem 0;
-}
-
-.confirm_container {
-  box-sizing: border-box;
-  box-shadow: $shadow-panel;
-  width: 100%;
-  background: $white;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 0.75rem 1rem;
-  color: $gray600;
-  @extend %text-xs;
-  .info_row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 0.25rem;
-  }
-  .info_row__amount {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    @extend %text-xs-medium;
-  }
-  .order_button {
-    margin-top: rem(18px);
-    & button {
-      @extend %button-primary;
-      background: $primary;
-      border: 0;
+    @extend %text-xs;
+    .info_row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+    .info_row__amount {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      @extend %text-xs-medium;
+    }
+    .order_button {
+      margin-top: rem(18px);
+      & button {
+        @extend %button-primary;
+        background: $primary;
+        border: 0;
+        &:disabled {
+          background: $gray100;
+          color: $gray400;
+          &:hover {
+            box-shadow: none;
+            cursor: not-allowed;
+          }
+        }
+      }
     }
   }
 }

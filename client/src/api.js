@@ -18,14 +18,21 @@ export const getOrders = () => {
   return result;
 };
 
-export const postOrder = data => {
+export const postOrder = (fullPizzaDesc, data) => {
+  const order = {
+    ingredients: [fullPizzaDesc],
+    address: data.address,
+    name: data.name,
+    card_number: data.card_number
+  };
+
   const URL = `${HOST}/orders`;
   const result = fetch(URL, {
     method: "POST",
     headers: {
       "Content-type": "application/json"
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(order)
   }).then(res => {
     if (res.ok) {
       return res.json();

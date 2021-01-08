@@ -12,6 +12,9 @@
   flex-direction: column;
   align-items: center;
   width: rem(104px);
+  min-width: rem(104px);
+  box-sizing: border-box;
+  margin-bottom: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-out;
   &:hover {
@@ -78,7 +81,7 @@
   border: 1px solid $secondary;
   box-shadow: none;
   & input:focus {
-    animation: pulsate-fwd 0.5s ease-in-out both;
+    animation: pulsate-fwd 0.25s ease-in-out both;
   }
 
   &:hover {

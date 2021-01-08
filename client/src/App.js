@@ -7,13 +7,12 @@ import { SignupPage } from "./SignupPage";
 import { CheckoutPage } from "./CheckoutPage";
 import { OrderPage } from "./OrderPage";
 import { OrderListPage } from "./OrdersListPage";
-import { Navbar } from "./NavBar";
 import "./styles/base.scss";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
-      <Navbar />
       <Switch>
         <Route exact path="/">
           <Configurator />
@@ -25,6 +24,7 @@ function App() {
           <SignupPage />
         </Route>
         <Route path="/checkout">
+          <ScrollToTop />
           <CheckoutPage />
         </Route>
         <Route path="/order">

@@ -19,6 +19,7 @@ import { fetchIngredients } from "./state/ingredients/thunk";
 import style from "./styles/Configurator.module.scss";
 import { PizzaPreview } from "./PizzaPreview";
 import { Loading } from "./components/Loading";
+import { Navbar } from "./NavBar";
 
 export default function Configurator() {
   const history = useHistory();
@@ -71,82 +72,80 @@ export default function Configurator() {
   }
 
   return (
-    <div className={style.container}>
-      <form onSubmit={handleSubmit(handleCheckout)}>
-        <fieldset style={{ border: "none", padding: 0 }}>
-          <div className={style._preview}>
-            <PizzaPreview
-              pizza={pizza}
-              size={size}
-              dough={dough}
-              cheese={cheese}
-              meat={meat}
-              veggies={veggies}
-            />
-            <div className={style.desc_wrapper}>
-              <span className={style.desc__name}>Маргарита</span>
-              <div className={style.desc__base}>
-                {pizzaSize} на {pizza.dough === "thin" ? "тонком" : "толстом"}{" "}
-                тесте
-              </div>
-              <div className={style.desc__toppings}>
-                {pizzaSauce} соус
-                {pizzaCheese}
-                {pizzaVeggies}
-                {pizzaMeat}
-              </div>
-            </div>
-            <div className={style._base}>
-              <div className={style.wrapper}>
-                <span>Размер</span>
-                <div>
-                  <RadioGroup ref={register} items={size} />
+    <>
+      <Navbar />
+      <div className={style.container}>
+        <form onSubmit={handleSubmit(handleCheckout)}>
+          <fieldset style={{ border: "none", padding: 0 }}>
+            <div className={style._preview}>
+              <PizzaPreview
+                pizza={pizza}
+                size={size}
+                dough={dough}
+                cheese={cheese}
+                meat={meat}
+                veggies={veggies}
+              />
+              <div className={style.desc_wrapper}>
+                <span className={style.desc__name}>Маргарита</span>
+                <div className={style.desc__base}>
+                  {pizzaSize} на {pizza.dough === "thin" ? "тонком" : "толстом"}{" "}
+                  тесте
+                </div>
+                <div className={style.desc__toppings}>
+                  {pizzaSauce} соус {pizzaCheese?.join("")}
+                  {pizzaVeggies?.join("")}
+                  {pizzaMeat?.join("")}
                 </div>
               </div>
-              <div className={style.wrapper}>
-                <span>Тесто</span>
-                <div>
-                  <RadioGroup ref={register} items={dough} />
+              <div className={style._base}>
+                <div className={style.wrapper}>
+                  <span>Размер</span>
+                  <div>
+                    <RadioGroup ref={register} items={size} />
+                  </div>
+                </div>
+                <div className={style.wrapper}>
+                  <span>Тесто</span>
+                  <div>
+                    <RadioGroup ref={register} items={dough} />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={style._sauge}>
-              <div className={style.wrapper}>
-                <span></span>
-                <div>
-                  <RadioGroup ref={register} items={sauce} />
+              <div className={style._sauge}>
+                <div className={style.wrapper}>
+                  <span></span>
+                  <div>
+                    <RadioGroup ref={register} items={sauce} />
+                  </div>
                 </div>
               </div>
+              <div className={style._toppings}>
+                <CheckboxGroup
+                  ref={register}
+                  items={cheese}
+                  selected={pizza.cheese}
+                />
+                <CheckboxGroup
+                  ref={register}
+                  items={veggies}
+                  selected={pizza.veggies}
+                />
+                <CheckboxGroup
+                  ref={register}
+                  items={meat}
+                  selected={pizza.meat}
+                />
+              </div>
             </div>
-            <div className={style._toppings}>
-              <CheckboxGroup
-                ref={register}
-                items={cheese}
-                selected={pizza.cheese}
-              />
-            </div>
-            <div className={style._toppings}>
-              <CheckboxGroup
-                ref={register}
-                items={veggies}
-                selected={pizza.veggies}
-              />
-            </div>
-            <div className={style._toppings}>
-              <CheckboxGroup
-                ref={register}
-                items={meat}
-                selected={pizza.meat}
-              />
-            </div>
+          </fieldset>
+          <div className={style.footer}>
+            <Button type="submit" className={style.btn__checkout}>
+              Заказать за {totalCost} руб
+            </Button>
           </div>
-        </fieldset>
-        <div className={style.footer}>
-          <Button type="submit" className={style.btn__checkout}>
-            Заказать за {totalCost} руб
-          </Button>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
   );
 }
