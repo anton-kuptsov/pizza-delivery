@@ -13,7 +13,7 @@ export const Navbar = ({
   closeBtn = false,
   title = "",
   path = "/",
-  setError
+  resetStatus
 }) => {
   const dispatch = useDispatch();
   const auth = useSelector(getAuth);
@@ -25,7 +25,10 @@ export const Navbar = ({
     return (
       <header className={style.container + " " + style.closeBtn}>
         <nav>
-          <NavLink to={path} onClick={() => setError(false)}>
+          <NavLink
+            to={path}
+            onClick={resetStatus && (() => resetStatus(false))}
+          >
             <img src={Close} alt="back" />
           </NavLink>
         </nav>

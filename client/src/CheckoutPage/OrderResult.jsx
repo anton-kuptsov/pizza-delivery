@@ -43,7 +43,7 @@ export const OrderSuccess = ({ pizza }) => {
 export const OrderError = ({ setError }) => {
   return (
     <>
-      <Navbar closeBtn path="/checkout" setError={setError} />
+      <Navbar closeBtn path="/checkout" resetStatus={setError} />
       <div className={style.container}>
         <div>
           <img src={Error} alt="" />
