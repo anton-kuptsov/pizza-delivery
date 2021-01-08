@@ -14,9 +14,10 @@ import style from "../styles/Checkout.module.scss";
 import { PaymentInfo } from "./PaymentInfo";
 import { Navbar } from "../NavBar";
 import { OrderSuccess } from "./OrderResult";
+import { OrderError } from "./OrderResult";
 
 export const CheckoutPage = () => {
-  const [isError, setError] = useState(null);
+  const [isError, setError] = useState(true);
   const [isSuccess, setSuccess] = useState(false);
   const [isDisable, setDisable] = useState(true);
   const history = useHistory();
@@ -52,7 +53,7 @@ export const CheckoutPage = () => {
     return <OrderSuccess pizza={fullPizzaDesc} />;
   }
   if (isError) {
-    return <div>{isError.message}</div>;
+    return <OrderError setError={setError} />;
   }
 
   return (

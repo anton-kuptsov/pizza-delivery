@@ -2,6 +2,7 @@ import { Navbar } from "NavBar/Navbar";
 import React from "react";
 import style from "../styles/OrderResult.module.scss";
 import Success from "./success.svg";
+import Error from "./error.svg";
 import Tractor from "./tractor.svg";
 
 export const OrderSuccess = ({ pizza }) => {
@@ -33,6 +34,23 @@ export const OrderSuccess = ({ pizza }) => {
               Доставляется
             </div>
           </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const OrderError = ({ setError }) => {
+  return (
+    <>
+      <Navbar closeBtn path="/checkout" setError={setError} />
+      <div className={style.container}>
+        <div>
+          <img src={Error} alt="" />
+        </div>
+        <div className={style.title}>Оплата не прошла!</div>
+        <div className={style.subtitle}>
+          Попробуйте ещё раз или используйте другую карту
         </div>
       </div>
     </>

@@ -25,7 +25,7 @@ describe("Checkout", () => {
     );
     // expect(container.getElementsByTagName("div")).toBeTruthy();
     // expect(container.getElementsByClassName("container")).toBeTruthy();
-    expect(getByText("Стоимость заказа")).toBeInTheDocument();
+    expect(getByText("Оформление заказа")).toBeInTheDocument();
     // expect(getByText("Dough:")).toBeInTheDocument();
     // expect(getByText("Sauce:")).toBeInTheDocument();
     // expect(getByText("Cheese:")).toBeInTheDocument();

@@ -8,7 +8,13 @@ import style from "../styles/Navbar.module.scss";
 import Arrow from "./arrow.svg";
 import Close from "./close.svg";
 
-export const Navbar = ({ backBtn = false, closeBtn = false, title = "" }) => {
+export const Navbar = ({
+  backBtn = false,
+  closeBtn = false,
+  title = "",
+  path = "/",
+  setError
+}) => {
   const dispatch = useDispatch();
   const auth = useSelector(getAuth);
   const handleLogOut = () => {
@@ -19,7 +25,7 @@ export const Navbar = ({ backBtn = false, closeBtn = false, title = "" }) => {
     return (
       <header className={style.container + " " + style.closeBtn}>
         <nav>
-          <NavLink to="/">
+          <NavLink to={path} onClick={() => setError(false)}>
             <img src={Close} alt="back" />
           </NavLink>
         </nav>
@@ -31,7 +37,7 @@ export const Navbar = ({ backBtn = false, closeBtn = false, title = "" }) => {
     return (
       <header className={style.container + " " + style.backBtn}>
         <nav>
-          <NavLink to="/">
+          <NavLink to={path}>
             <img src={Arrow} alt="back" />
           </NavLink>
           <div className={style.title}>{title}</div>
