@@ -13,8 +13,11 @@ import {
 import style from "../styles/Checkout.module.scss";
 import { PaymentInfo } from "./PaymentInfo";
 import { Navbar } from "../NavBar";
+import { OrderSuccess } from "./OrderResult";
 
 export const CheckoutPage = () => {
+  const [isError, setError] = useState(null);
+  const [isSuccess, setSuccess] = useState(false);
   const [isDisable, setDisable] = useState(true);
   const history = useHistory();
   const pizza = useSelector(getPizza);
@@ -45,9 +48,16 @@ export const CheckoutPage = () => {
     history.push("/");
   }
 
+  if (isSuccess) {
+    return <OrderSuccess pizza={fullPizzaDesc} />;
+  }
+  if (isError) {
+    return <div>{isError.message}</div>;
+  }
+
   return (
     <div className={style.wrapper}>
-      <Navbar back title="Оформление заказа" />
+      <Navbar backBtn title="Оформление заказа" />
       <div className={style.container}>
         <div className={style.desc}>
           <span className={style.desc__name}>Маргарита</span>
@@ -59,6 +69,8 @@ export const CheckoutPage = () => {
           id={formId}
           fullPizzaDesc={fullPizzaDesc}
           setDisable={setDisable}
+          setSuccess={setSuccess}
+          setError={setError}
         />
       </div>
 

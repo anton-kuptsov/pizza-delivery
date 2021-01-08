@@ -22,11 +22,16 @@
       margin-right: 0.5rem;
     }
   }
+
   .title {
     @extend %text-lg-bold;
     color: $black;
   }
 }
-.back {
+
+.backBtn {
   background: $gray100;
+}
+.closeBtn {
+  justify-content: flex-end;
 }

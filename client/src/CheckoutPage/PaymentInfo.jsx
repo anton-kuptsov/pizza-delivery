@@ -7,10 +7,14 @@ import { AddressInfo } from "./AddressInfo";
 import { checkPaymentSystem, normalizeCCNumber } from "./utils";
 import style from "../styles/PaymentInfo.module.scss";
 
-export const PaymentInfo = ({ id, fullPizzaDesc, setDisable }) => {
+export const PaymentInfo = ({
+  id,
+  fullPizzaDesc,
+  setError,
+  setSuccess,
+  setDisable
+}) => {
   const [isLoading, setLoading] = useState(false);
-  const [isError, setError] = useState(null);
-  const [isSuccess, setSuccess] = useState(false);
 
   const { register, handleSubmit, setValue, getValues, watch } = useForm();
   const [cardSystem, setCardSystem] = React.useState(null);
@@ -44,12 +48,6 @@ export const PaymentInfo = ({ id, fullPizzaDesc, setDisable }) => {
 
   if (isLoading) {
     return <Loading />;
-  }
-  if (isSuccess) {
-    return <div>Your order accepted!</div>;
-  }
-  if (isError) {
-    return <div>{isError.message}</div>;
   }
 
   return (

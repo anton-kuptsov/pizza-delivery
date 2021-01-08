@@ -6,17 +6,30 @@ import { getAuth } from "../state/auth/selectors";
 import { Brand } from "./Brand";
 import style from "../styles/Navbar.module.scss";
 import Arrow from "./arrow.svg";
+import Close from "./close.svg";
 
-export const Navbar = ({ back = false, title = "" }) => {
+export const Navbar = ({ backBtn = false, closeBtn = false, title = "" }) => {
   const dispatch = useDispatch();
   const auth = useSelector(getAuth);
   const handleLogOut = () => {
     dispatch(setLoggedOut());
   };
 
-  if (back) {
+  if (closeBtn) {
     return (
-      <header className={style.container + " " + style.back}>
+      <header className={style.container + " " + style.closeBtn}>
+        <nav>
+          <NavLink to="/">
+            <img src={Close} alt="back" />
+          </NavLink>
+        </nav>
+      </header>
+    );
+  }
+
+  if (backBtn) {
+    return (
+      <header className={style.container + " " + style.backBtn}>
         <nav>
           <NavLink to="/">
             <img src={Arrow} alt="back" />

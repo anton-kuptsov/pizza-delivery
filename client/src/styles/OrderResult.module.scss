@@ -1,0 +1,65 @@
+@import "./_colors";
+@import "./functions";
+@import "./_sets";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem rem(40px);
+  .time {
+    color: $gray400;
+    margin-left: 1rem;
+  }
+  .title {
+    @extend %text-lg-medium;
+    color: $black;
+    margin-top: rem(24px);
+  }
+  .subtitle {
+    @extend %text-base;
+    color: $gray600;
+    text-align: center;
+  }
+  .details {
+    color: $gray600;
+    background: $white;
+    box-shadow: $shadow-lg;
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    margin-top: 2rem;
+    @extend %text-xs;
+    .pizza {
+      @extend %text-base-medium;
+      color: $black;
+      margin: 0.5rem 0;
+    }
+    .pizza_config {
+      margin-bottom: 0.5rem;
+    }
+    .line {
+      border-bottom: rem(1px) dashed $gray200;
+      height: 0;
+    }
+    .status {
+      display: flex;
+      margin-top: 0.5rem;
+      @extend %text-xs;
+      .amount {
+        @extend %text-xs;
+        display: flex;
+        align-self: center;
+      }
+
+      .tractor {
+        display: flex;
+        color: $secondary;
+        @extend %text-sm-medium;
+        margin-left: 0.5rem;
+        & > img {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
