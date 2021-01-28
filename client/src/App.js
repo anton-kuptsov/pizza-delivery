@@ -13,6 +13,13 @@ import { ScrollToTop } from "./components/ScrollToTop";
 function App() {
   return (
     <>
+      <button
+        onClick={() => {
+          throw new Error("Some Error");
+        }}
+      >
+        Break the world
+      </button>
       <Switch>
         <Route exact path="/">
           <Configurator />
